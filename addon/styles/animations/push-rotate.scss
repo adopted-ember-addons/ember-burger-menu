@@ -1,18 +1,17 @@
 @import '../variables';
 
-.ember-burger-menu.open-door {
+.ember-burger-menu.push-rotate {
 	-webkit-perspective: 1500px;
 	perspective: 1500px;
 
 	.bm-outlet {
-		-webkit-transform-origin: 100% 50%;
-		transform-origin: 100% 50%;
+		-webkit-transform-origin: 0% 50%;
+		transform-origin: 0% 50%;
 		-webkit-transform-style: preserve-3d;
 		transform-style: preserve-3d;
 	}
 
 	.bm-menu {
-		opacity: 1;
 		-webkit-transform: translate3d(-100%, 0, 0);
 		transform: translate3d(-100%, 0, 0);
 
@@ -22,11 +21,6 @@
 	}
 
 	&.right {
-		.bm-outlet {
-			-webkit-transform-origin: 0% 50%;
-			transform-origin: 0% 50%;
-		}
-
 		.bm-menu {
 			-webkit-transform: translate3d(100%, 0, 0);
 			transform: translate3d(100%, 0, 0);
@@ -35,8 +29,7 @@
 
 	&.is-open {
 		.bm-outlet {
-			-webkit-transform: rotateY(-10deg);
-			transform: rotateY(-10deg);
+			pointer-events: none;
 		}
 
 		.bm-menu {
@@ -45,13 +38,6 @@
 			transition: transform $t-duration;
 			-webkit-transform: translate3d(0, 0, 0);
 			transform: translate3d(0, 0, 0);
-		}
-
-		&.right {
-			.bm-outlet {
-				-webkit-transform: rotateY(10deg);
-				transform: rotateY(10deg);
-			}
 		}
 	}
 }

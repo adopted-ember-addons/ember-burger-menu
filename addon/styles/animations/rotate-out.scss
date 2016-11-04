@@ -36,8 +36,8 @@
 	&.is-open {
 		.bm-menu {
 			visibility: visible;
-			-webkit-transition: -webkit-transform 0.5s;
-			transition: transform 0.5s;
+			-webkit-transition: -webkit-transform $t-duration;
+			transition: transform $t-duration;
 			-webkit-transform: translate3d(-100%, 0, 0) rotateY(0deg);
 			transform: translate3d(-100%, 0, 0) rotateY(0deg);
 		}

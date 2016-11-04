@@ -1,15 +1,19 @@
-{{#ember-burger animation="open-door" position="left" as |b|}}
+{{#ember-burger animation="slide" position="left" as |b|}}
   {{#b.menu}}
+    <a {{action burgerMenu.actions.toggle}} class="close fa fa-times"></a>
+    <h2><i class="fa fa-bolt" aria-hidden="true"></i> Sidebar</h2>
     <ul>
-      <li>Foo</li>
-      <li>Bar</li>
+      <li><i class="fa fa-heart-o" aria-hidden="true"></i> Favorites</li>
+      <li><i class="fa fa-bell-o" aria-hidden="true"></i> Alerts</li>
+      <li><i class="fa fa-envelope-o" aria-hidden="true"></i> Messages</li>
+      <li><i class="fa fa-comment-o" aria-hidden="true"></i> Comments</li>
+      <li><i class="fa fa-newspaper-o" aria-hidden="true"></i> Reading List</li>
     </ul>
-
-    <button type="button" name="button" {{action burgerMenu.actions.toggle}}>Close</button>
   {{/b.menu}}
 
   {{#b.outlet}}
     {{outlet}}
-    <button type="button" name="button" {{action burgerMenu.actions.toggle}}>Open</button>
   {{/b.outlet}}
+
+  <img src="images/tomster.png" class="tomster" width="75px" />
 {{/ember-burger}}

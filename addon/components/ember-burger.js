@@ -17,17 +17,17 @@ export default Ember.Component.extend({
   classNameBindings: ['menuId', 'isOpen', 'translucentOverlay', 'animation', 'position'],
   attributeBindings: ['style'],
 
-  menuId: 'main',
-  state: computed(function() {
-    return menuFor(this.get('menuId'));
-  }).readOnly(),
-
   isOpen: computed.alias('state.isOpen'),
   animation: computed.alias('state.animation'),
   position: computed.alias('state.position'),
   width: computed.alias('state.width'),
   translucentOverlay: true,
   dismissOnClick: true,
+  menuId: 'main',
+
+  state: computed(function() {
+    return menuFor(this.get('menuId'));
+  }).readOnly(),
 
   style: computed('state.isOpen', 'state.styles', function() {
     let openState = this.get('state.isOpen') ? 'open' : 'closed';
@@ -45,6 +45,7 @@ export default Ember.Component.extend({
   destroy() {
     this._super(...arguments);
     run.cancel(this._clickSetupTimer);
+    this.teardownClick();
   },
 
   setupClick() {

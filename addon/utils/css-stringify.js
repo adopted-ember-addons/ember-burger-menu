@@ -5,7 +5,7 @@ const {
   String: { htmlSafe }
 } = Ember;
 
-const PREFIXES = ['webkit', 'ms'];
+const PREFIXES = ['webkit'];
 const TRANSFORMABLE_PROPS = ['transform'];
 
 export default function cssStringify(hash = {}) {

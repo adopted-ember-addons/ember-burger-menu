@@ -3,10 +3,13 @@
 @import './animations/fall-down';
 @import './animations/open-door';
 @import './animations/push';
+@import './animations/push-rotate';
 @import './animations/reveal';
-@import './animations/scale-down-push';
+@import './animations/scale-down';
+@import './animations/scale-rotate';
 @import './animations/scale-up';
 @import './animations/slide';
+@import './animations/slide-reverse';
 
 .ember-burger-menu {
 	position: relative;
@@ -17,9 +20,7 @@
 		top: 0;
 		z-index: 100;
 		visibility: hidden;
-		width: $width;
 		height: 100%;
-		background: #48a770;
 		-webkit-transition: all $t-duration;
 		transition: all $t-duration;
 	}
@@ -34,9 +35,8 @@
 
 		.bm-content {
 			position: relative;
-			overflow-y: scroll;
-			background: #f3efe0;
 			height: 100%;
+			background: white;
 		}
 	}
 

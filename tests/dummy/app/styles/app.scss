@@ -1,6 +1,4 @@
-@import "ember-modal-dialog/ember-modal-structure";
-@import "ember-modal-dialog/ember-modal-appearance";
-
+$accent-color: #dd6a58;
 
 html,
 body,
@@ -9,21 +7,123 @@ body > .ember-view {
   margin: 0;
   height: 100%;
   width: 100%;
-  background: #444;
+  font-family: 'Open Sans', sans-serif;
+  background-color: #444;
 }
 
-#container {
-
+.pointer {
+  cursor: pointer;
 }
 
-#content {
-  height: 100%;
-  padding: 3em 2em;
-  text-align: center;
-  background: #b4bad2;
-  overflow: scroll;
+.clear-both {
+  clear: both;
 }
 
-.bm-menu {
-  background: tomato;
+.ember-burger-menu {
+  .bm-outlet > .bm-content {
+    background-color: #F3F3F3;
+  }
+
+  .bm-menu {
+    background: #d8523d;
+
+    a.close {
+      position: absolute;
+      right: 0;
+      top: 0;
+      padding: 10px;
+    }
+
+    h2 {
+      margin: 0;
+      padding: 1em;
+      color: rgba(0,0,0,0.4);
+      text-shadow: 0 0 1px rgba(0,0,0,0.1);
+      font-weight: 300;
+      font-size: 2em;
+      text-align: center;
+      text-transform: uppercase;
+
+      > i {
+        padding-right: 10px;
+      }
+    }
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+
+      li {
+        display: block;
+        padding: 1em 1em 1em 1.2em;
+        outline: none;
+        box-shadow: inset 0 -1px rgba(0,0,0,0.2);
+        color: #ececec;
+        text-transform: uppercase;
+        text-shadow: 0 0 1px rgba(255,255,255,0.1);
+        letter-spacing: 1px;
+        font-weight: 400;
+        -webkit-transition: background 0.3s, box-shadow 0.3s;
+        transition: background 0.3s, box-shadow 0.3s;
+        cursor: pointer;
+
+        > i {
+          margin-right: 20px;
+        }
+
+        &:first-child {
+          box-shadow: inset 0 -1px rgba(0,0,0,0.2), inset 0 1px rgba(0,0,0,0.2);
+        }
+
+        &:hover {
+          background: #ad4636;
+        }
+      }
+    }
+  }
+}
+
+.btn-outline {
+  border-color: $accent-color;
+  box-shadow: none;
+  color: #464646;
+
+  &:hover, &:focus, &:active, &.active, &.active:hover, &.active:focus {
+    outline: 0;
+    box-shadow: none;
+    background: $accent-color;
+    color: white;
+    border-color: darken($accent-color, 5);
+  }
+}
+
+.burger {
+  a {
+    padding: 10px;
+  }
+}
+
+.tomster {
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+}
+
+.header {
+  padding-top: 50px;
+
+  h1 {
+    text-shadow: 0 1px 0 #fff;
+  }
+}
+
+.container {
+  padding-top: 40px;
+
+  .animations {
+    .btn-outline {
+      margin: 5px;
+    }
+  }
 }

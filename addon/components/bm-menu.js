@@ -13,12 +13,16 @@ export default Ember.Component.extend({
 
   renderInPlace: computed('state.animation', function() {
     return !isPushAnimation(this.get('state.animation'));
-  }),
+  }).readOnly(),
 
   style: computed('state.isOpen', 'state.styles', function() {
-    let openState = this.get('state.isOpen') ? 'open' : 'closed';
     let styles = this.get('state.styles');
+    let openState = this.get('state.isOpen') ? 'open' : 'closed';
+    let width = this.get('state.width');
+    let menuStyles = styles[openState].menu;
 
-    return cssStringify(styles[openState].menu);
+    menuStyles.width = `${width}px`;
+
+    return cssStringify(menuStyles);
   }).readOnly()
 });
