@@ -1,0 +1,19 @@
+@import '../variables';
+
+.ember-burger-menu.reveal {
+	.bm-menu {
+		z-index: 1;
+
+		&::after {
+			display: none;
+		}
+	}
+
+	&.is-open {
+		.bm-menu {
+			visibility: visible;
+			-webkit-transition: -webkit-transform $t-duration;
+			transition: transform $t-duration;
+		}
+	}
+}

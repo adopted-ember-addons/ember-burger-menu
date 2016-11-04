@@ -1,0 +1,52 @@
+@import '../variables';
+
+.ember-burger-menu.rotate-out {
+	-webkit-perspective: 1500px;
+	perspective: 1500px;
+	-webkit-perspective-origin: 0% 50%;
+	perspective-origin: 0% 50%;
+
+	.bm-outlet {
+		-webkit-transform-style: preserve-3d;
+		transform-style: preserve-3d;
+	}
+
+	.bm-menu {
+		-webkit-transform: translate3d(-100%, 0, 0) rotateY(90deg);
+		transform: translate3d(-100%, 0, 0) rotateY(90deg);
+		-webkit-transform-origin: 100% 50%;
+		transform-origin: 100% 50%;
+		-webkit-transform-style: preserve-3d;
+		transform-style: preserve-3d;
+
+		&::after {
+			display: none;
+		}
+	}
+
+	&.right {
+		.bm-menu {
+			-webkit-transform: translate3d(100%, 0, 0) rotateY(-120deg);
+			transform: translate3d(100%, 0, 0) rotateY(-120deg);
+			-webkit-transform-origin: 0% 50%;
+			transform-origin: 0% 50%;
+		}
+	}
+
+	&.is-open {
+		.bm-menu {
+			visibility: visible;
+			-webkit-transition: -webkit-transform 0.5s;
+			transition: transform 0.5s;
+			-webkit-transform: translate3d(-100%, 0, 0) rotateY(0deg);
+			transform: translate3d(-100%, 0, 0) rotateY(0deg);
+		}
+	}
+
+	&.right {
+		.bm-menu {
+			-webkit-transform: translate3d(100%, 0, 0) rotateY(0deg);
+			transform: translate3d(100%, 0, 0) rotateY(0deg);
+		}
+	}
+}

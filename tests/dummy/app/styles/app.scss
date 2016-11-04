@@ -1,0 +1,29 @@
+@import "ember-modal-dialog/ember-modal-structure";
+@import "ember-modal-dialog/ember-modal-appearance";
+
+
+html,
+body,
+body > .ember-view {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+  background: #444;
+}
+
+#container {
+
+}
+
+#content {
+  height: 100%;
+  padding: 3em 2em;
+  text-align: center;
+  background: #b4bad2;
+  overflow: scroll;
+}
+
+.bm-menu {
+  background: tomato;
+}

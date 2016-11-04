@@ -1,0 +1,15 @@
+{{#ember-burger animation="open-door" position="left" as |b|}}
+  {{#b.menu}}
+    <ul>
+      <li>Foo</li>
+      <li>Bar</li>
+    </ul>
+
+    <button type="button" name="button" {{action burgerMenu.actions.toggle}}>Close</button>
+  {{/b.menu}}
+
+  {{#b.outlet}}
+    {{outlet}}
+    <button type="button" name="button" {{action burgerMenu.actions.toggle}}>Open</button>
+  {{/b.outlet}}
+{{/ember-burger}}

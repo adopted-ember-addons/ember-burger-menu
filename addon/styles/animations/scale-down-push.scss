@@ -1,0 +1,35 @@
+@import '../variables';
+
+.ember-burger-menu.scale-down-push {
+	-webkit-perspective: 1500px;
+	perspective: 1500px;
+
+	.bm-outlet {
+		-webkit-transform-style: preserve-3d;
+		transform-style: preserve-3d;
+	}
+
+	.bm-menu {
+		opacity: 1;
+		-webkit-transform: translate3d(-100%, 0, 0);
+		transform: translate3d(-100%, 0, 0);
+	}
+
+	&.right {
+		.bm-menu {
+			-webkit-transform: translate3d(100%, 0, 0);
+			transform: translate3d(100%, 0, 0);
+		}
+	}
+
+
+	&.is-open {
+		.bm-menu {
+			visibility: visible;
+			-webkit-transition: -webkit-transform 0.5s;
+			transition: transform 0.5s;
+			-webkit-transform: translate3d(0, 0, 0);
+			transform: translate3d(0, 0, 0);
+		}
+	}
+}
