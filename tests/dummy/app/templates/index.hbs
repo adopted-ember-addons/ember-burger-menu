@@ -11,7 +11,7 @@
 
 <div class="description text-center">
   <p>
-    An off-canvas sidebar Ember addon with a collection of effects and styles using CSS transitions.
+    An off-canvas sidebar component with a collection of effects and styles using CSS transitions.
   </p>
 </div>
 
@@ -20,7 +20,7 @@
     <h4>Animations</h4>
     {{#each animations as |animation|}}
       <button class="btn btn-default btn-outline {{if (eq animation burgerMenu.animation) 'active'}}" {{action 'setMenu' 'animation' animation}}>
-        {{titleize animation}}
+        {{titleize (dedasherize animation)}}
       </button>
     {{/each}}
   </div>

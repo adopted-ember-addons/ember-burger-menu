@@ -8,7 +8,7 @@ const {
 
 export default Ember.Controller.extend({
   application: inject.controller(),
-  burgerMenu: burgerMenu('main'),
+  burgerMenu: burgerMenu(),
 
   translucentOverlay: computed.alias('application.translucentOverlay'),
   dismissOnClick: computed.alias('application.dismissOnClick'),
@@ -22,9 +22,9 @@ export default Ember.Controller.extend({
     'open-door',
     'push-rotate',
     'rotate-out',
+    'scale-up',
     'scale-down',
     'scale-rotate',
-    'scale-up',
     'slide-reverse'
   ],
 

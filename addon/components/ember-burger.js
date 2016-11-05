@@ -31,8 +31,8 @@ export default Ember.Component.extend({
     return menuFor(this.get('menuId'));
   }).readOnly(),
 
-  style: computed('state.open', 'state.styles', function() {
-    let openState = this.get('state.open') ? 'open' : 'closed';
+  style: computed('open', 'state.styles', function() {
+    let openState = this.get('open') ? 'open' : 'closed';
     let styles = this.get('state.styles');
 
     return cssStringify(styles[openState].container);
@@ -53,43 +53,41 @@ export default Ember.Component.extend({
     let postfix = `burget-menu-${this.get('elementId')}`;
     let onClick = this.send.bind(this, 'onClick');
     let onKeyUp =  this.send.bind(this, 'onKeyUp');
+    let $body = $('body');
 
     if (this.get('dismissOnClick')) {
-      this.$().on(`click.${postfix}`, onClick);
-      this.$().on(`touchstart.${postfix}`, onClick);
+      $body.on(`click.${postfix}`, onClick);
+      $body.on(`touchstart.${postfix}`, onClick);
     }
 
     if (this.get('dismissOnEsc')) {
-      $('body').on(`keyup.${postfix}`, onKeyUp);
+      $body.on(`keyup.${postfix}`, onKeyUp);
     }
   },
 
   _teardownEvents() {
     let postfix = `burget-menu-${this.get('elementId')}`;
+    let $body = $('body');
 
-    this.$().off(`click.${postfix}`);
-    this.$().off(`touchstart.${postfix}`);
-    $('body').off(`keyup.${postfix}`);
+    $body.off(`click.${postfix}`);
+    $body.off(`touchstart.${postfix}`);
+    $body.off(`keyup.${postfix}`);
   },
 
   actions: {
     onClick(e) {
-      let state = this.get('state');
-
-      if ($(e.target).closest('.bm-menu', this.$()).length === 0) {
+      if ($(e.target).closest('.bm-menu').length === 0) {
         e.stopPropagation();
         e.preventDefault();
 
-        state.set('open', false);
+        this.set('open', false);
         this._teardownEvents();
       }
     },
 
     onKeyUp(e) {
-      let state = this.get('state');
-
       if (e.keyCode === 27) {
-        state.set('open', false);
+        this.set('open', false);
         this._teardownEvents();
       }
     }

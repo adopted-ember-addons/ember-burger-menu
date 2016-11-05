@@ -1,13 +1,11 @@
 {{#ember-burger
-  animation="slide"
-  position="left"
   translucentOverlay=translucentOverlay
   dismissOnClick=dismissOnClick
   dismissOnEsc=dismissOnEsc
   as |burger|
 }}
-  {{#burger.menu}}
-    <a {{action burgerMenu.actions.toggle}} class="close {{burgerMenu.position}} fa fa-times"></a>
+  {{#burger.menu as |menu|}}
+    <a {{action burgerMenu.actions.toggle}} class="close {{menu.position}} fa fa-times"></a>
     <h2><i class="fa fa-bars" aria-hidden="true"></i> Burger</h2>
     <ul>
       <li>

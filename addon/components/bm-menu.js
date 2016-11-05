@@ -1,18 +1,22 @@
 import Ember from 'ember';
 import layout from '../templates/components/bm-menu';
-import isPushAnimation from '../utils/is-push-animation';
 import cssStringify from 'ember-burger-menu/utils/css-stringify';
 
 const {
   computed
 } = Ember;
 
+export const OUTLET_MENU_ANIMATIONS = [
+  'push',
+  'rotate-out'
+];
+
 export default Ember.Component.extend({
   layout,
   state: null,
 
   renderInPlace: computed('state.animation', function() {
-    return !isPushAnimation(this.get('state.animation'));
+    return OUTLET_MENU_ANIMATIONS.indexOf(this.get('state.animation')) === -1;
   }).readOnly(),
 
   style: computed('state.open', 'state.styles', function() {

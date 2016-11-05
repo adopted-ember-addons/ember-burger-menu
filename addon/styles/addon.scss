@@ -14,6 +14,7 @@
 .ember-burger-menu {
 	position: relative;
 	height: 100%;
+	overflow: hidden;
 
 	.bm-menu {
 		position: absolute;
@@ -37,6 +38,7 @@
 			position: relative;
 			height: 100%;
 			background: white;
+			overflow: auto;
 		}
 	}
 
@@ -73,8 +75,6 @@
 	}
 
 	&.is-open {
-		overflow: hidden;
-
 		&:after {
 			display: none;
 		}
