@@ -1,4 +1,4 @@
-$accent-color: #dd6a58;
+$accent-color: #e24b31;
 
 html,
 body,
@@ -9,6 +9,11 @@ body > .ember-view {
   width: 100%;
   font-family: 'Open Sans', sans-serif;
   background-color: #444;
+  font-weight: 300;
+}
+
+h1, h2, h3, h4, h5, label {
+  font-weight: 300;
 }
 
 a {
@@ -61,10 +66,11 @@ a {
       padding: 1em;
       color: rgba(0,0,0,0.4);
       text-shadow: 0 0 1px rgba(0,0,0,0.1);
-      font-weight: 300;
       font-size: 2em;
       text-align: center;
       text-transform: uppercase;
+      font-family: 'Bungee Hairline', cursive;
+      font-weight: bold;
 
       > i {
         padding-right: 10px;
@@ -86,7 +92,6 @@ a {
           text-transform: uppercase;
           text-shadow: 0 0 1px rgba(255,255,255,0.1);
           letter-spacing: 1px;
-          font-weight: 400;
           -webkit-transition: background 0.3s, box-shadow 0.3s;
           transition: background 0.3s, box-shadow 0.3s;
           cursor: pointer;
@@ -113,6 +118,7 @@ a {
   border-color: $accent-color;
   box-shadow: none;
   color: #525252;
+  font-weight: 300;
 
   &:hover, &:focus, &:active, &:active:focus, &.active, &.active:hover, &.active:focus {
     z-index: 0;
@@ -148,17 +154,15 @@ a {
 }
 
 .header {
-  padding-top: 20px;
-
   h1 {
-    text-shadow: 0 1px 0 #fff;
+    font-family: 'Bungee Hairline', cursive;
+    font-weight: bold;
   }
 }
 
 .description {
   padding: 30px 0;
   font-size: 16px;
-  color: #636363;
 
   > p {
     width: 500px;
@@ -170,6 +174,7 @@ a {
   h4 {
     margin-bottom: 20px;
     font-size: 16px;
+    font-weight: 400;
   }
 
   .animations {
@@ -186,7 +191,6 @@ a {
     .option {
       label {
         font-size: 15px;
-        font-weight: normal;
         width: 160px;
       }
       .checkbox {
@@ -200,6 +204,5 @@ a {
 }
 
 .inspiration {
-  padding-top: 50px;
-  padding-bottom: 20px;
+  padding: 40px 0;
 }
