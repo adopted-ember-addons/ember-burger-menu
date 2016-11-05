@@ -14,11 +14,11 @@ const Animations = {};
 export default function getAnimationStylesFor(state, overrides = {}) {
   assert('The passed state must be an instance of MenuState', state instanceof MenuState);
 
-  let stateProps = state.getProperties(['animation', 'isOpen', 'width', 'position', 'styleFn']);
+  let stateProps = state.getProperties(['animation', 'open', 'width', 'position', 'styleFn']);
 
   assign(stateProps, overrides);
 
-  let { animation, isOpen, width, position, styleFn } = stateProps;
+  let { animation, open, width, position, styleFn } = stateProps;
   let fn = Animations[animation];
 
   if (styleFn && typeof styleFn === 'function') {
@@ -30,5 +30,5 @@ export default function getAnimationStylesFor(state, overrides = {}) {
     Animations[animation] = fn;
   }
 
-  return assign({}, defaultResult, fn(isOpen, width, position === 'right') || {});
+  return assign({}, defaultResult, fn(open, width, position === 'right') || {});
 }

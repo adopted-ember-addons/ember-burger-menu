@@ -8,7 +8,7 @@ const {
 
 const Menus = {};
 
-export default function menuFor(id = 'main') {
+export default function burgerMenu(id = 'main') {
   assert('The passed id must be a string', typeof id === 'string');
   assert('The passed id cannot be null, undefined, or an empty string', !isEmpty(id));
 

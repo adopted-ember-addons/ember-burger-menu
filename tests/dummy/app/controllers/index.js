@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import menuFor from 'ember-burger-menu';
+import burgerMenu from 'ember-burger-menu';
 
 const {
   inject,
@@ -8,10 +8,11 @@ const {
 
 export default Ember.Controller.extend({
   application: inject.controller(),
-  burgerMenu: menuFor('main'),
+  burgerMenu: burgerMenu('main'),
 
   translucentOverlay: computed.alias('application.translucentOverlay'),
   dismissOnClick: computed.alias('application.dismissOnClick'),
+  dismissOnEsc: computed.alias('application.dismissOnEsc'),
 
   animations: [
     'slide',

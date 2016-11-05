@@ -173,6 +173,7 @@ a {
   }
 
   .animations {
+    min-height: 225px;
     border-right: 1px solid #ccc;
 
     .btn-outline {
@@ -181,6 +182,7 @@ a {
   }
 
   .options {
+    min-height: 225px;
     .option {
       label {
         font-size: 15px;

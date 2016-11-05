@@ -52,11 +52,18 @@
         <i class="fa {{if dismissOnClick 'fa-check-square' 'fa-square'}}" aria-hidden="true"></i>
       </a>
     </div>
+
+    <div class="option">
+      <label for="dismissOnEsc">Dismiss on Escape</label>
+      <a id="dismissOnEsc" {{action (toggle 'dismissOnEsc' this)}} class="checkbox">
+        <i class="fa {{if dismissOnEsc 'fa-check-square' 'fa-square'}}" aria-hidden="true"></i>
+      </a>
+    </div>
   </div>
 </div>
 
 <div class="inspiration text-center">
   <p>
-    Inspired by <a href="https://github.com/codrops/OffCanvasMenuEffects">Off-Canvas Menu Effects</a> by Codrops
+    Inspired by <a href="https://github.com/codrops/SidebarTransitions">Sidebar Transitions</a> by Codrops
   </p>
 </div>

@@ -1,8 +1,9 @@
 import Ember from 'ember';
-import menuFor from 'ember-burger-menu';
+import burgerMenu from 'ember-burger-menu';
 
 export default Ember.Controller.extend({
-  burgerMenu: menuFor('main'),
+  burgerMenu: burgerMenu('main'),
   translucentOverlay: true,
-  dismissOnClick: true
+  dismissOnClick: true,
+  dismissOnEsc: true
 });

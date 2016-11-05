@@ -1,7 +1,7 @@
-export default function(isOpen, width /*, right*/) {
+export default function(open, width /*, right*/) {
   return {
     outlet: {
-      transform: isOpen ? `translate3d(0, 0, -${width}px)` : ''
+      transform: open ? `translate3d(0, 0, -${width}px)` : ''
     }
   };
 }

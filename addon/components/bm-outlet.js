@@ -13,8 +13,8 @@ export default Ember.Component.extend({
 
   state: null,
 
-  style: computed('state.isOpen', 'state.styles', function() {
-    let openState = this.get('state.isOpen') ? 'open' : 'closed';
+  style: computed('state.open', 'state.styles', function() {
+    let openState = this.get('state.open') ? 'open' : 'closed';
     let styles = this.get('state.styles');
 
     return cssStringify(styles[openState].outlet);

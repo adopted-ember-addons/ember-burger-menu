@@ -15,9 +15,9 @@ export default Ember.Component.extend({
     return !isPushAnimation(this.get('state.animation'));
   }).readOnly(),
 
-  style: computed('state.isOpen', 'state.styles', function() {
+  style: computed('state.open', 'state.styles', function() {
     let styles = this.get('state.styles');
-    let openState = this.get('state.isOpen') ? 'open' : 'closed';
+    let openState = this.get('state.open') ? 'open' : 'closed';
     let width = this.get('state.width');
     let menuStyles = styles[openState].menu;
 

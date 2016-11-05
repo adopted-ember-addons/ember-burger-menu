@@ -6,7 +6,7 @@ const {
 } = Ember;
 
 export default Ember.Object.extend({
-  isOpen: false,
+  open: false,
   animation: 'slide',
   width: 300,
   position: 'left',
@@ -14,14 +14,14 @@ export default Ember.Object.extend({
 
   actions: computed(function() {
     return {
-      toggle: this.toggleProperty.bind(this, 'isOpen')
+      toggle: this.toggleProperty.bind(this, 'open')
     };
   }).readOnly(),
 
   styles: computed('animation', 'width', 'position', 'styleFn', function() {
     return {
-      open: getAnimationStylesFor(this, { isOpen: true }),
-      closed: getAnimationStylesFor(this, { isOpen: false })
+      open: getAnimationStylesFor(this, { open: true }),
+      closed: getAnimationStylesFor(this, { open: false })
     };
   }).readOnly()
 });
