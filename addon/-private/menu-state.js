@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import getEffectStylesFor from 'ember-burger-menu/animations';
+import getAnimationStylesFor from 'ember-burger-menu/animations';
 
 const {
   computed
@@ -10,6 +10,7 @@ export default Ember.Object.extend({
   animation: 'slide',
   width: 300,
   position: 'left',
+  styleFn: null,
 
   actions: computed(function() {
     return {
@@ -17,13 +18,10 @@ export default Ember.Object.extend({
     };
   }).readOnly(),
 
-  styles: computed('animation', 'width', 'position', function() {
-    let { animation, width, position } = this.getProperties(['animation', 'width', 'position']);
-    let isRight = position === 'right';
-
+  styles: computed('animation', 'width', 'position', 'styleFn', function() {
     return {
-      open: getEffectStylesFor(animation, true, width, isRight),
-      closed: getEffectStylesFor(animation, false, width, isRight)
+      open: getAnimationStylesFor(this, { isOpen: true }),
+      closed: getAnimationStylesFor(this, { isOpen: false })
     };
   }).readOnly()
 });

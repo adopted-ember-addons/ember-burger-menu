@@ -21,6 +21,7 @@ export default Ember.Component.extend({
   animation: computed.alias('state.animation'),
   position: computed.alias('state.position'),
   width: computed.alias('state.width'),
+  styleFn: computed.alias('state.styleFn'),
   translucentOverlay: true,
   dismissOnClick: true,
   menuId: 'main',
@@ -37,8 +38,12 @@ export default Ember.Component.extend({
   }).readOnly(),
 
   setupEvents: on('didInsertElement', observer('isOpen', function() {
-    if (this.get('isOpen') && this.get('dismissOnClick')) {
-      this._clickSetupTimer = run.scheduleOnce('afterRender', this, 'setupClick');
+    if (this.get('dismissOnClick')) {
+      if (this.get('isOpen')) {
+        this._clickSetupTimer = run.scheduleOnce('afterRender', this, 'setupClick');
+      } else {
+        this.teardownClick();
+      }
     }
   })),
 
