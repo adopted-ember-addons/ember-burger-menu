@@ -28,6 +28,11 @@ export default Ember.Controller.extend({
     'slide-reverse'
   ],
 
+  itemAnimations: [
+    'push',
+    'stack'
+  ],
+
   actions: {
     setMenu() {
       this.get('burgerMenu').set(...arguments);

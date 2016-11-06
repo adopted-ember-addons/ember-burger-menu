@@ -8,12 +8,4 @@
 			display: none;
 		}
 	}
-
-	&.is-open {
-		.bm-menu {
-			visibility: visible;
-			-webkit-transition: -webkit-transform $t-duration;
-			transition: transform $t-duration;
-		}
-	}
 }

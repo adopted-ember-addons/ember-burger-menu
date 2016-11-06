@@ -2,7 +2,6 @@
 
 .ember-burger-menu.slide {
 	.bm-menu {
-		visibility: visible;
 		-webkit-transform: translate3d(-100%, 0, 0);
 		transform: translate3d(-100%, 0, 0);
 	}
@@ -16,7 +15,6 @@
 
 	&.is-open {
 		.bm-menu {
-			visibility: visible;
 			-webkit-transform: translate3d(0, 0, 0);
 			transform: translate3d(0, 0, 0);
 		}

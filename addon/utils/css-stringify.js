@@ -6,7 +6,18 @@ const {
 } = Ember;
 
 const PREFIXES = ['webkit'];
-const TRANSFORMABLE_PROPS = ['transform'];
+const PREFIXED_PROPS = [
+  'transition',
+  'transition-timing-function',
+  'transition-property',
+  'transition-speed',
+  'transition-delay',
+  'transform',
+  'transform-style',
+  'transform-origin',
+  'perspective',
+  'perspective-origin'
+];
 
 export default function cssStringify(hash = {}) {
   return htmlSafe(Object.keys(hash).reduce((css, key) => {
@@ -23,7 +34,7 @@ export default function cssStringify(hash = {}) {
 function buildProp(key, value) {
   let css = [`${key}: ${value}`];
 
-  if (TRANSFORMABLE_PROPS.indexOf(key) > -1) {
+  if (PREFIXED_PROPS.indexOf(key) > -1) {
     PREFIXES.forEach((p) => {
       css.push(`-${p}-${key}: ${value}`);
     });

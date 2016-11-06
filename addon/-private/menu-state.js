@@ -2,15 +2,19 @@ import Ember from 'ember';
 import getAnimationStylesFor from 'ember-burger-menu/animations';
 
 const {
+  assign,
+  isEmpty,
   computed
 } = Ember;
 
 export default Ember.Object.extend({
   open: false,
-  animation: 'slide',
   width: 300,
   position: 'left',
-  styleFn: null,
+  animation: 'slide',
+  menuItemAnimation: null,
+
+  isRight: computed.equal('position', 'right').readOnly(),
 
   actions: computed(function() {
     return {
@@ -18,10 +22,15 @@ export default Ember.Object.extend({
     };
   }).readOnly(),
 
-  styles: computed('animation', 'width', 'position', 'styleFn', function() {
-    return {
-      open: getAnimationStylesFor(this, { open: true }),
-      closed: getAnimationStylesFor(this, { open: false })
-    };
-  }).readOnly()
+  styles: computed('animation', 'menuItemAnimation', function() {
+    let { animation, menuItemAnimation } = this.getProperties(['animation', 'menuItemAnimation']);
+    let styles = getAnimationStylesFor(animation);
+    let menuItemStyles = {};
+
+    if (!isEmpty(menuItemAnimation)) {
+      menuItemStyles = getAnimationStylesFor(`menu-item/${menuItemAnimation}`);
+    }
+
+    return assign({}, styles, menuItemStyles);
+  })
 });

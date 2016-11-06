@@ -3,7 +3,9 @@ import layout from '../templates/components/bm-menu';
 import cssStringify from 'ember-burger-menu/utils/css-stringify';
 
 const {
-  computed
+  computed,
+  canInvoke,
+  assign
 } = Ember;
 
 export const OUTLET_MENU_ANIMATIONS = [
@@ -19,14 +21,15 @@ export default Ember.Component.extend({
     return OUTLET_MENU_ANIMATIONS.indexOf(this.get('state.animation')) === -1;
   }).readOnly(),
 
-  style: computed('state.open', 'state.styles', function() {
-    let styles = this.get('state.styles');
-    let openState = this.get('state.open') ? 'open' : 'closed';
-    let width = this.get('state.width');
-    let menuStyles = styles[openState].menu;
+  style: computed('state.{styles,open,width,isRight}', function() {
+    let state = this.get('state');
+    let { styles, open, width, isRight } = state.getProperties(['styles', 'open', 'width', 'isRight']);
+    let style = { width: `${width}px` };
 
-    menuStyles.width = `${width}px`;
+    if (canInvoke(styles, 'menu')) {
+      assign(style, styles.menu(open, width, isRight));
+    }
 
-    return cssStringify(menuStyles);
+    return cssStringify(style);
   }).readOnly()
 });

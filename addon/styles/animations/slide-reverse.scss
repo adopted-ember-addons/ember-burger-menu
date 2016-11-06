@@ -16,23 +16,8 @@
 
 	&.is-open {
 		.bm-menu {
-			visibility: visible;
-			-webkit-transition: -webkit-transform $t-duration;
-			transition: transform $t-duration;
 			-webkit-transform: translate3d(0, 0, 0);
 			transform: translate3d(0, 0, 0);
 		}
 	}
-}
-
-
-.st-effect-5.st-menu-open .st-pusher {
-	-webkit-transform: translate3d(300px, 0, 0);
-	transform: translate3d(300px, 0, 0);
-}
-
-.st-effect-5.st-menu {
-	z-index: 1;
-	-webkit-transform: translate3d(50%, 0, 0);
-	transform: translate3d(50%, 0, 0);
 }

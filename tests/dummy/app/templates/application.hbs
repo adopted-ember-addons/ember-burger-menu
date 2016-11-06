@@ -5,34 +5,38 @@
   as |burger|
 }}
   {{#burger.menu as |menu|}}
-    <a {{action burgerMenu.actions.toggle}} class="close {{menu.position}} fa fa-times"></a>
+    <a {{action burger.state.actions.toggle}} class="close {{burger.state.position}} fa fa-times"></a>
     <h2><i class="fa fa-bars" aria-hidden="true"></i> Burger</h2>
     <ul>
-      <li>
+      {{#menu.item tagName="li"}}
         <a href="https://github.com/offirgolan/ember-burger-menu" target="_blank">
           <i class="fa fa-github" aria-hidden="true"></i> GitHub
         </a>
-      </li>
-      <li>
+      {{/menu.item}}
+
+      {{#menu.item tagName="li"}}
         <a href="https://github.com/offirgolan/ember-burger-menu/issues" target="_blank">
           <i class="fa fa-bug" aria-hidden="true"></i> Issues
         </a>
-      </li>
-      <li>
+      {{/menu.item}}
+
+      {{#menu.item tagName="li"}}
         <a href="https://github.com/offirgolan/ember-burger-menu/pulls" target="_blank">
           <i class="fa fa-exchange fa-rotate-90" aria-hidden="true"></i> Pull Requests
         </a>
-      </li>
-      <li>
+      {{/menu.item}}
+
+      {{#menu.item tagName="li"}}
         <a href="https://github.com/offirgolan/ember-burger-menu/blob/master/README.md" target="_blank">
           <i class="fa fa-file-text-o" aria-hidden="true"></i> Documentation
         </a>
-      </li>
-      <li>
+      {{/menu.item}}
+
+      {{#menu.item tagName="li"}}
         <a href="https://github.com/offirgolan/ember-burger-menu/graphs" target="_blank">
           <i class="fa fa-bar-chart" aria-hidden="true"></i> Analytics
         </a>
-      </li>
+      {{/menu.item}}
     </ul>
   {{/burger.menu}}
 
@@ -40,5 +44,5 @@
     {{outlet}}
   {{/burger.outlet}}
 
-  <img src="images/tomster.png" class="tomster {{burgerMenu.position}}" width="75px" />
+  <img src="images/tomster.png" class="tomster {{burger.state.position}}" width="75px" ondragstart="return false;"/>
 {{/ember-burger}}

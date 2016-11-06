@@ -8,7 +8,8 @@ const {
   on,
   run,
   observer,
-  computed
+  computed,
+  canInvoke
 } = Ember;
 
 export default Ember.Component.extend({
@@ -19,9 +20,10 @@ export default Ember.Component.extend({
 
   open: computed.alias('state.open'),
   animation: computed.alias('state.animation'),
+  menuItemAnimation: computed.alias('state.menuItemAnimation'),
   position: computed.alias('state.position'),
   width: computed.alias('state.width'),
-  styleFn: computed.alias('state.styleFn'),
+  styles: computed.alias('state.styles'),
   translucentOverlay: true,
   dismissOnClick: true,
   dismissOnEsc: true,
@@ -31,11 +33,13 @@ export default Ember.Component.extend({
     return menuFor(this.get('menuId'));
   }).readOnly(),
 
-  style: computed('open', 'state.styles', function() {
-    let openState = this.get('open') ? 'open' : 'closed';
-    let styles = this.get('state.styles');
+  style: computed('state.{styles,open,width,isRight}', function() {
+    let state = this.get('state');
+    let { styles,open,width,isRight } = state.getProperties(['styles', 'open', 'width', 'isRight']);
 
-    return cssStringify(styles[openState].container);
+    if (canInvoke(styles, 'container')) {
+      return cssStringify(styles.container(open, width, isRight));
+    }
   }).readOnly(),
 
   setupEvents: on('didInsertElement', observer('open', function() {

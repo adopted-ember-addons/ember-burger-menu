@@ -15,15 +15,10 @@
 
 	&.is-open {
 		.bm-menu {
-			visibility: visible;
-			-webkit-transition-timing-function: ease-in-out;
-			transition-timing-function: ease-in-out;
-			-webkit-transition-property: -webkit-transform;
-			transition-property: transform;
+			-webkit-transition: -webkit-transform ease-in-out $t-duration;
+			transition: transform ease-in-out $t-duration;
 			-webkit-transform: translate3d(0, 0, 0);
 			transform: translate3d(0, 0, 0);
-			-webkit-transition-speed: 0.2s;
-			transition-speed: 0.2s;
 		}
 	}
 }
