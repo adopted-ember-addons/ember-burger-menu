@@ -47,14 +47,14 @@ export default Ember.Component.extend({
     this._setupEventsTimer = run.scheduleOnce('afterRender', this, method);
   })),
 
-  destroy() {
+  willDestroyElement() {
     this._super(...arguments);
     run.cancel(this._setupEventsTimer);
     this._teardownEvents();
   },
 
   _setupEvents() {
-    let postfix = `burget-menu-${this.get('elementId')}`;
+    let postfix = `burger-menu-${this.get('elementId')}`;
     let onClick = this.send.bind(this, 'onClick');
     let onKeyUp =  this.send.bind(this, 'onKeyUp');
     let $body = $('body');
@@ -70,7 +70,7 @@ export default Ember.Component.extend({
   },
 
   _teardownEvents() {
-    let postfix = `burget-menu-${this.get('elementId')}`;
+    let postfix = `burger-menu-${this.get('elementId')}`;
     let $body = $('body');
 
     $body.off(`click.${postfix}`);
@@ -85,14 +85,12 @@ export default Ember.Component.extend({
         e.preventDefault();
 
         this.set('open', false);
-        this._teardownEvents();
       }
     },
 
     onKeyUp(e) {
       if (e.keyCode === 27) {
         this.set('open', false);
-        this._teardownEvents();
       }
     }
   }
