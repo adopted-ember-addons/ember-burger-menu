@@ -20,13 +20,13 @@ export default Ember.Component.extend({
     return $item ? $('.bm-menu-item', $item.closest('.bm-menu')).index($item) : -1;
   }).volatile(),
 
-  style: computed('state.{styles,open,width,isRight}', function() {
+  style: computed('state.{itemStyles,open,width,isRight}', function() {
     let state = this.get('state');
-    let { styles, open, width, isRight } = state.getProperties(['styles', 'open', 'width', 'isRight']);
+    let { itemStyles, open, width, isRight } = state.getProperties(['itemStyles', 'open', 'width', 'isRight']);
     let $index = this.get('$index');
 
-    if (canInvoke(styles, 'menuItem')) {
-      return cssStringify(styles.menuItem(open, width, isRight, $index));
+    if (canInvoke(itemStyles, 'menuItem')) {
+      return cssStringify(itemStyles.menuItem(open, width, isRight, $index));
     }
   }).readOnly()
 });

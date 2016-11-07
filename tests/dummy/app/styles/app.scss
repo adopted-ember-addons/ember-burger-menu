@@ -9,7 +9,8 @@ body > .ember-view {
   height: 100%;
   width: 100%;
   font-family: 'Open Sans', sans-serif;
-  background-color: #444;
+  background-color: #2e3642;
+  background: url('../images/noisy_net.png');
   font-weight: 300;
   color: $text-color;
 }
@@ -134,7 +135,7 @@ a {
     box-shadow: none;
     background: $accent-color;
     color: $text-color;
-    border-color: darken($accent-color, 10);
+    border-color: darken($accent-color, 5);
   }
 }
 
@@ -150,6 +151,13 @@ a {
   font-size: 30px;
   color: $text-color;
   cursor: pointer;
+  opacity: 1;
+  transition: opacity 0.3s;
+  -webkit-transition: opacity 0.3s;
+
+  &.burger-hidden {
+    opacity: 0;
+  }
 
   &.left {
     left: 0;
@@ -198,7 +206,7 @@ a {
 }
 
 .container {
-  padding-top: 20px;
+  padding-top: 30px;
 
   h4 {
     margin-bottom: 20px;
@@ -209,6 +217,7 @@ a {
   .animations {
     min-height: 225px;
     border-right: 1px solid #ccc;
+    padding-right: 25px;
 
     .btn-outline {
       margin: 0 0 10px 10px;
@@ -217,6 +226,8 @@ a {
 
   .options {
     min-height: 225px;
+    padding-left: 25px;
+
     .option {
       label {
         font-size: 15px;

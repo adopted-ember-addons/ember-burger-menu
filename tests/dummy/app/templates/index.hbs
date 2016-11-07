@@ -19,11 +19,11 @@
     {{/each}}
 
     <h4>Item Animations</h4>
-    <button class="btn btn-default btn-outline {{if (not burgerMenu.menuItemAnimation)'active'}}" {{action 'setMenu' 'menuItemAnimation' null}}>
+    <button class="btn btn-default btn-outline {{if (not burgerMenu.itemAnimation)'active'}}" {{action 'setMenu' 'itemAnimation' null}}>
       None
     </button>
     {{#each itemAnimations as |animation|}}
-      <button class="btn btn-default btn-outline {{if (eq animation burgerMenu.menuItemAnimation) 'active'}}" {{action 'setMenu' 'menuItemAnimation' animation}}>
+      <button class="btn btn-default btn-outline {{if (eq animation burgerMenu.itemAnimation) 'active'}}" {{action 'setMenu' 'itemAnimation' animation}}>
         {{titleize (dedasherize animation)}}
       </button>
     {{/each}}

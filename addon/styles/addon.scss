@@ -29,7 +29,7 @@
 		-webkit-transition: all $t-duration;
 		transition: all $t-duration;
 
-		&:not(.no-animation) {
+		&:not(.bm-item--none) {
 			.bm-menu-item {
 				-webkit-transition: all 0s;
 				transition: all 0s;

@@ -41,11 +41,9 @@
   {{/burger.menu}}
 
   {{#burger.outlet}}
-    {{#unless burger.state.open}}
-      <a class="hamburger {{burger.state.position}}" type="button" {{action burger.state.actions.toggle}}>
-        <i class="fa fa-bars" aria-hidden="true"></i>
-      </a>
-    {{/unless}}
+    <a class="hamburger {{burger.state.position}} {{if burger.state.open 'burger-hidden'}}" type="button" {{action burger.state.actions.toggle}}>
+      <i class="fa fa-bars" aria-hidden="true"></i>
+    </a>
     {{outlet}}
   {{/burger.outlet}}
 

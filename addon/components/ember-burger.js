@@ -14,13 +14,12 @@ const {
 
 export default Ember.Component.extend({
   classNames: ['ember-burger-menu'],
-  classNameBindings: ['menuId', 'open:is-open', 'translucentOverlay', 'animation', 'position'],
+  classNameBindings: ['menuId', 'open:is-open', 'translucentOverlay', 'animationClass', 'position'],
   attributeBindings: ['style'],
   layout,
 
   open: computed.alias('state.open'),
   animation: computed.alias('state.animation'),
-  menuItemAnimation: computed.alias('state.menuItemAnimation'),
   position: computed.alias('state.position'),
   width: computed.alias('state.width'),
   styles: computed.alias('state.styles'),
@@ -28,6 +27,10 @@ export default Ember.Component.extend({
   dismissOnClick: true,
   dismissOnEsc: true,
   menuId: 'main',
+
+  animationClass: computed('animation', function() {
+    return `bm--${this.get('animation')}`;
+  }).readOnly(),
 
   state: computed(function() {
     return menuFor(this.get('menuId'));

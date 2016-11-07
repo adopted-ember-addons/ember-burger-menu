@@ -2,7 +2,6 @@ import Ember from 'ember';
 import getAnimationStylesFor from 'ember-burger-menu/animations';
 
 const {
-  assign,
   isEmpty,
   computed
 } = Ember;
@@ -12,7 +11,7 @@ export default Ember.Object.extend({
   width: 300,
   position: 'left',
   animation: 'slide',
-  menuItemAnimation: null,
+  itemAnimation: null,
 
   isRight: computed.equal('position', 'right').readOnly(),
 
@@ -22,15 +21,13 @@ export default Ember.Object.extend({
     };
   }).readOnly(),
 
-  styles: computed('animation', 'menuItemAnimation', function() {
-    let { animation, menuItemAnimation } = this.getProperties(['animation', 'menuItemAnimation']);
-    let styles = getAnimationStylesFor(animation);
-    let menuItemStyles = {};
+  styles: computed('animation', function() {
+    let animation = this.get('animation');
+    return getAnimationStylesFor(animation);
+  }),
 
-    if (!isEmpty(menuItemAnimation)) {
-      menuItemStyles = getAnimationStylesFor(`menu-item/${menuItemAnimation}`);
-    }
-
-    return assign({}, styles, menuItemStyles);
+  itemStyles: computed('itemAnimation', function() {
+    let itemAnimation = this.get('itemAnimation');
+    return isEmpty(itemAnimation) ? {} : getAnimationStylesFor(`menu-item/${itemAnimation}`);
   })
 });
