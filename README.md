@@ -1,27 +1,27 @@
-# Ember-burger-menu
+# ember-burger-menu
 
-This README outlines the details of collaborating on this Ember addon.
+[![Build Status](https://travis-ci.org/offirgolan/ember-burger-menu.svg)](https://travis-ci.org/offirgolan/ember-burger-menu)
+[![npm version](https://badge.fury.io/js/ember-burger-menu.svg)](http://badge.fury.io/js/ember-burger-menu)
+[![Code Climate](https://codeclimate.com/github/offirgolan/ember-burger-menu/badges/gpa.svg)](https://codeclimate.com/github/offirgolan/ember-burger-menu)
+[![Test Coverage](https://codeclimate.com/github/offirgolan/ember-burger-menu/badges/coverage.svg)](https://codeclimate.com/github/offirgolan/ember-burger-menu/coverage)
+[![Dependency Status](https://david-dm.org/offirgolan/ember-burger-menu.svg)](https://david-dm.org/offirgolan/ember-burger-menu)
+
+## Features
+
 
 ## Installation
 
-* `git clone <repository-url>` this repository
-* `cd ember-burger-menu`
-* `npm install`
-* `bower install`
+```
+ember install ember-burger-menu
+```
 
-## Running
+## Helpful Links
 
-* `ember serve`
-* Visit your app at [http://localhost:4200](http://localhost:4200).
+- ### [Live Demo](http://offirgolan.github.io/ember-burger-menu)
 
-## Running Tests
+- ### [Changelog](CHANGELOG.md)
 
-* `npm test` (Runs `ember try:each` to test your addon against multiple Ember versions)
-* `ember test`
-* `ember test --server`
+## Looking for help?
+If it is a bug [please open an issue on GitHub](http://github.com/offirgolan/ember-burger-menu/issues).
 
-## Building
-
-* `ember build`
-
-For more information on using ember-cli, visit [http://ember-cli.com/](http://ember-cli.com/).
+## Usage

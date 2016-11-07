@@ -1,0 +1,25 @@
+{
+  "name": "ember-burger-menu",
+  "description": "",
+  "url": "http://github.com/offirgolan/ember-burger-menu",
+  "options": {
+    "enabledEnvironments": ["production"],
+    "paths": [
+      "app",
+      "addon"
+    ],
+    "external": {
+      "data": [{
+        "base": "http://emberjs.com/api/",
+        "json": "http://builds.emberjs.com/tags/v2.9.0/ember-docs.json"
+      }]
+    },
+    "exclude": "vendor",
+    "outdir": "docs",
+    "linkNatives": true,
+    "quiet": true,
+    "parseOnly": false,
+    "lint": false,
+    "nocode": false
+  }
+}
