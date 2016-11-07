@@ -8,9 +8,9 @@ const {
 } = Ember;
 
 export default Ember.Component.extend({
-  layout,
   classNames: ['bm-outlet'],
   attributeBindings: ['style'],
+  layout,
 
   state: null,
 

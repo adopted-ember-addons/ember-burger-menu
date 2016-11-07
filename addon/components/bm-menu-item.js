@@ -9,10 +9,9 @@ const {
 } = Ember;
 
 export default Ember.Component.extend({
-  layout,
-
   classNames: ['bm-menu-item'],
   attributeBindings: ['style'],
+  layout,
 
   state: null,
 

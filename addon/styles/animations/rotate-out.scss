@@ -38,12 +38,12 @@
 			-webkit-transform: translate3d(-100%, 0, 0) rotateY(0deg);
 			transform: translate3d(-100%, 0, 0) rotateY(0deg);
 		}
-	}
 
-	&.right {
-		.bm-menu {
-			-webkit-transform: translate3d(100%, 0, 0) rotateY(0deg);
-			transform: translate3d(100%, 0, 0) rotateY(0deg);
+		&.right {
+			.bm-menu {
+				-webkit-transform: translate3d(100%, 0, 0) rotateY(0deg);
+				transform: translate3d(100%, 0, 0) rotateY(0deg);
+			}
 		}
 	}
 }
