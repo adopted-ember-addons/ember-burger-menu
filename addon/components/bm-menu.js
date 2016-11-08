@@ -17,6 +17,7 @@ export default Ember.Component.extend({
   layout,
   state: null,
 
+  itemTagName: 'div',
   itemAnimation: computed.alias('state.itemAnimation'),
 
   renderInPlace: computed('state.animation', function() {

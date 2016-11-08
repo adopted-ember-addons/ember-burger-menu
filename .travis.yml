@@ -27,6 +27,6 @@ addons:
     packages:
       - google-chrome-stable
   code_climate:
-    repo_token: <CODE_CLIMATE_TOKEN_GOES_HERE>
+    repo_token: ddeebbb73024342b8c799ff053a2a610d981ca1d2f1718909400bb746b1493d0
 after_script:
   - codeclimate-test-reporter < coverage/lcov.info

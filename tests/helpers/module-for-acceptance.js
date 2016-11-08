@@ -5,6 +5,7 @@ import destroyApp from '../helpers/destroy-app';
 
 const { RSVP: { Promise } } = Ember;
 
+// jscs:disable
 export default function(name, options = {}) {
   module(name, {
     beforeEach() {
@@ -21,3 +22,4 @@ export default function(name, options = {}) {
     }
   });
 }
+// jscs:enable

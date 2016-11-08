@@ -13,7 +13,7 @@ export default function burgerMenu(id = 'main') {
   assert('The passed id cannot be null, undefined, or an empty string', !isEmpty(id));
 
   if (!Menus[id]) {
-    Menus[id] = MenuState.create();
+    Menus[id] = MenuState.create({ id });
   }
 
   return Menus[id];

@@ -1,24 +1,26 @@
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
+import burgerMenu from 'ember-burger-menu';
+
+const template = hbs`
+  {{#bm-menu-item state=state}}
+    Content
+  {{/bm-menu-item}}
+`;
+
+let testCount = 0;
 
 moduleForComponent('bm-menu-item', 'Integration | Component | bm menu item', {
-  integration: true
+  integration: true,
+
+  beforeEach() {
+    this.setProperties({
+      state: burgerMenu(`_bm_menu_item_${testCount++}`)
+    });
+  }
 });
 
 test('it renders', function(assert) {
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });
-
-  this.render(hbs`{{bm-menu-item}}`);
-
-  assert.equal(this.$().text().trim(), '');
-
-  // Template block usage:
-  this.render(hbs`
-    {{#bm-menu-item}}
-      template block text
-    {{/bm-menu-item}}
-  `);
-
-  assert.equal(this.$().text().trim(), 'template block text');
+  this.render(template);
+  assert.equal(this.$().text().trim(), 'Content');
 });

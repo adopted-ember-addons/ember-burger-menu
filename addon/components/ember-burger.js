@@ -1,12 +1,14 @@
 import Ember from 'ember';
 import layout from '../templates/components/ember-burger';
-import menuFor from 'ember-burger-menu';
+import burgerMenu from 'ember-burger-menu';
 import cssStringify from 'ember-burger-menu/utils/css-stringify';
 
 const {
   $,
   on,
   run,
+  assert,
+  isEmpty,
   observer,
   computed,
   canInvoke
@@ -23,6 +25,7 @@ export default Ember.Component.extend({
   position: computed.alias('state.position'),
   width: computed.alias('state.width'),
   styles: computed.alias('state.styles'),
+
   translucentOverlay: true,
   dismissOnClick: true,
   dismissOnEsc: true,
@@ -33,7 +36,7 @@ export default Ember.Component.extend({
   }).readOnly(),
 
   state: computed(function() {
-    return menuFor(this.get('menuId'));
+    return burgerMenu(this.get('menuId'));
   }).readOnly(),
 
   style: computed('state.{styles,open,width,isRight}', function() {
@@ -49,6 +52,13 @@ export default Ember.Component.extend({
     let method = this.get('open') ? '_setupEvents' : '_teardownEvents';
     this._setupEventsTimer = run.scheduleOnce('afterRender', this, method);
   })),
+
+  init() {
+    this._super(...arguments);
+
+    assert('An animation type must be specified.', !isEmpty(this.get('animation')));
+    assert('Width must be a number', typeof this.get('width') === 'number');
+  },
 
   willDestroyElement() {
     this._super(...arguments);
