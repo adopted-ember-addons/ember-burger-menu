@@ -28,6 +28,26 @@ const template = hbs`
   {{/ember-burger}}
 `;
 
+const customStyles = {
+  container() {
+    return {
+      color: 'green'
+    };
+  },
+
+  outlet(open, width) {
+    return {
+      transform: open ? `translate3d(-${width}px, 0, 0)` : ''
+    };
+  },
+
+  menu() {
+    return {
+      color: 'red'
+    };
+  }
+};
+
 let testCount = 0;
 
 moduleForComponent('burger-menu', 'Integration | Component | burger menu', {
@@ -167,4 +187,22 @@ test('pressing ESC doesnt close the menu -- dismissOnEsc = false', function(asse
   });
 
   assert.ok(this.$('.ember-burger-menu').hasClass('is-open'), 'Menu is open');
+});
+
+test('custom styles override', function(assert) {
+  this.render(template);
+
+  let state = this.get('state');
+
+  run(() => state.set('styles', customStyles));
+  run(() => state.set('animation', 'custom-animation'));
+
+  assert.ok(this.$('.ember-burger-menu').hasClass('bm--custom-animation'), 'Custom container has correct CSS class');
+  assert.equal(this.$('.ember-burger-menu').css('color'), 'rgb(0, 128, 0)', 'Custom container styles applied');
+  assert.equal(this.$('.bm-outlet').css('transform'), 'none', 'Custom outlet styles applied');
+  assert.equal(this.$('.bm-menu').css('color'), 'rgb(255, 0, 0)', 'Custom menu styles applied');
+
+  run(() => state.set('open', true));
+
+  assert.notEqual(this.$('.bm-outlet').css('transform'), 'none', 'Custom outlet styles applied');
 });

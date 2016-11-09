@@ -19,6 +19,7 @@ export default Ember.Component.extend({
 
   itemTagName: 'div',
   itemAnimation: computed.alias('state.itemAnimation'),
+  itemStyles: computed.alias('state.itemStyles'),
 
   renderInPlace: computed('state.animation', function() {
     return OUTLET_MENU_ANIMATIONS.indexOf(this.get('state.animation')) === -1;

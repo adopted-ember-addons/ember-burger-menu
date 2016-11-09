@@ -1,7 +1,7 @@
 {
   "name": "ember-burger-menu",
   "version": "0.0.0",
-  "description": "The default blueprint for ember-cli addons.",
+  "description": "An off-canvas sidebar component with a collection of animations and styles using CSS transitions",
   "directories": {
     "doc": "doc",
     "test": "tests"

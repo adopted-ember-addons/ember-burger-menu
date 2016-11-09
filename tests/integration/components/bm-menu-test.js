@@ -18,6 +18,14 @@ const template = hbs`
   {{/bm-menu}}
 `;
 
+const customStyles = {
+  menuItem(open, width, right, index) {
+    return {
+      color: open ? `rgb(${index}, 0, 0)` : 'rgb(255, 255, 255)'
+    };
+  }
+};
+
 let testCount = 0;
 
 moduleForComponent('bm-menu', 'Integration | Component | bm menu', {
@@ -46,4 +54,21 @@ test('menu state controls rendering', function(assert) {
   assert.ok(this.$('.bm-menu').hasClass('bm-item--none'), 'Initial items have no animation');
   run(() => state.set('itemAnimation', 'push'));
   assert.ok(this.$('.bm-menu').hasClass('bm-item--push'), 'Item animation was changed to push');
+});
+
+test('custom item styles override', function(assert) {
+  this.render(template);
+
+  let state = this.get('state');
+
+  run(() => state.set('itemStyles', customStyles));
+  run(() => state.set('itemAnimation', 'custom-animation'));
+
+  assert.ok(this.$('.bm-menu').hasClass('bm-item--custom-animation'), 'Custom menu has correct CSS class');
+  assert.equal(this.$('.bm-menu-item:first').css('color'), 'rgb(255, 255, 255)', 'Menu item has no style');
+
+  run(() => state.set('open', true));
+
+  assert.equal(this.$('.bm-menu-item:first').css('color'), 'rgb(0, 0, 0)', 'Custom menu styles applied');
+  assert.equal(this.$('.bm-menu-item:last').css('color'), 'rgb(1, 0, 0)', 'Custom menu styles applied');
 });
