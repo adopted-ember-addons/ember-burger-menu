@@ -1,8 +1,8 @@
 import Ember from 'ember';
-import getAnimationStylesFor from 'ember-burger-menu/animations';
+import getAnimation from 'ember-burger-menu/animations';
 
 const {
-  isEmpty,
+  typeOf,
   computed
 } = Ember;
 
@@ -12,22 +12,26 @@ export default Ember.Object.extend({
   position: 'left',
   animation: 'slide',
   itemAnimation: null,
+  customStyles: null,
 
-  isRight: computed.equal('position', 'right').readOnly(),
+  styles: computed('animation', 'itemAnimation', 'customStyles', function() {
+    let animation = this.get('animation');
+    let itemAnimation = this.get('itemAnimation');
+    let customStyles = this.get('customStyles');
+    let AnimationClass;
+
+    if (typeOf(customStyles) === 'class' && customStyles.__isAnimation__) {
+      AnimationClass = customStyles;
+    } else {
+      AnimationClass = getAnimation(animation, itemAnimation);
+    }
+
+    return AnimationClass.create();
+  }).readOnly(),
 
   actions: computed(function() {
     return {
       toggle: this.toggleProperty.bind(this, 'open')
     };
-  }).readOnly(),
-
-  styles: computed('animation', function() {
-    let animation = this.get('animation');
-    return getAnimationStylesFor(animation);
-  }),
-
-  itemStyles: computed('itemAnimation', function() {
-    let itemAnimation = this.get('itemAnimation');
-    return isEmpty(itemAnimation) ? {} : getAnimationStylesFor(`menu-item/${itemAnimation}`);
-  })
+  }).readOnly()
 });

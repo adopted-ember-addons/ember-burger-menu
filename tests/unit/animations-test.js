@@ -1,4 +1,4 @@
-import getAnimationStylesFor from 'ember-burger-menu/animations';
+import getAnimation from 'ember-burger-menu/animations';
 import { module, test } from 'qunit';
 
 const ANIMATIONS = [
@@ -15,26 +15,39 @@ const ANIMATIONS = [
   'slide-reverse'
 ];
 
+const ITEM_ANIMATIONS = [
+  'push',
+  'stack'
+];
+
 const STYLES = [
   'container',
   'outlet',
-  'menu'
+  'menu',
+  'menuItem'
 ];
 
 module('Unit | Animations');
 
 test('all animations', function(assert) {
   ANIMATIONS.forEach((a) => {
-    let styles = getAnimationStylesFor(a);
+    let animation = getAnimation(a).create();
 
     STYLES.forEach((s) => {
-      let fn = styles[s];
-      assert.ok(!fn || fn && typeof fn === 'function', `${a}.${s} is a fn`);
+      let fn = animation[s];
+      assert.ok(fn && typeof fn === 'function', `${a}.${s} is a fn`);
 
-      if (fn) {
-        let style = fn(false, 300, false);
-        assert.ok(style && typeof style === 'object', `${a}.${s} returned a style object`);
-      }
+      let style = fn(false, 300, false);
+      assert.ok(style && typeof style === 'object', `${a}.${s} returned a style object`);
     });
   });
+});
+
+test('item animation are mixed in', function(assert) {
+  let animation = getAnimation(ANIMATIONS[0]).create();
+
+  assert.deepEqual(animation.menuItem(), {});
+
+  animation = getAnimation(ANIMATIONS[0], ITEM_ANIMATIONS[0]).create();
+  assert.notDeepEqual(animation.menuItem(), {});
 });

@@ -1,7 +1,8 @@
 import Ember from 'ember';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
-import burgerMenu from 'ember-burger-menu';
+import Animation from 'ember-burger-menu/animation';
+import MenuState from 'ember-burger-menu/-private/menu-state';
 import triggerKeyboardEvent, { KEYS } from '../../helpers/trigger-keyboard-event';
 
 const {
@@ -13,7 +14,7 @@ const template = hbs`
     translucentOverlay=translucentOverlay
     dismissOnClick=dismissOnClick
     dismissOnEsc=dismissOnEsc
-    menuId=menuId
+    state=state
     open=open
     as |burger|
   }}
@@ -28,7 +29,9 @@ const template = hbs`
   {{/ember-burger}}
 `;
 
-const customStyles = {
+const CustomAnimation = Animation.extend({
+  animation: 'custom-animation',
+
   container() {
     return {
       color: 'green'
@@ -46,23 +49,18 @@ const customStyles = {
       color: 'red'
     };
   }
-};
-
-let testCount = 0;
+});
 
 moduleForComponent('burger-menu', 'Integration | Component | burger menu', {
   integration: true,
 
   beforeEach() {
-    let menuId = `_burger_menu_${testCount++}`;
-
     this.setProperties({
-      menuId,
       open: false,
       translucentOverlay: true,
       dismissOnClick: true,
       dismissOnEsc: true,
-      state: burgerMenu(menuId)
+      state: MenuState.create()
     });
   }
 });
@@ -72,6 +70,19 @@ test('it renders', function(assert) {
 
   assert.ok(this.$('.bm-menu li:contains(One)').length, 'Menu has rendered');
   assert.equal(this.$('.bm-content').text().trim(), 'Content', 'Outlet content rendered');
+});
+
+test('animation and itemAnimation set correct classes', function(assert) {
+  this.render(template);
+
+  let state = this.get('state');
+
+  run(() => state.set('animation', 'push'));
+  assert.ok(this.$('.ember-burger-menu').hasClass('bm--push'), 'Container has correct animation class');
+
+  assert.ok(this.$('.bm-menu').hasClass('bm-item--none'), 'Menu initially has no item animation class');
+  run(() => state.set('itemAnimation', 'stack'));
+  assert.ok(this.$('.bm-menu').hasClass('bm-item--stack'), 'Menu has correct item animation class');
 });
 
 test('menu state controls rendering', function(assert) {
@@ -194,8 +205,7 @@ test('custom styles override', function(assert) {
 
   let state = this.get('state');
 
-  run(() => state.set('styles', customStyles));
-  run(() => state.set('animation', 'custom-animation'));
+  run(() => state.set('customStyles', CustomAnimation));
 
   assert.ok(this.$('.ember-burger-menu').hasClass('bm--custom-animation'), 'Custom container has correct CSS class');
   assert.equal(this.$('.ember-burger-menu').css('color'), 'rgb(0, 128, 0)', 'Custom container styles applied');

@@ -8,7 +8,7 @@ const {
 
 export default Ember.Controller.extend({
   application: inject.controller(),
-  burgerMenu: burgerMenu(),
+  burgerMenu,
 
   translucentOverlay: computed.alias('application.translucentOverlay'),
   dismissOnClick: computed.alias('application.dismissOnClick'),

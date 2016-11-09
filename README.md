@@ -11,10 +11,9 @@ An off-canvas sidebar component with a collection of animations and styles using
 
 ## Features
 
-- Easy to use / easy to build off-canvas menu
+- Easy to use & setup off-canvas menu
 - Mix and match from many menu & menu item animations
 - Control your menu from anywhere in your app
-- Support for multiple menus
 - Easily create your own animations
 
 ## Installation
@@ -70,7 +69,7 @@ This addon utilizes contextual components to be able to correctly control and an
 
 ##### `open`
 
-The current open state of the  menu.
+The current open state of the menu.
 
 **Default: false**
 
@@ -92,9 +91,9 @@ The menu' width (in px).
 
 **Default: 300**
 
-##### `styles`
+##### `customStyles`
 
-Override of the menu's styles. See [Custom Styles](#custom-styles) for more details.
+Override of the menu's styles with your own implementation. See [Custom Styles](#custom-styles) for more details.
 
 ##### `translucentOverlay`
 
@@ -113,13 +112,6 @@ Whether the menu can be dismissed when clicking outside of it.
 Whether the menu can be dismissed when pressing the ESC key.
 
 **Default: true**
-
-##### `menuId`
-
-The menu's ID. If you have more than one menu, you will need to set this to a unique value.
-
-**Default: main**
-
 
 ### `{{burger.outlet}}`
 
@@ -142,10 +134,6 @@ The menu item animation. See [Animations](#menu-item-animations) for the list of
 The default tagName that will be used by the `{{menu.item}}` component.
 
 **Default: div**
-
-##### `itemStyles`
-
-Override of the menu item's styles. See [Custom Menu Item Styles](#custom-menu-item-styles) for more details.
 
 ### `{{menu.item}}`
 
@@ -228,14 +216,18 @@ The state object also exposes some actions.
 
 # Custom Styles
 
-If you're not impressed with the in-house animations and want to create your own, all you have to do is pass the following object to the `styles` property in the `{{ember-burger}}` component.
+If you're not impressed with the in-house animations and want to create your own, all you have to do is pass the following class to the `customStyles` property in the `{{ember-burger}}` component.
 
 ```js
-export default {
+import Animation from 'ember-burger-menu/animation';
+
+export default Animation.extend({
+  // CSS class names to be able to target our menu
+  animation: 'my-custom-animation',
+  itemAnimation: 'my-custom-item-animation',
+
   container(open, width, right) {
-    return {
-      cssAttr: value
-    };
+    return {};
   },
 
   outlet(open, width, right) {
@@ -246,54 +238,62 @@ export default {
 
   menu(open, width, right) {
     return {};
+  },
+
+  menuItem(open, width, right, index) {
+    return {
+      transform: open ? '' : `translate3d(0, ${(index + 1) * 500}px, 0)`
+    };
   }
-};
+});
+
 ```
 
 **Note:** You don't need to worry about prefixing your CSS attributes as it will be done for you.
 
-If you need to add some base CSS to your animation, you target it as such:
+If you need to add some base CSS to your animation, you can target the menu as such:
 
 ```sass
-.ember-burger-menu.bm--MY-CUSTOM-ANIMATION {
+.ember-burger-menu.bm--my-custom-animation {
   .bm-menu {}
   .bm-outlet {}
 
 	&.is-open {
     .bm-menu {}
     .bm-outlet {}
-	}
+  }
 }
 ```
 
-## Custom Menu Item Styles
-
-The process to create custom menu item styles is almost identical as mentioned above. All you have to do is pass the following object to the `itemStyles` property in the `{{burger.menu}}` component.
-
-```js
-export default {
-  menuItem(open, width, right, index) {
-    return {
-      transform: open ? '' : `translate3d(0, ${(index + 1) * 500}px, 0)`
-    };
-  }
-};
-```
-
-**Note:** You don't need to worry about prefixing your CSS attributes as it will be done for you.
-
-If you need to add some base CSS to your animation, you target it as such:
+And the menu items as such:
 
 ```sass
 .ember-burger-menu {
-  .bm-menu.bm-item--MY-CUSTOM-ITEM-ANIMATION {
+  .bm-menu.bm-item--my-custom-item-animation {
     .bm-menu-item {}
   }
 
-	&.is-open {
-		.bm-menu.bm-item--MY-CUSTOM-ITEM-ANIMATION {
-			.bm-menu-item {}
-		}
-	}
+  &.is-open {
+    .bm-menu.bm-item--my-custom-item-animation {
+      .bm-menu-item {}
+    }
+  }
 }
+```
+
+To use our new custom animation, all we have to do is pass the class to
+the `customStyles` option in the `{{ember-burger}}` component.
+
+```js
+import MyCustomAnimation from 'path/to/my-custom-animation';
+
+export default Ember.Component.extend({
+  MyCustomAnimation
+});
+```
+
+```hbs
+{{#ember-burger customStyles=MyCustomAnimation}}
+  ...
+{{/ember-buerger}}
 ```
