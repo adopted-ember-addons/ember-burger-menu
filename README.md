@@ -133,7 +133,7 @@ Everything rendered here will be inside the menu.
 
 ##### `itemAnimation`
 
-The menu item animation. See [Animations](#animations) for the list of available animations.
+The menu item animation. See [Animations](#menu-item-animations) for the list of available animations.
 
 **Default: null**
 
@@ -149,7 +149,7 @@ Override of the menu item's styles. See [Custom Menu Item Styles](#custom-menu-i
 
 ### `{{menu.item}}`
 
-This component is only needed when using an [item animation](#itemAnimation).
+This component is only needed when using an [item animation](#itemanimation).
 
 ## The Menu State
 
@@ -256,7 +256,7 @@ If you need to add some base CSS to your animation, you target it as such:
 
 ```sass
 .ember-burger-menu.bm--MY-CUSTOM-ANIMATION {
-	.bm-menu {}
+  .bm-menu {}
   .bm-outlet {}
 
 	&.is-open {
