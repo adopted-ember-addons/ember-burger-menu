@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
-import Animation from 'ember-burger-menu/animation';
+import Animation from 'ember-burger-menu/animations/base';
 import MenuState from 'ember-burger-menu/-private/menu-state';
 
 const {

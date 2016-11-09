@@ -1,4 +1,4 @@
-import Animation from 'ember-burger-menu/animation';
+import Animation from 'ember-burger-menu/animations/base';
 
 export default Animation.extend({
   animation: 'scale-down',

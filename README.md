@@ -219,7 +219,7 @@ The state object also exposes some actions.
 If you're not impressed with the in-house animations and want to create your own, all you have to do is pass the following class to the `customStyles` property in the `{{ember-burger}}` component.
 
 ```js
-import Animation from 'ember-burger-menu/animation';
+import Animation from 'ember-burger-menu/animations/base';
 
 export default Animation.extend({
   // CSS class names to be able to target our menu
