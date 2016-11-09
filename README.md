@@ -91,9 +91,9 @@ The menu' width (in px).
 
 **Default: 300**
 
-##### `customStyles`
+##### `customAnimation`
 
-Override of the menu's styles with your own implementation. See [Custom Styles](#custom-styles) for more details.
+Override of the menu's styles with your own implementation. See [Custom Animations](#custom-animations) for more details.
 
 ##### `translucentOverlay`
 
@@ -214,9 +214,9 @@ The state object also exposes some actions.
 - push
 - stack
 
-# Custom Styles
+# Custom Animations
 
-If you're not impressed with the in-house animations and want to create your own, all you have to do is pass the following class to the `customStyles` property in the `{{ember-burger}}` component.
+If you're not impressed with the in-house animations and want to create your own, all you have to do is pass the following class to the `customAnimation` property in the `{{ember-burger}}` component.
 
 ```js
 import Animation from 'ember-burger-menu/animations/base';
@@ -282,7 +282,7 @@ And the menu items as such:
 ```
 
 To use our new custom animation, all we have to do is pass the class to
-the `customStyles` option in the `{{ember-burger}}` component.
+the `customAnimation` option in the `{{ember-burger}}` component.
 
 ```js
 import MyCustomAnimation from 'path/to/my-custom-animation';
@@ -293,7 +293,7 @@ export default Ember.Component.extend({
 ```
 
 ```hbs
-{{#ember-burger customStyles=MyCustomAnimation}}
+{{#ember-burger customAnimation=MyCustomAnimation}}
   ...
 {{/ember-buerger}}
 ```

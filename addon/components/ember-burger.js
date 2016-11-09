@@ -28,7 +28,7 @@ export default Ember.Component.extend({
   width: computed.alias('state.width'),
   animation: computed.alias('state.animation'),
   itemAnimation: computed.alias('state.itemAnimation'),
-  customStyles: computed.alias('state.customStyles'),
+  customAnimation: computed.alias('state.customAnimation'),
 
   style: computedStyleFor('container').readOnly(),
 

@@ -46,12 +46,12 @@ test('it renders', function(assert) {
   assert.ok(this.$('.bm-menu li:contains(Two)').length, 'Menu item Two exists');
 });
 
-test('custom item styles override', function(assert) {
+test('custom item animation', function(assert) {
   this.render(template);
 
   let state = this.get('state');
 
-  run(() => state.set('customStyles', CustomAnimation));
+  run(() => state.set('customAnimation', CustomAnimation));
 
   assert.ok(this.$('.bm-menu').hasClass('bm-item--custom-animation'), 'Custom menu has correct CSS class');
   assert.equal(this.$('.bm-menu-item:first').css('color'), 'rgb(255, 255, 255)', 'Menu item has no style');

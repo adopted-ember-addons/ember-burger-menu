@@ -12,16 +12,16 @@ export default Ember.Object.extend({
   position: 'left',
   animation: 'slide',
   itemAnimation: null,
-  customStyles: null,
+  customAnimation: null,
 
-  styles: computed('animation', 'itemAnimation', 'customStyles', function() {
+  styles: computed('animation', 'itemAnimation', 'customAnimation', function() {
     let animation = this.get('animation');
     let itemAnimation = this.get('itemAnimation');
-    let customStyles = this.get('customStyles');
+    let customAnimation = this.get('customAnimation');
     let AnimationClass;
 
-    if (typeOf(customStyles) === 'class' && customStyles.__isAnimation__) {
-      AnimationClass = customStyles;
+    if (typeOf(customAnimation) === 'class' && customAnimation.__isAnimation__) {
+      AnimationClass = customAnimation;
     } else {
       AnimationClass = getAnimation(animation, itemAnimation);
     }

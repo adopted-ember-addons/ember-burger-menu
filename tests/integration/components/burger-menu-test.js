@@ -200,12 +200,12 @@ test('pressing ESC doesnt close the menu -- dismissOnEsc = false', function(asse
   assert.ok(this.$('.ember-burger-menu').hasClass('is-open'), 'Menu is open');
 });
 
-test('custom styles override', function(assert) {
+test('custom animation', function(assert) {
   this.render(template);
 
   let state = this.get('state');
 
-  run(() => state.set('customStyles', CustomAnimation));
+  run(() => state.set('customAnimation', CustomAnimation));
 
   assert.ok(this.$('.ember-burger-menu').hasClass('bm--custom-animation'), 'Custom container has correct CSS class');
   assert.equal(this.$('.ember-burger-menu').css('color'), 'rgb(0, 128, 0)', 'Custom container styles applied');
