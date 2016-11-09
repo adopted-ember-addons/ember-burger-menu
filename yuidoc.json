@@ -3,7 +3,7 @@
   "description": "",
   "url": "http://github.com/offirgolan/ember-burger-menu",
   "options": {
-    "enabledEnvironments": ["production"],
+    "enabledEnvironments": [],
     "paths": [
       "app",
       "addon"
