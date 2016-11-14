@@ -213,8 +213,8 @@ The state object also exposes some actions.
 - #### `toggle`
 
   ```hbs
-  {{#unless myMenu.open}}
-    <button {{action myMenu.actions.toggle}}>Open</button>
+  {{#unless burgerMenu.open}}
+    <button {{action burgerMenu.actions.toggle}}>Open</button>
   {{/unless}}
   ```
 
