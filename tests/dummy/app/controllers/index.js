@@ -7,8 +7,21 @@ const {
 } = Ember;
 
 export default Ember.Controller.extend({
+  queryParams: [
+    'animation',
+    'itemAnimation',
+    'position',
+    'translucentOverlay',
+    'dismissOnClick',
+    'dismissOnEsc'
+  ],
+
   application: inject.controller(),
   burgerMenu,
+
+  animation: computed.alias('burgerMenu.animation'),
+  itemAnimation: computed.alias('burgerMenu.itemAnimation'),
+  position: computed.alias('burgerMenu.position'),
 
   translucentOverlay: computed.alias('application.translucentOverlay'),
   dismissOnClick: computed.alias('application.dismissOnClick'),
