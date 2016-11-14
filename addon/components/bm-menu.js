@@ -4,6 +4,7 @@ import computedStyleFor from 'ember-burger-menu/utils/computed-style-for';
 
 const {
   computed,
+  observer,
   A: emberArray
 } = Ember;
 
@@ -25,5 +26,10 @@ export default Ember.Component.extend({
 
   menuItems: computed(function() {
     return emberArray([]);
-  }).readOnly()
+  }).readOnly(),
+
+  onOpenChange: observer('state.open', function() {
+    let actionName = this.get('state.open') ? 'onOpen' : 'onClose';
+    this.sendAction(actionName);
+  })
 });

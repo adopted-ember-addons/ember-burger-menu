@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import layout from '../templates/components/ember-burger';
+import layout from '../templates/components/burger-menu';
 import burgerMenu from 'ember-burger-menu';
 import computedStyleFor from 'ember-burger-menu/utils/computed-style-for';
 
@@ -43,8 +43,8 @@ export default Ember.Component.extend({
   },
 
   setupEvents: on('didInsertElement', observer('open', function() {
-    let method = this.get('open') ? '_setupEvents' : '_teardownEvents';
-    this._setupEventsTimer = run.scheduleOnce('afterRender', this, method);
+    let methodName = this.get('open') ? '_setupEvents' : '_teardownEvents';
+    this._setupEventsTimer = run.scheduleOnce('afterRender', this, methodName);
   })),
 
   _setupEvents() {

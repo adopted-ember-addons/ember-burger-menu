@@ -10,7 +10,7 @@ const {
 } = Ember;
 
 const template = hbs`
-  {{#ember-burger
+  {{#burger-menu
     translucentOverlay=translucentOverlay
     dismissOnClick=dismissOnClick
     dismissOnEsc=dismissOnEsc
@@ -26,7 +26,7 @@ const template = hbs`
     {{/burger.menu}}
 
     {{#burger.outlet}}Content{{/burger.outlet}}
-  {{/ember-burger}}
+  {{/burger-menu}}
 `;
 
 const CustomAnimation = Animation.extend({
@@ -34,7 +34,7 @@ const CustomAnimation = Animation.extend({
 
   container() {
     return {
-      color: 'green'
+      color: 'rgb(0, 128, 0)'
     };
   },
 
@@ -46,7 +46,7 @@ const CustomAnimation = Animation.extend({
 
   menu() {
     return {
-      color: 'red'
+      color: 'rgb(255, 0, 0)'
     };
   }
 });

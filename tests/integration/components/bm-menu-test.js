@@ -46,6 +46,32 @@ test('it renders', function(assert) {
   assert.ok(this.$('.bm-menu li:contains(Two)').length, 'Menu item Two exists');
 });
 
+test('menu actions trigger', function(assert) {
+  let onOpen = false;
+  let onClose = false;
+
+  this.on('onOpen', () => onOpen = true);
+  this.on('onClose', () => onClose = true);
+
+  this.render(hbs`
+    {{#bm-menu
+      onOpen=(action 'onOpen')
+      onClose=(action 'onClose')
+      state=state
+      as |burger|
+    }}
+    {{/bm-menu}}
+  `);
+
+  let state = this.get('state');
+
+  run(() => state.set('open', true));
+  assert.ok(onOpen, 'onOpen action was triggered');
+
+  run(() => state.set('open', false));
+  assert.ok(onClose, 'onClose action was triggered');
+});
+
 test('custom item animation', function(assert) {
   this.render(template);
 

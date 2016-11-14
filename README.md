@@ -57,7 +57,7 @@ If it is a bug [please open an issue on GitHub](http://github.com/offirgolan/emb
 This addon utilizes contextual components to be able to correctly control and animate necessary elements.
 
 ```hbs
-{{#ember-burger as |burger|}}
+{{#burger-menu as |burger|}}
   {{#burger.menu itemTagName="li" as |menu|}}
     <a {{action burger.state.actions.toggle}} class="close fa fa-times"></a>
     <ul>
@@ -79,12 +79,12 @@ This addon utilizes contextual components to be able to correctly control and an
     <a class="fa fa-bars" {{action burger.state.actions.toggle}}></a>
     {{outlet}}
   {{/burger.outlet}}
-{{/ember-burger}}
+{{/burger-menu}}
 ```
 
 ## Components
 
-### `{{ember-burger}}`
+### `{{burger-menu}}`
 
 #### Options
 
@@ -156,6 +156,16 @@ Everything rendered here will be inside the menu.
 
   **Default: div**
 
+#### Actions
+
+- #### `onOpen`
+
+  Triggered when the menu is opening
+
+- #### `onClose`
+
+  Triggered when the menu is closing
+
 ### `{{menu.item}}`
 
 This component is only needed when using an [item animation](#itemanimation).
@@ -164,13 +174,14 @@ This component is only needed when using an [item animation](#itemanimation).
 
 ### Via Component
 
-The `{{ember-burger}}` component exposed multiple contextual components, but it also exposes a state object which allows you to control the state of the menu.
+The `{{burger-menu}}` component exposed multiple contextual components, but it also exposes a state object which allows you to control the state of the menu.
 
 ```hbs
-{{#ember-burger as |burger|}}
-  {{#burger.menu itemTagName="li" as |menu|}}
+{{#burger-menu as |burger|}}
+  {{#burger.outlet}}
     <a {{action burger.state.actions.toggle}} class="close fa fa-times"></a>
-{{/ember-burger}}
+  {{/burger.outlet}}
+{{/burger-menu}}
 ```
 
 ### Via Import
@@ -209,7 +220,7 @@ The state object also exposes some actions.
 
 # Custom Animations
 
-If you're not impressed with the in-house animations and want to create your own, all you have to do is pass the following class to the `customAnimation` property in the `{{ember-burger}}` component. If you think your animation would be a good addition to the existing collection, feel free to open a PR with it!
+If you're not impressed with the in-house animations and want to create your own, all you have to do is pass the following class to the `customAnimation` property in the `{{burger-menu}}` component. If you think your animation would be a good addition to the existing collection, feel free to open a PR with it!
 
 ```js
 import Animation from 'ember-burger-menu/animations/base';
@@ -275,7 +286,7 @@ And the menu items as such:
 ```
 
 To use our new custom animation, all we have to do is pass the class to
-the `customAnimation` option in the `{{ember-burger}}` component.
+the `customAnimation` option in the `{{burger-menu}}` component.
 
 ```js
 import MyCustomAnimation from 'path/to/my-custom-animation';
@@ -286,7 +297,7 @@ export default Ember.Component.extend({
 ```
 
 ```hbs
-{{#ember-burger customAnimation=MyCustomAnimation}}
+{{#burger-menu customAnimation=MyCustomAnimation}}
   ...
-{{/ember-buerger}}
+{{/burger-menu}}
 ```
