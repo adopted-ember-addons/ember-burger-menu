@@ -193,8 +193,8 @@ You can use the menu state object to modify pretty much any property.
 - `customAnimation`
 
 ```js
-myMenu.set('width', 500);
-myMenu.toggleProperty('open');
+burgerMenu.set('width', 500);
+burgerMenu.toggleProperty('open');
 ```
 
 The state object also exposes some actions.
