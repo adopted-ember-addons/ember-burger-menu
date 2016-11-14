@@ -35,8 +35,7 @@ const Animation = Ember.Object.extend({
     if (type === 'menuItem' && index === -1) {
       /*
         If the index is -1 that means the specific menu item hasnt been
-        rendered yet or it isn't found. This usually will happen when the
-        menu is initially rendered with open = true.
+        rendered yet or it isn't found.
        */
       result = {};
     } else {

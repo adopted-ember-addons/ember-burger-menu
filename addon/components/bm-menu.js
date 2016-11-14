@@ -3,7 +3,8 @@ import layout from '../templates/components/bm-menu';
 import computedStyleFor from 'ember-burger-menu/utils/computed-style-for';
 
 const {
-  computed
+  computed,
+  A: emberArray
 } = Ember;
 
 export const OUTLET_MENU_ANIMATIONS = [
@@ -20,5 +21,9 @@ export default Ember.Component.extend({
 
   renderInPlace: computed('state.animation', function() {
     return OUTLET_MENU_ANIMATIONS.indexOf(this.get('state.animation')) === -1;
+  }).readOnly(),
+
+  menuItems: computed(function() {
+    return emberArray([]);
   }).readOnly()
 });

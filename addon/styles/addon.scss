@@ -29,7 +29,7 @@
 		-webkit-transition: all $t-duration;
 		transition: all $t-duration;
 
-		&:not(.bm-item--none) {
+		&[class*="bm-item-"] {
 			.bm-menu-item {
 				-webkit-transition: all 0s;
 				transition: all 0s;
@@ -106,8 +106,8 @@
 			}
 
 			.bm-menu-item {
-				-webkit-transition-delay: 0;
-				transition-delay: 0;
+				-webkit-transition-delay: 0s;
+				transition-delay: 0s;
 			}
 		}
 

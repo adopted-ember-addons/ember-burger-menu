@@ -5,7 +5,7 @@ const {
 } = Ember;
 
 export default function computedStyleFor(type) {
-  return computed('state.{styles,open,width,position}', function() {
+  return computed('state.{styles,open,width,position}', 'index', function() {
     let state = this.get('state');
     let args = state.getProperties(['open', 'width', 'position']);
 

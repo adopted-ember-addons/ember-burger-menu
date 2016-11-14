@@ -31,6 +31,27 @@ ember install ember-burger-menu
 ## Looking for help?
 If it is a bug [please open an issue on GitHub](http://github.com/offirgolan/ember-burger-menu/issues).
 
+## Animations
+
+### Menu Animations
+
+- slide
+- reveal
+- push
+- fall-down
+- open-door
+- push-rotate
+- rotate-out
+- scale-up
+- scale-down
+- scale-rotate
+- slide-reverse
+
+### Menu Item Animations
+
+- push
+- stack
+
 ## Usage
 
 This addon utilizes contextual components to be able to correctly control and animate necessary elements.
@@ -67,51 +88,57 @@ This addon utilizes contextual components to be able to correctly control and an
 
 #### Options
 
-##### `open`
+- ##### `open`
 
-The current open state of the menu.
+  The current open state of the menu.
 
-**Default: false**
+  **Default: false**
 
-##### `animation`
+- ##### `animation`
 
-The menu animation. See [Animations](#animations) for the list of available animations.
+  The menu animation. See [Animations](#menu-animations) for the list of available animations.
 
-**Default: slide**
+  **Default: slide**
 
-##### `position`
+- ##### `itemAnimation`
 
-The menu's open position. Can either be _left_ or _right_
+  The menu item animation. See [Item Animations](#menu-item-animations) for the list of available item animations.
 
-**Default: left**
+  **Default: null**
 
-##### `width`
+- ##### `position`
 
-The menu' width (in px).
+  The menu's open position. Can either be _left_ or _right_
 
-**Default: 300**
+  **Default: left**
 
-##### `customAnimation`
+- ##### `width`
 
-Override of the menu's styles with your own implementation. See [Custom Animations](#custom-animations) for more details.
+  The menu' width (in px).
 
-##### `translucentOverlay`
+  **Default: 300**
 
-Whether the menu has a translucent overlay once opened.
+- ##### `customAnimation`
 
-**Default: true**
+  Override of the menu's styles with your own implementation. See [Custom Animations](#custom-animations) for more details.
 
-##### `dismissOnClick`
+- ##### `translucentOverlay`
 
-Whether the menu can be dismissed when clicking outside of it.
+  Whether the menu has a translucent overlay once opened.
 
-**Default: true**
+  **Default: true**
 
-##### `dismissOnEsc`
+- ##### `dismissOnClick`
 
-Whether the menu can be dismissed when pressing the ESC key.
+  Whether the menu can be dismissed when clicking outside of it.
 
-**Default: true**
+  **Default: true**
+
+- ##### `dismissOnEsc`
+
+  Whether the menu can be dismissed when pressing the ESC key.
+
+  **Default: true**
 
 ### `{{burger.outlet}}`
 
@@ -123,21 +150,15 @@ Everything rendered here will be inside the menu.
 
 #### Options
 
-##### `itemAnimation`
+- ##### `itemTagName`
 
-The menu item animation. See [Animations](#menu-item-animations) for the list of available animations.
+  The default tagName that will be used by the `{{menu.item}}` component.
 
-**Default: null**
-
-##### `itemTagName`
-
-The default tagName that will be used by the `{{menu.item}}` component.
-
-**Default: div**
+  **Default: div**
 
 ### `{{menu.item}}`
 
-This component is only needed when using an [item animation](#itemanimation).
+This component is only needed when using an [item animation](#menu-item-animations).
 
 ## The Menu State
 
@@ -158,12 +179,6 @@ If you need a more programmatic solution, you can grab the menu state via a simp
 
 ```js
 import burgerMenu from 'ember-burger-menu';
-
-// Using the default menuId
-const myMenu = burgerMenu();
-
-// With a specific menuId
-const fooMenu = burgerMenu('foo');
 ```
 
 ### Usage
@@ -175,8 +190,7 @@ You can use the menu state object to modify pretty much any property.
 - `position`
 - `animation`
 - `itemAnimation`
-- `styles`
-- `itemStyles`
+- `customAnimation`
 
 ```js
 myMenu.set('width', 500);
@@ -185,34 +199,13 @@ myMenu.toggleProperty('open');
 
 The state object also exposes some actions.
 
-- `toggle`
+- #### `toggle`
 
-```hbs
-{{#unless myMenu.open}}
-  <button {{action myMenu.actions.toggle}}>Open</button>
-{{/unless}}
-```
-
-## Animations
-
-### Menu Animations
-
-- slide
-- reveal
-- push
-- fall-down
-- open-door
-- push-rotate
-- rotate-out
-- scale-up
-- scale-down
-- scale-rotate
-- slide-reverse
-
-### Menu Item Animations
-
-- push
-- stack
+  ```hbs
+  {{#unless myMenu.open}}
+    <button {{action myMenu.actions.toggle}}>Open</button>
+  {{/unless}}
+  ```
 
 # Custom Animations
 
@@ -249,7 +242,7 @@ export default Animation.extend({
 
 ```
 
-**Note:** You don't need to worry about prefixing your CSS attributes as it will be done for you.
+_**Note:** You don't need to worry about prefixing your CSS attributes as it will be done for you._
 
 If you need to add some base CSS to your animation, you can target the menu as such:
 

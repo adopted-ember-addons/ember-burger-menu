@@ -49,6 +49,7 @@
     "ember-load-initializers": "^0.5.1",
     "ember-resolver": "^2.0.3",
     "ember-suave": "4.0.1",
+    "ember-truth-helpers": "1.2.0",
     "loader.js": "^4.0.10"
   },
   "keywords": [
@@ -59,7 +60,6 @@
     "ember-cli-htmlbars": "^1.0.10",
     "ember-cli-sass": "^5.6.0",
     "ember-require-module": "^0.1.1",
-    "ember-truth-helpers": "1.2.0",
     "ember-wormhole": "^0.5.0"
   },
   "ember-addon": {

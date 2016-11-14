@@ -80,7 +80,7 @@ test('animation and itemAnimation set correct classes', function(assert) {
   run(() => state.set('animation', 'push'));
   assert.ok(this.$('.ember-burger-menu').hasClass('bm--push'), 'Container has correct animation class');
 
-  assert.ok(this.$('.bm-menu').hasClass('bm-item--none'), 'Menu initially has no item animation class');
+  assert.notOk(this.$('.bm-menu').hasClass('bm-item--stack'), 'Menu initially has no item animation class');
   run(() => state.set('itemAnimation', 'stack'));
   assert.ok(this.$('.bm-menu').hasClass('bm-item--stack'), 'Menu has correct item animation class');
 });
