@@ -63,7 +63,7 @@
 				right: 0;
 				width: 100%;
 				height: 100%;
-				background: rgba(0,0,0,0.2);
+				background: $overlay-background;
 				content: '';
 				opacity: 1;
 				-webkit-transition: opacity $t-duration;
@@ -78,7 +78,7 @@
 				right: 0;
 				width: 0;
 				height: 0;
-				background: rgba(0,0,0,0.2);
+				background: $overlay-background;
 				content: '';
 				opacity: 0;
 				-webkit-transition: opacity $t-duration, width 0.1s $t-duration, height 0.1s $t-duration;

@@ -88,55 +88,55 @@ This addon utilizes contextual components to be able to correctly control and an
 
 #### Options
 
-- ##### `open`
+- #### `open`
 
   The current open state of the menu.
 
   **Default: false**
 
-- ##### `animation`
+- #### `animation`
 
   The menu animation. See [Animations](#menu-animations) for the list of available animations.
 
   **Default: slide**
 
-- ##### `itemAnimation`
+- #### `itemAnimation`
 
   The menu item animation. See [Item Animations](#menu-item-animations) for the list of available item animations.
 
   **Default: null**
 
-- ##### `position`
+- #### `position`
 
   The menu's open position. Can either be _left_ or _right_
 
   **Default: left**
 
-- ##### `width`
+- #### `width`
 
-  The menu' width (in px).
+  The menu's width (in px).
 
   **Default: 300**
 
-- ##### `customAnimation`
+- #### `customAnimation`
 
   Override of the menu's styles with your own implementation. See [Custom Animations](#custom-animations) for more details.
 
-- ##### `translucentOverlay`
+- #### `translucentOverlay`
 
-  Whether the menu has a translucent overlay once opened.
+  Whether the outlet has a translucent overlay over it once the menu is opened.
 
   **Default: true**
 
-- ##### `dismissOnClick`
+- #### `dismissOnClick`
 
   Whether the menu can be dismissed when clicking outside of it.
 
   **Default: true**
 
-- ##### `dismissOnEsc`
+- #### `dismissOnEsc`
 
-  Whether the menu can be dismissed when pressing the ESC key.
+  Whether the menu can be closed when pressing the ESC key.
 
   **Default: true**
 
@@ -150,7 +150,7 @@ Everything rendered here will be inside the menu.
 
 #### Options
 
-- ##### `itemTagName`
+- #### `itemTagName`
 
   The default tagName that will be used by the `{{menu.item}}` component.
 
@@ -158,7 +158,7 @@ Everything rendered here will be inside the menu.
 
 ### `{{menu.item}}`
 
-This component is only needed when using an [item animation](#menu-item-animations).
+This component is only needed when using an [item animation](#itemanimation).
 
 ## The Menu State
 
@@ -209,7 +209,7 @@ The state object also exposes some actions.
 
 # Custom Animations
 
-If you're not impressed with the in-house animations and want to create your own, all you have to do is pass the following class to the `customAnimation` property in the `{{ember-burger}}` component.
+If you're not impressed with the in-house animations and want to create your own, all you have to do is pass the following class to the `customAnimation` property in the `{{ember-burger}}` component. If you think your animation would be a good addition to the existing collection, feel free to open a PR with it!
 
 ```js
 import Animation from 'ember-burger-menu/animations/base';
