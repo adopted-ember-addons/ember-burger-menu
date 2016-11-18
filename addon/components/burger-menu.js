@@ -2,6 +2,7 @@ import Ember from 'ember';
 import layout from '../templates/components/burger-menu';
 import burgerMenu from 'ember-burger-menu';
 import computedStyleFor from 'ember-burger-menu/utils/computed-style-for';
+import SwipeSupport from 'ember-burger-menu/mixins/swipe-support';
 
 const {
   $,
@@ -11,7 +12,7 @@ const {
   computed
 } = Ember;
 
-export default Ember.Component.extend({
+export default Ember.Component.extend(SwipeSupport, {
   classNames: ['ember-burger-menu'],
   classNameBindings: ['open:is-open', 'translucentOverlay', 'animationClass', 'position'],
   attributeBindings: ['style'],
@@ -48,28 +49,26 @@ export default Ember.Component.extend({
   })),
 
   _setupEvents() {
-    let postfix = `burger-menu-${this.get('elementId')}`;
+    let $element = this.$();
     let onClick = this.onClick.bind(this);
     let onKeyUp = this.onKeyup.bind(this);
-    let $body = $('body');
 
     if (this.get('dismissOnClick')) {
-      $body.on(`click.${postfix}`, onClick);
-      $body.on(`touchstart.${postfix}`, onClick);
+      $element.on('click.bm', onClick);
+      $element.on('touchstart.bm', onClick);
     }
 
     if (this.get('dismissOnEsc')) {
-      $body.on(`keyup.${postfix}`, onKeyUp);
+      $(document).on('keyup.bm', onKeyUp);
     }
   },
 
   _teardownEvents() {
-    let postfix = `burger-menu-${this.get('elementId')}`;
-    let $body = $('body');
+    let $element = this.$();
 
-    $body.off(`click.${postfix}`);
-    $body.off(`touchstart.${postfix}`);
-    $body.off(`keyup.${postfix}`);
+    $element.off('click.bm');
+    $element.off('touchstart.bm');
+    $(document).off('keyup.bm');
   },
 
   onClick(e) {
@@ -84,6 +83,17 @@ export default Ember.Component.extend({
   onKeyup(e) {
     if (e.keyCode === 27) {
       this.set('open', false);
+    }
+  },
+
+  onSwipe(direction, isMenuSwipe) {
+    let position = this.get('position');
+    let open = this.get('open');
+
+    if (open && isMenuSwipe && position === direction) {
+      this.set('open', false);
+    } else if (!open && position !== direction) {
+      this.set('open', true);
     }
   }
 });
