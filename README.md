@@ -140,6 +140,18 @@ This addon utilizes contextual components to be able to correctly control and an
 
   **Default: true**
 
+- #### `minSwipeDistance`
+
+  The minimum distance (in px) the user must swipe to register as valid.
+
+  **Default: 150**
+
+- #### `maxSwipeTime`
+
+  The maximum amount of time (in ms) it must take the user to swipe to be registered as valid .
+
+  **Default: 300**
+
 ### `{{burger.outlet}}`
 
 This component is where all your content should be placed.
