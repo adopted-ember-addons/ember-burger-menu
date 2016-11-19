@@ -2,9 +2,10 @@ import Ember from 'ember';
 import cssStringify from 'ember-burger-menu/utils/css-stringify';
 
 const {
-  assert,
-  assign
+  assert
 } = Ember;
+
+const assign = Ember.assign || Ember.merge;
 
 const Animation = Ember.Object.extend({
   animation: null,
