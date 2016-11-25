@@ -4,6 +4,7 @@ import hbs from 'htmlbars-inline-precompile';
 import Animation from 'ember-burger-menu/animations/base';
 import MenuState from 'ember-burger-menu/-private/menu-state';
 import triggerKeyboardEvent, { KEYS } from '../../helpers/trigger-keyboard-event';
+import triggerSwipeEvent from '../../helpers/trigger-swipe-event';
 
 const {
   run
@@ -198,6 +199,41 @@ test('pressing ESC doesnt close the menu -- dismissOnEsc = false', function(asse
   });
 
   assert.ok(this.$('.ember-burger-menu').hasClass('is-open'), 'Menu is open');
+});
+
+test('swipe events toggles the menu', function(assert) {
+  this.render(template);
+
+  assert.notOk(this.$('.ember-burger-menu').hasClass('is-open'), 'Menu is not open');
+
+  run(() => {
+    triggerSwipeEvent(this.$('.ember-burger-menu'), 'right');
+  });
+
+  assert.ok(this.$('.ember-burger-menu').hasClass('is-open'), 'Menu is open');
+
+  run(() => {
+    triggerSwipeEvent(this.$('.bm-menu'), 'left');
+  });
+
+  assert.notOk(this.$('.ember-burger-menu').hasClass('is-open'), 'Menu is not open');
+
+  // Test right sided menu
+  run(() => {
+    this.set('state.position', 'right');
+  });
+
+  run(() => {
+    triggerSwipeEvent(this.$('.ember-burger-menu'), 'left');
+  });
+
+  assert.ok(this.$('.ember-burger-menu').hasClass('is-open'), 'Menu is open');
+
+  run(() => {
+    triggerSwipeEvent(this.$('.bm-menu'), 'right');
+  });
+
+  assert.notOk(this.$('.ember-burger-menu').hasClass('is-open'), 'Menu is not open');
 });
 
 test('custom animation', function(assert) {
