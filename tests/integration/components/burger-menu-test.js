@@ -114,11 +114,25 @@ test('menu state actions work', function(assert) {
   let state = this.get('state');
   let actions = state.get('actions');
 
+  // Open
+  assert.equal(state.get('open'), false, 'Open is initialy false');
+  assert.notOk(this.$('.ember-burger-menu').hasClass('is-open'), 'Menu is closed');
+  run(() => actions.open());
+  assert.ok(this.$('.ember-burger-menu').hasClass('is-open'), 'Menu is open');
+
+  // Close
+  assert.equal(state.get('open'), true, 'Open is initialy true');
+  assert.ok(this.$('.ember-burger-menu').hasClass('is-open'), 'Menu is open');
+  run(() => actions.close());
+  assert.notOk(this.$('.ember-burger-menu').hasClass('is-open'), 'Menu is closed');
+
   // Toggle
   assert.equal(state.get('open'), false, 'Open is initialy false');
   assert.notOk(this.$('.ember-burger-menu').hasClass('is-open'), 'Menu is closed');
   run(() => actions.toggle());
   assert.ok(this.$('.ember-burger-menu').hasClass('is-open'), 'Menu is open');
+  run(() => actions.toggle());
+  assert.notOk(this.$('.ember-burger-menu').hasClass('is-open'), 'Menu is closed');
 });
 
 test('menu opens and closes', function(assert) {
