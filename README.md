@@ -222,12 +222,23 @@ burgerMenu.toggleProperty('open');
 
 The state object also exposes some actions.
 
+
+- #### `open`
+
+  ```hbs
+  <button {{action burger.state.actions.open}}>Open</button>
+  ```
+
+- #### `close`
+
+  ```hbs
+  <button {{action burger.state.actions.close}}>Close</button>
+  ```
+
 - #### `toggle`
 
   ```hbs
-  {{#unless burgerMenu.open}}
-    <button {{action burgerMenu.actions.toggle}}>Open</button>
-  {{/unless}}
+  <button {{action burger.state.actions.toggle}}>Toggle</button>
   ```
 
 # Custom Animations

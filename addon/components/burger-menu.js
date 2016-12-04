@@ -72,6 +72,7 @@ export default Ember.Component.extend(SwipeSupport, {
   },
 
   onClick(e) {
+    // Close the menu if clicked outside of it
     if ($(e.target).closest('.bm-menu').length === 0) {
       e.stopPropagation();
       e.preventDefault();
@@ -86,9 +87,10 @@ export default Ember.Component.extend(SwipeSupport, {
     }
   },
 
-  onSwipe(direction, isMenuSwipe) {
+  onSwipe(direction, target) {
     let position = this.get('position');
     let open = this.get('open');
+    let isMenuSwipe = target.closest('.bm-menu').length > 0;
 
     if (open && isMenuSwipe && position === direction) {
       this.set('open', false);
