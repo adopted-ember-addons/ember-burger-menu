@@ -14,6 +14,7 @@ An off-canvas sidebar component with a collection of animations and styles using
 - Easy to use & setup off-canvas menu
 - Mix and match from many menu & menu item animations
 - Control your menu from anywhere in your app
+- Swipe gesture support with changeable thresholds
 - Easily create your own animations
 
 ## Installation
