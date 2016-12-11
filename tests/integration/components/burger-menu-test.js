@@ -15,7 +15,6 @@ const template = hbs`
     translucentOverlay=translucentOverlay
     dismissOnClick=dismissOnClick
     dismissOnEsc=dismissOnEsc
-    state=state
     open=open
     as |burger|
   }}

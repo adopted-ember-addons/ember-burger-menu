@@ -9,7 +9,7 @@ const {
 } = Ember;
 
 const template = hbs`
-  {{#bm-menu-item state=state menuItems=menuItems dismissOnClick=dismissOnClick}}
+  {{#bm-menu-item menuItems=menuItems dismissOnClick=dismissOnClick}}
     Content
   {{/bm-menu-item}}
 `;

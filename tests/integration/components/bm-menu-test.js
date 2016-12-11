@@ -10,7 +10,6 @@ const {
 
 const template = hbs`
   {{#bm-menu
-    state=state
     itemTagName=itemTagName
     as |menu|
   }}
