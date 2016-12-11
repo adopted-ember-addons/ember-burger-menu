@@ -60,7 +60,8 @@ This addon utilizes contextual components to be able to correctly control and an
 ```hbs
 {{#burger-menu as |burger|}}
   {{#burger.menu itemTagName="li" as |menu|}}
-    <a {{action burger.state.actions.toggle}} class="close fa fa-times"></a>
+    <a {{action burger.state.actions.close}} class="icon-close"></a>
+
     <ul>
       {{#menu.item}}
         {{link-to 'Features' 'features'}}
@@ -77,7 +78,7 @@ This addon utilizes contextual components to be able to correctly control and an
   {{/burger.menu}}
 
   {{#burger.outlet}}
-    <a class="fa fa-bars" {{action burger.state.actions.toggle}}></a>
+    <a class="icon-menu" {{action burger.state.actions.toggle}}></a>
     {{outlet}}
   {{/burger.outlet}}
 {{/burger-menu}}
@@ -169,6 +170,12 @@ Everything rendered here will be inside the menu.
 
   **Default: div**
 
+- #### `dismissOnItemClick`
+
+  Close the menu on click of a `{{menu.item}}`.
+
+  **Default: false**
+
 #### Actions
 
 - #### `onOpen`
@@ -181,13 +188,21 @@ Everything rendered here will be inside the menu.
 
 ### `{{menu.item}}`
 
-This component is only needed when using an [item animation](#itemanimation).
+The individual menu item. This is required if you have specified an [itemAnimation](#itemanimation).
+
+#### Options
+
+- #### `dismissOnClick`
+
+  Close the menu on click.
+
+  **Default: false**
 
 ## The Menu State
 
 ### Via Component
 
-The `{{burger-menu}}` component exposed multiple contextual components, but it also exposes a state object which allows you to control the state of the menu.
+The `{{burger-menu}}` component exposes multiple contextual components, but it also exposes a state object which allows you to control the state of the menu.
 
 ```hbs
 {{#burger-menu as |burger|}}
