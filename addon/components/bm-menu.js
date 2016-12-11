@@ -32,7 +32,6 @@ export default Ember.Component.extend({
   }).readOnly(),
 
   onOpenChange: observer('state.open', function() {
-    let actionName = this.get('state.open') ? 'onOpen' : 'onClose';
-    this.sendAction(actionName);
+    this.sendAction(this.get('state.open') ? 'onOpen' : 'onClose');
   })
 });
