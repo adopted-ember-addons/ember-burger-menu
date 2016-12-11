@@ -8,6 +8,7 @@ const {
 } = Ember;
 
 const ANIMATION_PATH = 'ember-burger-menu/animations';
+const ANIMATION_ITEM_PATH = `${ANIMATION_PATH}/menu-item`;
 
 export default function getAnimation(animation, itemAnimation) {
   let AnimationClass;
@@ -20,7 +21,7 @@ export default function getAnimation(animation, itemAnimation) {
   }
 
   if (!isEmpty(itemAnimation)) {
-    let MenuItemMixin = requireModule(`${ANIMATION_PATH}/menu-item/${itemAnimation}`);
+    let MenuItemMixin = requireModule(`${ANIMATION_ITEM_PATH}/${itemAnimation}`);
 
     assert(`The item animation '${itemAnimation}' could not be found.`, MenuItemMixin);
 
