@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import layout from '../templates/components/burger-menu';
-import burgerMenu from 'ember-burger-menu';
-import computedStyleFor from 'ember-burger-menu/utils/computed-style-for';
+import state from 'ember-burger-menu';
+import computedStyleFor from 'ember-burger-menu/computed/style-for';
 import SwipeSupport from 'ember-burger-menu/mixins/swipe-support';
 
 const {
@@ -9,7 +9,8 @@ const {
   on,
   run,
   observer,
-  computed
+  computed,
+  computed: { alias }
 } = Ember;
 
 export default Ember.Component.extend(SwipeSupport, {
@@ -17,19 +18,18 @@ export default Ember.Component.extend(SwipeSupport, {
   classNameBindings: ['open:is-open', 'translucentOverlay', 'animationClass', 'position'],
   attributeBindings: ['style'],
   layout,
-
-  state: burgerMenu,
+  state,
 
   translucentOverlay: true,
   dismissOnClick: true,
   dismissOnEsc: true,
 
-  open: computed.alias('state.open'),
-  position: computed.alias('state.position'),
-  width: computed.alias('state.width'),
-  animation: computed.alias('state.animation'),
-  itemAnimation: computed.alias('state.itemAnimation'),
-  customAnimation: computed.alias('state.customAnimation'),
+  open: alias('state.open'),
+  position: alias('state.position'),
+  width: alias('state.width'),
+  animation: alias('state.animation'),
+  itemAnimation: alias('state.itemAnimation'),
+  customAnimation: alias('state.customAnimation'),
 
   style: computedStyleFor('container').readOnly(),
 

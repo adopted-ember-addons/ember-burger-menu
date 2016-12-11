@@ -1,7 +1,11 @@
 {{#ember-wormhole to=(concat containerId '-outlet-menu') renderInPlace=renderInPlace}}
   <div class="bm-menu {{if state.styles.itemAnimation (concat 'bm-item--' state.styles.itemAnimation)}}" style={{style}}>
     {{yield (hash
-        item=(component 'bm-menu-item' tagName=itemTagName state=state menuItems=menuItems)
+        item=(component 'bm-menu-item'
+          tagName=itemTagName
+          menuItems=menuItems
+          dismissOnClick=dismissOnItemClick
+          state=state)
       )
     }}
   </div>

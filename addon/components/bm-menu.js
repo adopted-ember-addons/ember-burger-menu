@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import layout from '../templates/components/bm-menu';
-import computedStyleFor from 'ember-burger-menu/utils/computed-style-for';
+import computedStyleFor from 'ember-burger-menu/computed/style-for';
 
 const {
   computed,
@@ -15,9 +15,11 @@ export const OUTLET_MENU_ANIMATIONS = [
 
 export default Ember.Component.extend({
   layout,
-  state: null,
 
+  state: null,
   itemTagName: 'div',
+  dismissOnItemClick: false,
+
   style: computedStyleFor('menu').readOnly(),
 
   renderInPlace: computed('state.animation', function() {
