@@ -1,7 +1,6 @@
 import Ember from 'ember';
 
 const {
-  $,
   isNone
 } = Ember;
 
@@ -21,7 +20,7 @@ export default Ember.Mixin.create({
     // jscs:enable
 
     meta = {
-      target: $(e.target),
+      target: e.target,
       start: {
         x: touch.pageX,
         y: touch.pageY,

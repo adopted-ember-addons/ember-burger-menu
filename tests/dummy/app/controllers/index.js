@@ -1,5 +1,4 @@
 import Ember from 'ember';
-import burgerMenu from 'ember-burger-menu';
 
 const {
   inject,
@@ -17,7 +16,7 @@ export default Ember.Controller.extend({
   ],
 
   application: inject.controller(),
-  burgerMenu,
+  burgerMenu: inject.service(),
 
   animation: computed.alias('burgerMenu.animation'),
   itemAnimation: computed.alias('burgerMenu.itemAnimation'),

@@ -1,6 +1,5 @@
 import Ember from 'ember';
 import layout from '../templates/components/burger-menu';
-import state from 'ember-burger-menu';
 import computedStyleFor from 'ember-burger-menu/computed/style-for';
 import SwipeSupport from 'ember-burger-menu/mixins/swipe-support';
 
@@ -10,7 +9,8 @@ const {
   run,
   observer,
   computed,
-  computed: { alias }
+  computed: { alias },
+  inject: { service }
 } = Ember;
 
 export default Ember.Component.extend(SwipeSupport, {
@@ -18,7 +18,8 @@ export default Ember.Component.extend(SwipeSupport, {
   classNameBindings: ['open:is-open', 'translucentOverlay', 'animationClass', 'position'],
   attributeBindings: ['style'],
   layout,
-  state,
+
+  state: service('burgerMenu'),
 
   translucentOverlay: true,
   dismissOnClick: true,
@@ -90,7 +91,7 @@ export default Ember.Component.extend(SwipeSupport, {
   onSwipe(direction, target) {
     let position = this.get('position');
     let open = this.get('open');
-    let isMenuSwipe = target.closest('.bm-menu').length > 0;
+    let isMenuSwipe = $(target).closest('.bm-menu').length > 0;
 
     if (open && isMenuSwipe && position === direction) {
       this.set('open', false);
