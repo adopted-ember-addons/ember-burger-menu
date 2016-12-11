@@ -5,7 +5,7 @@ const {
   computed
 } = Ember;
 
-export default Ember.Object.extend({
+export default Ember.Service.extend({
   open: false,
   width: 300,
   position: 'left',
@@ -23,9 +23,9 @@ export default Ember.Object.extend({
 
   actions: computed(function() {
     return {
-      open: this.set.bind(this, 'open', true),
-      close: this.set.bind(this, 'open', false),
-      toggle: this.toggleProperty.bind(this, 'open')
+      open: () => this.set('open', true),
+      close: () => this.set('open', false),
+      toggle: () => this.toggleProperty('open')
     };
   }).readOnly()
 });

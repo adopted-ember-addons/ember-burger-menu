@@ -5,7 +5,8 @@ import computedStyleFor from 'ember-burger-menu/computed/style-for';
 const {
   $,
   run,
-  computed
+  computed,
+  inject: { service }
 } = Ember;
 
 export default Ember.Component.extend({
@@ -13,7 +14,8 @@ export default Ember.Component.extend({
   classNames: ['bm-menu-item'],
   attributeBindings: ['style'],
 
-  state: null,
+  state: service('burgerMenu'),
+
   menuItems: null,
   dismissOnClick: false,
   style: computedStyleFor('menuItem').readOnly(),

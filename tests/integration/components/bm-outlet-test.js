@@ -1,6 +1,10 @@
+import Ember from 'ember';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
-import MenuState from 'ember-burger-menu/-private/menu-state';
+
+const {
+  getOwner
+} = Ember;
 
 const template = hbs`
   {{#bm-outlet state=state}}
@@ -13,7 +17,7 @@ moduleForComponent('bm-outlet', 'Integration | Component | bm outlet', {
 
   beforeEach() {
     this.setProperties({
-      state: MenuState.create()
+      state: getOwner(this).lookup('service:burger-menu')
     });
   }
 });

@@ -212,12 +212,14 @@ The `{{burger-menu}}` component exposes multiple contextual components, but it a
 {{/burger-menu}}
 ```
 
-### Via Import
+### Via Service
 
-If you need a more programmatic solution, you can grab the menu state via a simple import.
+If you need a more programmatic solution, you can grab the menu state via injecting the `burgerMenu` service.
 
 ```js
-import burgerMenu from 'ember-burger-menu';
+export default Ember.Component.extend({
+  burgerMenu: Ember.inject.service()
+})
 ```
 
 ### Usage
