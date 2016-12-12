@@ -1,5 +1,12 @@
 # Changelog
 
+## v1.0.0
+
+### Pull Requests
+
+- [#10](https://github.com/offirgolan/ember-burger-menu/pull/10) [FEATURE] Dismiss menu on item click *by [@offirgolan](https://github.com/offirgolan)*
+- [#11](https://github.com/offirgolan/ember-burger-menu/pull/11) [FEATURE] Use a service to hold the menu state *by [@offirgolan](https://github.com/offirgolan)*
+
 ## v0.2.1
 
 ### Pull Requests
