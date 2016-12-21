@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.0.1
+
+### Pull Requests
+
+- [#13](https://github.com/offirgolan/ember-burger-menu/pull/13) [BUGFIX] Use originalEvent to access touches *by [@offirgolan](https://github.com/offirgolan)*
+
 ## v1.0.0
 
 ### Pull Requests
