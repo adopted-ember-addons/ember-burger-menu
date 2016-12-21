@@ -16,7 +16,7 @@ export default Ember.Mixin.create({
     this._super(...arguments);
 
     // jscs:disable
-    let touch = e.touches[0];
+    let touch = e.originalEvent.touches[0];
     // jscs:enable
 
     meta = {
@@ -33,7 +33,7 @@ export default Ember.Mixin.create({
     this._super(...arguments);
 
     // jscs:disable
-    let touch = e.touches[0];
+    let touch = e.originalEvent.touches[0];
     // jscs:enable
 
     meta.differences = {
@@ -47,7 +47,7 @@ export default Ember.Mixin.create({
     }
 
     // A valid swipe event uses only one finger
-    if (e.touches.length > 1) {
+    if (e.originalEvent.touches.length > 1) {
       meta.isInvalid = true;
     }
 
