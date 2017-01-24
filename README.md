@@ -60,7 +60,7 @@ This addon utilizes contextual components to be able to correctly control and an
 ```hbs
 {{#burger-menu as |burger|}}
   {{#burger.menu itemTagName="li" as |menu|}}
-    <a {{action burger.state.actions.close}} class="icon-close"></a>
+    <button {{action burger.state.actions.close}}>Close</button>
 
     <ul>
       {{#menu.item}}
@@ -78,7 +78,7 @@ This addon utilizes contextual components to be able to correctly control and an
   {{/burger.menu}}
 
   {{#burger.outlet}}
-    <a class="icon-menu" {{action burger.state.actions.toggle}}></a>
+    <button {{action burger.state.actions.toggle}}>Menu</button>
     {{outlet}}
   {{/burger.outlet}}
 {{/burger-menu}}
