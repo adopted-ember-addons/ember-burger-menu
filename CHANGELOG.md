@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.0.2
+
+### Pull Requests
+
+- [#21](https://github.com/offirgolan/ember-burger-menu/pull/21) Make height 100vh *by [@rwwagner90](https://github.com/rwwagner90)*
+
 ## v1.0.1
 
 ### Pull Requests
