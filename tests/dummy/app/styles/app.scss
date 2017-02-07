@@ -34,6 +34,10 @@ a {
   }
 }
 
+::-webkit-scrollbar {
+    display: none;
+}
+
 .pointer {
   cursor: pointer;
 }
@@ -185,64 +189,82 @@ a {
   }
 }
 
-.header {
-  background: #233040;
-  padding-top: 60px;
+main {
+  height: 100%;
 
-  h1 {
-    font-family: 'Bungee Hairline', cursive;
-    font-weight: bold;
-  }
+  .header {
+    background: #233040;
+    padding: 10px;
+    height: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 
-  .description {
-    padding: 30px 0 30px;
-    font-size: 16px;
-
-    > p {
-      max-width: 500px;
-      margin: 0 auto;
+    img {
+      width: 375px;
+      max-width: 80%;
     }
-  }
-}
 
-.container {
-  padding-top: 30px;
-
-  h4 {
-    margin-bottom: 20px;
-    font-size: 16px;
-    font-weight: 400;
-  }
-
-  .animations {
-    min-height: 225px;
-    border-right: 1px solid #ccc;
-    padding-right: 25px;
-
-    .btn-outline {
-      margin: 0 0 10px 10px;
+    h1 {
+      font-family: 'Bungee Hairline', cursive;
+      font-weight: bold;
     }
-  }
 
-  .options {
-    min-height: 225px;
-    padding-left: 25px;
+    .description {
+      padding: 30px 0 30px;
+      font-size: 16px;
 
-    .option {
-      label {
-        font-size: 15px;
-        width: 160px;
-      }
-      .checkbox {
-        cursor: pointer;
-        display: inline-block;
-        color: $accent-color;
-        font-size: 18px;
+      > p {
+        max-width: 500px;
+        margin: 0 auto;
       }
     }
   }
-}
 
-.inspiration {
-  padding: 40px 0;
+  .content {
+    height: 50%;
+
+    .container {
+      padding-top: 30px;
+
+      h4 {
+        margin-bottom: 20px;
+        font-size: 16px;
+        font-weight: 400;
+      }
+
+      .animations {
+        min-height: 310px;
+        border-right: 1px solid #ccc;
+        padding-right: 25px;
+
+        .btn-outline {
+          margin: 0 0 10px 10px;
+        }
+      }
+
+      .options {
+        min-height: 310px;
+        padding-left: 25px;
+
+        .option {
+          label {
+            font-size: 15px;
+            width: 160px;
+          }
+          .checkbox {
+            cursor: pointer;
+            display: inline-block;
+            color: $accent-color;
+            font-size: 18px;
+          }
+        }
+      }
+    }
+
+    .inspiration {
+      padding: 40px 0;
+    }
+  }
 }

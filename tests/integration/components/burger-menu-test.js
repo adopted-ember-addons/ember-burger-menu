@@ -15,7 +15,9 @@ const template = hbs`
     translucentOverlay=translucentOverlay
     dismissOnClick=dismissOnClick
     dismissOnEsc=dismissOnEsc
+    gesturesEnabled=gesturesEnabled
     open=open
+    locked=locked
     as |burger|
   }}
     {{#burger.menu itemTagName="li" as |menu|}}
@@ -57,9 +59,11 @@ moduleForComponent('burger-menu', 'Integration | Component | burger menu', {
   beforeEach() {
     this.setProperties({
       open: false,
+      locked: false,
       translucentOverlay: true,
       dismissOnClick: true,
       dismissOnEsc: true,
+      gesturesEnabled: true,
       state: getOwner(this).lookup('service:burger-menu')
     });
   }
@@ -185,6 +189,27 @@ test('clicking outside of menu doesnt close it -- dismissOnClick = false', funct
   assert.ok(this.$('.ember-burger-menu').hasClass('is-open'), 'Clicking in the content doesnt close the menu');
 });
 
+test('clicking outside of locked menu doesnt close it', function(assert) {
+  this.set('open', true);
+  this.set('locked', true);
+
+  this.render(template);
+
+  assert.ok(this.$('.ember-burger-menu').hasClass('is-open'), 'Menu is open');
+
+  run(() => {
+    this.$('.bm-menu li:first').click();
+  });
+
+  assert.ok(this.$('.ember-burger-menu').hasClass('is-open'), 'Clicking on the menu doesnt close it');
+
+  run(() => {
+    this.$('.bm-content').click();
+  });
+
+  assert.ok(this.$('.ember-burger-menu').hasClass('is-open'), 'Clicking in the content doesnt close the menu');
+});
+
 test('pressing ESC closes the menu -- dismissOnEsc = true', function(assert) {
   this.set('open', true);
 
@@ -202,6 +227,21 @@ test('pressing ESC closes the menu -- dismissOnEsc = true', function(assert) {
 test('pressing ESC doesnt close the menu -- dismissOnEsc = false', function(assert) {
   this.set('open', true);
   this.set('dismissOnEsc', false);
+
+  this.render(template);
+
+  assert.ok(this.$('.ember-burger-menu').hasClass('is-open'), 'Menu is open');
+
+  run(() => {
+    triggerKeyboardEvent(this.$(), 'keyup', KEYS.ESCAPE);
+  });
+
+  assert.ok(this.$('.ember-burger-menu').hasClass('is-open'), 'Menu is open');
+});
+
+test('pressing ESC doesnt close a locked menu', function(assert) {
+  this.set('open', true);
+  this.set('locked', true);
 
   this.render(template);
 
@@ -247,6 +287,33 @@ test('swipe events toggles the menu', function(assert) {
   });
 
   assert.notOk(this.$('.ember-burger-menu').hasClass('is-open'), 'Menu is not open');
+});
+
+test('swipe events dont toggle the menu -- gesturesEnabled = false', function(assert) {
+  this.set('gesturesEnabled', false);
+  this.render(template);
+
+  assert.notOk(this.$('.ember-burger-menu').hasClass('is-open'), 'Menu is not open');
+
+  run(() => {
+    triggerSwipeEvent(this.$('.ember-burger-menu'), 'right');
+  });
+
+  assert.notOk(this.$('.ember-burger-menu').hasClass('is-open'), 'Menu is not open');
+});
+
+test('swipe events dont toggle a locked menu', function(assert) {
+  this.set('open', true);
+  this.set('locked', true);
+  this.render(template);
+
+  assert.ok(this.$('.ember-burger-menu').hasClass('is-open'), 'Menu is open');
+
+  run(() => {
+    triggerSwipeEvent(this.$('.ember-burger-menu'), 'left');
+  });
+
+  assert.ok(this.$('.ember-burger-menu').hasClass('is-open'), 'Menu is open');
 });
 
 test('custom animation', function(assert) {
