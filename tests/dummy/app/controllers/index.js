@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 const {
   inject,
-  computed
+  computed: { alias }
 } = Ember;
 
 export default Ember.Controller.extend({
@@ -10,21 +10,25 @@ export default Ember.Controller.extend({
     'animation',
     'itemAnimation',
     'position',
+    'locked',
     'translucentOverlay',
     'dismissOnClick',
-    'dismissOnEsc'
+    'dismissOnEsc',
+    'gesturesEnabled'
   ],
 
   application: inject.controller(),
   burgerMenu: inject.service(),
 
-  animation: computed.alias('burgerMenu.animation'),
-  itemAnimation: computed.alias('burgerMenu.itemAnimation'),
-  position: computed.alias('burgerMenu.position'),
+  animation: alias('burgerMenu.animation'),
+  itemAnimation: alias('burgerMenu.itemAnimation'),
+  position: alias('burgerMenu.position'),
+  locked: alias('burgerMenu.locked'),
 
-  translucentOverlay: computed.alias('application.translucentOverlay'),
-  dismissOnClick: computed.alias('application.dismissOnClick'),
-  dismissOnEsc: computed.alias('application.dismissOnEsc'),
+  translucentOverlay: alias('application.translucentOverlay'),
+  dismissOnClick: alias('application.dismissOnClick'),
+  dismissOnEsc: alias('application.dismissOnEsc'),
+  gesturesEnabled: alias('application.gesturesEnabled'),
 
   animations: [
     'slide',

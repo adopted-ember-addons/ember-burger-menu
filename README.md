@@ -120,6 +120,13 @@ This addon utilizes contextual components to be able to correctly control and an
 
   **Default: 300**
 
+- #### `locked`
+
+  Lock the menu in its current open / closed state. Please note that changes made
+  directly via the burgerMenu service or {{burger.state.actions}} will still propagate.
+
+  **Default: false**
+
 - #### `customAnimation`
 
   Override of the menu's styles with your own implementation. See [Custom Animations](#custom-animations) for more details.
@@ -139,6 +146,12 @@ This addon utilizes contextual components to be able to correctly control and an
 - #### `dismissOnEsc`
 
   Whether the menu can be closed when pressing the ESC key.
+
+  **Default: true**
+
+- #### `gesturesEnabled`
+
+  Whether the menu can be open / closed using gestures. The only available gesture currently is swipe.
 
   **Default: true**
 

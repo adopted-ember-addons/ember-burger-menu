@@ -1,7 +1,8 @@
 import Ember from 'ember';
 import layout from '../templates/components/burger-menu';
 import computedStyleFor from 'ember-burger-menu/computed/style-for';
-import SwipeSupport from 'ember-burger-menu/mixins/swipe-support';
+import SwipeSupportMixin from 'ember-burger-menu/mixins/swipe-support';
+import DomMixin from 'ember-lifeline/mixins/dom';
 
 const {
   $,
@@ -13,7 +14,7 @@ const {
   inject: { service }
 } = Ember;
 
-export default Ember.Component.extend(SwipeSupport, {
+export default Ember.Component.extend(DomMixin, SwipeSupportMixin, {
   classNames: ['ember-burger-menu'],
   classNameBindings: ['open:is-open', 'translucentOverlay', 'animationClass', 'position'],
   attributeBindings: ['style'],
@@ -24,8 +25,10 @@ export default Ember.Component.extend(SwipeSupport, {
   translucentOverlay: true,
   dismissOnClick: true,
   dismissOnEsc: true,
+  gesturesEnabled: true,
 
   open: alias('state.open'),
+  locked: alias('state.locked'),
   position: alias('state.position'),
   width: alias('state.width'),
   animation: alias('state.animation'),
@@ -41,35 +44,32 @@ export default Ember.Component.extend(SwipeSupport, {
   willDestroyElement() {
     this._super(...arguments);
     run.cancel(this._setupEventsTimer);
-    this._teardownEvents();
   },
 
-  setupEvents: on('didInsertElement', observer('open', function() {
-    let methodName = this.get('open') ? '_setupEvents' : '_teardownEvents';
-    this._setupEventsTimer = run.scheduleOnce('afterRender', this, methodName);
+  setupEvents: on('didInsertElement', observer('open', 'locked', function() {
+    if (this.get('locked')) {
+      this._setupEventsTimer = run.scheduleOnce('afterRender', this, '_teardownEvents');
+    } else {
+      let methodName = this.get('open') ? '_setupEvents' : '_teardownEvents';
+      this._setupEventsTimer = run.scheduleOnce('afterRender', this, methodName);
+    }
   })),
 
   _setupEvents() {
-    let $element = this.$();
-    let onClick = this.onClick.bind(this);
-    let onKeyUp = this.onKeyup.bind(this);
-
     if (this.get('dismissOnClick')) {
-      $element.on('click.bm', onClick);
-      $element.on('touchstart.bm', onClick);
+      this.addEventListener(this.$(), 'click', this.onClick);
+      this.addEventListener(this.$(), 'touchstart', this.onClick);
     }
 
     if (this.get('dismissOnEsc')) {
-      $(document).on('keyup.bm', onKeyUp);
+      this.addEventListener(document, 'keyup', this.onKeyup);
     }
   },
 
   _teardownEvents() {
-    let $element = this.$();
-
-    $element.off('click.bm');
-    $element.off('touchstart.bm');
-    $(document).off('keyup.bm');
+    this.removeEventListener(this.$(), 'click', this.onClick);
+    this.removeEventListener(this.$(), 'touchstart', this.onClick);
+    this.removeEventListener(document, 'keyup', this.onKeyup);
   },
 
   onClick(e) {
@@ -91,7 +91,13 @@ export default Ember.Component.extend(SwipeSupport, {
   onSwipe(direction, target) {
     let position = this.get('position');
     let open = this.get('open');
+    let locked = this.get('locked');
+    let gesturesEnabled = this.get('gesturesEnabled');
     let isMenuSwipe = $(target).closest('.bm-menu').length > 0;
+
+    if (!gesturesEnabled || locked) {
+      return;
+    }
 
     if (open && isMenuSwipe && position === direction) {
       this.set('open', false);

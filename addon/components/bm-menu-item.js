@@ -36,7 +36,7 @@ export default Ember.Component.extend({
   },
 
   click() {
-    if (this.get('dismissOnClick')) {
+    if (this.get('dismissOnClick') && !this.get('state.locked')) {
       this.set('state.open', false);
     }
   }

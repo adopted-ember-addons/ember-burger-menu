@@ -7,9 +7,14 @@ const {
 
 export default Ember.Service.extend({
   open: false,
+  locked: false,
   width: 300,
   position: 'left',
   animation: 'slide',
+
+  minSwipeDistance: 150,
+  maxSwipeTime: 300,
+
   itemAnimation: null,
   customAnimation: null,
 

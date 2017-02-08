@@ -44,3 +44,19 @@ test('dismissOnClick closes the menu', function(assert) {
   this.$('.bm-menu-item').click();
   assert.notOk(this.get('state.open'), 'Menu should be closed');
 });
+
+test('dismissOnClick doesnt close a locked menu', function(assert) {
+  this.render(template);
+
+  let state = this.get('state');
+
+  run(() => state.set('open', true));
+  run(() => state.set('locked', true));
+
+  this.$('.bm-menu-item').click();
+  assert.ok(this.get('state.open'), 'Menu should still be open');
+
+  this.set('dismissOnClick', true);
+  this.$('.bm-menu-item').click();
+  assert.ok(this.get('state.open'), 'Menu should still be open');
+});
