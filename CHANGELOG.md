@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.1.0
+
+### Pull Requests
+
+- [#29](https://github.com/offirgolan/ember-burger-menu/pull/29) [FEATURE] Locked + gesturesEnabled + use ember-lifeline *by [@offirgolan](https://github.com/offirgolan)*
+
 ## v1.0.2
 
 ### Pull Requests
