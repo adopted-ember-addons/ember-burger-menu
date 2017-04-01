@@ -1,6 +1,6 @@
 {
   "name": "ember-burger-menu",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "An off-canvas sidebar component with a collection of animations and styles using CSS transitions",
   "directories": {
     "doc": "doc",

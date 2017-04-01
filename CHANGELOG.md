@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.1.1
+
+### Pull Requests
+
+- [#42](https://github.com/offirgolan/ember-burger-menu/pull/42) Update ember-cli-sass to the latest version 🚀 *by [@offirgolan/greenkeeper](https://github.com/offirgolan/greenkeeper)*
+
 ## v1.1.0
 
 ### Pull Requests
