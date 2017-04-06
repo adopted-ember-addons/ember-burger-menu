@@ -3,6 +3,7 @@ node_js:
   - '4'
 sudo: required
 cache:
+  yarn: true
   directories:
     - node_modules
     - $HOME/.npm
@@ -17,7 +18,7 @@ before_install:
   - bower --version
   - npm install -g codeclimate-test-reporter
 install:
-  - npm install
+  - yarn install
   - bower install
 script:
   - 'COVERAGE=true ember try:each'
