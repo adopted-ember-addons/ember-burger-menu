@@ -1,7 +1,7 @@
 /*jshint node:true*/
 
 module.exports = {
-  useVersionCompatibility: true,
+  useVersionCompatibility: false,
   scenarios: [{
     name: 'default',
     bower: {
@@ -18,11 +18,25 @@ module.exports = {
       }
     }
   }, {
-    name: 'ember-2.6.2',
-    allowedToFail: true
+    name: 'ember-lts-2.8',
+    bower: {
+      dependencies: {
+        'ember': 'components/ember#lts-2-8'
+      },
+      resolutions: {
+        'ember': 'lts-2-8'
+      }
+    }
   }, {
-    name: 'ember-2.7.3',
-    allowedToFail: true
+    name: 'ember-2.10',
+    bower: {
+      dependencies: {
+        'ember': '2.10.2'
+      },
+      resolutions: {
+        'ember': '2.10.2'
+      }
+    }
   }, {
     name: 'ember-release',
     bower: {
