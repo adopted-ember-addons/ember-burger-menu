@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.1.2
+
+### Pull Requests
+
+- [#62](https://github.com/offirgolan/ember-burger-menu/pull/62) [FEATURE] Slide Shrink Animation *by [@offirgolan](https://github.com/offirgolan)*
+
 ## v1.1.1
 
 ### Pull Requests
