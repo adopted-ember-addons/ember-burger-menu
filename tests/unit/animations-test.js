@@ -3,6 +3,7 @@ import { module, test } from 'qunit';
 
 const ANIMATIONS = [
   'slide',
+  'slide-shrink',
   'reveal',
   'push',
   'fall-down',
