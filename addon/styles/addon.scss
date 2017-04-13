@@ -10,6 +10,7 @@
 @import './animations/scale-rotate';
 @import './animations/scale-up';
 @import './animations/slide';
+@import './animations/slide-shrink';
 @import './animations/slide-reverse';
 
 @import './animations/menu-item/push';
@@ -44,8 +45,8 @@
 		z-index: 99;
 		height: 100%;
 		perspective: 1000px;
-		-webkit-transition: -webkit-transform $t-duration;
-		transition: transform $t-duration;
+		-webkit-transition: -webkit-transform $t-duration, margin $t-duration;
+		transition: transform $t-duration, margin $t-duration;
 
 		.bm-content {
 			position: relative;

@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 const {
   isEmpty,
-  String: { htmlSafe }
+  String: { htmlSafe, dasherize }
 } = Ember;
 
 const PREFIXES = ['webkit'];
@@ -32,6 +32,7 @@ export default function cssStringify(hash = {}) {
 }
 
 function buildProp(key, value) {
+  key = dasherize(key);
   let css = [`${key}: ${value}`];
 
   if (PREFIXED_PROPS.indexOf(key) > -1) {

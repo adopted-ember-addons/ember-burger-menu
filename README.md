@@ -47,6 +47,7 @@ If it is a bug [please open an issue on GitHub](http://github.com/offirgolan/emb
 - scale-down
 - scale-rotate
 - slide-reverse
+- slide-shrink
 
 ### Menu Item Animations
 
