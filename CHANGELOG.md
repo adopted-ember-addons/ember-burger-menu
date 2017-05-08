@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.1.3
+
+### Pull Requests
+
+- [#69](https://github.com/offirgolan/ember-burger-menu/pull/69) [BUGFIX] Remove preventDefault from passive event listener touchMove *by [@offirgolan](https://github.com/offirgolan)*
+
 ## v1.1.2
 
 ### Pull Requests
