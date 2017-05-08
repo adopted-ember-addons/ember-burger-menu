@@ -53,10 +53,6 @@ export default Ember.Mixin.create({
     if (e.originalEvent.touches.length > 1) {
       meta.isInvalid = true;
     }
-
-    if (meta.isHorizontal && !meta.isInvalid) {
-      e.preventDefault();
-    }
   },
 
   touchEnd() {
