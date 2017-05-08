@@ -1,7 +1,7 @@
 # Ember Burger Menu
 
 [![Ember Version](https://embadge.io/v1/badge.svg?start=2.3.0)](https://embadge.io/v1/badge.svg?start=2.3.0)
-[![Build Status](https://travis-ci.org/offirgolan/ember-burger-menu.svg)](https://travis-ci.org/offirgolan/ember-burger-menu)
+[![Build Status](https://travis-ci.org/offirgolan/ember-burger-menu.svg?branch=master)](https://travis-ci.org/offirgolan/ember-burger-menu)
 [![npm version](https://badge.fury.io/js/ember-burger-menu.svg)](http://badge.fury.io/js/ember-burger-menu)
 [![Code Climate](https://codeclimate.com/github/offirgolan/ember-burger-menu/badges/gpa.svg)](https://codeclimate.com/github/offirgolan/ember-burger-menu)
 [![Test Coverage](https://codeclimate.com/github/offirgolan/ember-burger-menu/badges/coverage.svg)](https://codeclimate.com/github/offirgolan/ember-burger-menu/coverage)
