@@ -27,7 +27,6 @@ export default Ember.Component.extend(DomMixin, SwipeSupportMixin, {
     return guidFor(this);
   }),
   state: computed('menuId', function() {
-    console.log(this.get('menuId'));
     return this.get(`burgerMenu.states.${this.get('menuId')}`);
   }).readOnly(),
 
