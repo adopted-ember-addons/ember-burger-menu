@@ -1,91 +1,150 @@
-<main class="text-center">
-  <div class="header">
-      <img src="images/ember-logo.png" ondragstart="return false;"/>
-      <h1>Burger Menu</h1>
+{{#burger-menu
+  translucentOverlay=translucentOverlay
+  dismissOnClick=dismissOnClick
+  dismissOnEsc=dismissOnEsc
+  gesturesEnabled=gesturesEnabled
+  menuId="index"
+  as |burger|
+}}
+  {{#burger.menu itemTagName="li" dismissOnItemClick=true as |menu|}}
+    <a {{action burger.state.actions.close}} class="close {{burger.state.position}} fa fa-times"></a>
+    <h2><i class="fa fa-bars" aria-hidden="true"></i> Menu</h2>
 
-      <div class="description">
-        <p>
-          An off-canvas sidebar component with a collection of animations and styles using CSS transitions.
-        </p>
+    <ul>
+      {{#menu.item}}
+        <a href="https://github.com/offirgolan/ember-burger-menu" target="_blank">
+          <i class="fa fa-github" aria-hidden="true"></i> GitHub
+        </a>
+      {{/menu.item}}
+
+      {{#menu.item}}
+        <a href="https://github.com/offirgolan/ember-burger-menu/issues" target="_blank">
+          <i class="fa fa-bug" aria-hidden="true"></i> Issues
+        </a>
+      {{/menu.item}}
+
+      {{#menu.item}}
+        <a href="https://github.com/offirgolan/ember-burger-menu/pulls" target="_blank">
+          <i class="fa fa-exchange fa-rotate-90" aria-hidden="true"></i> Pull Requests
+        </a>
+      {{/menu.item}}
+
+      {{#menu.item}}
+        <a href="https://github.com/offirgolan/ember-burger-menu/blob/master/README.md" target="_blank">
+          <i class="fa fa-file-text-o" aria-hidden="true"></i> Documentation
+        </a>
+      {{/menu.item}}
+
+      {{#menu.item}}
+        <a href="https://github.com/offirgolan/ember-burger-menu/graphs" target="_blank">
+          <i class="fa fa-bar-chart" aria-hidden="true"></i> Analytics
+        </a>
+      {{/menu.item}}
+    </ul>
+  {{/burger.menu}}
+
+  {{#burger.outlet}}
+    <a class="hamburger {{burger.state.position}} {{if burger.state.open 'burger-hidden'}}" {{action burger.state.actions.toggle}}>
+      <i class="fa fa-bars" aria-hidden="true"></i>
+    </a>
+    <main class="text-center">
+      <div class="header">
+          <img src="images/ember-logo.png" ondragstart="return false;"/>
+          <h1>Burger Menu</h1>
+
+          <div class="description">
+            <p>
+              An off-canvas sidebar component with a collection of animations and styles using CSS transitions.
+            </p>
+          </div>
+
+          <div class="nav">
+            {{#link-to 'index'}}Home{{/link-to}}
+            {{#link-to 'multiple'}}Multiple{{/link-to}}
+          </div>
       </div>
-  </div>
 
-  <div class="content">
-    <div class="container">
-      <div class="col-xs-6 animations text-right">
-        <h4>Animations</h4>
-        {{#each animations as |animation|}}
-          <button class="btn btn-default btn-outline {{if (eq animation burgerMenu.animation) 'active'}}" {{action 'setMenu' 'animation' animation}}>
-            {{titleize (dedasherize animation)}}
+      <div class="content">
+        <div class="container">
+          <div class="col-xs-6 animations text-right">
+          <h4>Animations</h4>
+          {{#each animations as |animation|}}
+            <button class="btn btn-default btn-outline {{if (eq animation burger.state.animation) 'active'}}" {{action 'setMenu' 'animation' animation}}>
+              {{titleize (dedasherize animation)}}
+            </button>
+          {{/each}}
+
+          <h4>Item Animations</h4>
+          <button class="btn btn-default btn-outline {{if (not burger.state.itemAnimation) 'active'}}" {{action 'setMenu' 'itemAnimation' null}}>
+            None
           </button>
-        {{/each}}
+          {{#each itemAnimations as |animation|}}
+            <button class="btn btn-default btn-outline {{if (eq animation burger.state.itemAnimation) 'active'}}" {{action 'setMenu' 'itemAnimation' animation}}>
+              {{titleize (dedasherize animation)}}
+            </button>
+          {{/each}}
+        </div>
 
-        <h4>Item Animations</h4>
-        <button class="btn btn-default btn-outline {{if (not burgerMenu.itemAnimation)'active'}}" {{action 'setMenu' 'itemAnimation' null}}>
-          None
-        </button>
-        {{#each itemAnimations as |animation|}}
-          <button class="btn btn-default btn-outline {{if (eq animation burgerMenu.itemAnimation) 'active'}}" {{action 'setMenu' 'itemAnimation' animation}}>
-            {{titleize (dedasherize animation)}}
-          </button>
-        {{/each}}
-      </div>
+        <div class="col-xs-6 options text-left">
+          <h4>Options</h4>
 
-      <div class="col-xs-6 options text-left">
-        <h4>Options</h4>
+          <div class="option">
+            <label for="position">Position</label>
+            <div class="btn-group" role="group" id="position">
+              {{#each (array 'left' 'right') as |position|}}
+                <button type="button" class="btn btn-default btn-outline {{if (eq position burger.state.position) 'active'}}" {{action 'setMenu' 'position' position}}>
+                  {{titleize position}}
+                </button>
+              {{/each}}
+            </div>
+          </div>
 
-        <div class="option">
-          <label for="position">Position</label>
-          <div class="btn-group" role="group" id="position">
-            {{#each (array 'left' 'right') as |position|}}
-              <button type="button" class="btn btn-default btn-outline {{if (eq position burgerMenu.position) 'active'}}" {{action 'setMenu' 'position' position}}>
-                {{titleize position}}
-              </button>
-            {{/each}}
+          <div class="option">
+            <label for="locked">Locked</label>
+            <a id="locked" {{action (toggle 'locked' this)}} class="checkbox">
+              <i class="fa {{if locked 'fa-check-square' 'fa-square'}}" aria-hidden="true"></i>
+            </a>
+          </div>
+
+          <div class="option">
+            <label for="translucentOverlay">Translucent Overlay</label>
+            <a id="translucentOverlay" {{action (toggle 'translucentOverlay' this)}} class="checkbox">
+              <i class="fa {{if translucentOverlay 'fa-check-square' 'fa-square'}}" aria-hidden="true"></i>
+            </a>
+          </div>
+
+          <div class="option">
+            <label for="dismissOnClick">Dismiss on Click</label>
+            <a id="dismissOnClick" {{action (toggle 'dismissOnClick' this)}} class="checkbox">
+              <i class="fa {{if dismissOnClick 'fa-check-square' 'fa-square'}}" aria-hidden="true"></i>
+            </a>
+          </div>
+
+          <div class="option">
+            <label for="dismissOnEsc">Dismiss on Escape</label>
+            <a id="dismissOnEsc" {{action (toggle 'dismissOnEsc' this)}} class="checkbox">
+              <i class="fa {{if dismissOnEsc 'fa-check-square' 'fa-square'}}" aria-hidden="true"></i>
+            </a>
+          </div>
+
+          <div class="option">
+            <label for="gesturesEnabled">Gestures Enabled</label>
+            <a id="gesturesEnabled" {{action (toggle 'gesturesEnabled' this)}} class="checkbox">
+              <i class="fa {{if gesturesEnabled 'fa-check-square' 'fa-square'}}" aria-hidden="true"></i>
+            </a>
           </div>
         </div>
-
-        <div class="option">
-          <label for="locked">Locked</label>
-          <a id="locked" {{action (toggle 'locked' this)}} class="checkbox">
-            <i class="fa {{if locked 'fa-check-square' 'fa-square'}}" aria-hidden="true"></i>
-          </a>
         </div>
 
-        <div class="option">
-          <label for="translucentOverlay">Translucent Overlay</label>
-          <a id="translucentOverlay" {{action (toggle 'translucentOverlay' this)}} class="checkbox">
-            <i class="fa {{if translucentOverlay 'fa-check-square' 'fa-square'}}" aria-hidden="true"></i>
-          </a>
-        </div>
-
-        <div class="option">
-          <label for="dismissOnClick">Dismiss on Click</label>
-          <a id="dismissOnClick" {{action (toggle 'dismissOnClick' this)}} class="checkbox">
-            <i class="fa {{if dismissOnClick 'fa-check-square' 'fa-square'}}" aria-hidden="true"></i>
-          </a>
-        </div>
-
-        <div class="option">
-          <label for="dismissOnEsc">Dismiss on Escape</label>
-          <a id="dismissOnEsc" {{action (toggle 'dismissOnEsc' this)}} class="checkbox">
-            <i class="fa {{if dismissOnEsc 'fa-check-square' 'fa-square'}}" aria-hidden="true"></i>
-          </a>
-        </div>
-
-        <div class="option">
-          <label for="gesturesEnabled">Gestures Enabled</label>
-          <a id="gesturesEnabled" {{action (toggle 'gesturesEnabled' this)}} class="checkbox">
-            <i class="fa {{if gesturesEnabled 'fa-check-square' 'fa-square'}}" aria-hidden="true"></i>
-          </a>
+        <div class="inspiration">
+          <p>
+            Inspired by <a href="https://github.com/codrops/SidebarTransitions">Sidebar Transitions</a> by Codrops
+          </p>
         </div>
       </div>
-    </div>
+    </main>
+  {{/burger.outlet}}
 
-    <div class="inspiration">
-      <p>
-        Inspired by <a href="https://github.com/codrops/SidebarTransitions">Sidebar Transitions</a> by Codrops
-      </p>
-    </div>
-  </div>
-</main>
+  <img src="images/tomster.png" class="tomster {{burger.state.position}}" width="175px" ondragstart="return false;"/>
+{{/burger-menu}}
+

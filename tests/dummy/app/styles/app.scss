@@ -1,6 +1,11 @@
 $accent-color: #e24b31;
 $text-color: #e2e2e2;
 
+$green : #388E3C;
+$blue : #1976D2;
+$yellow : #FFA000;
+
+
 html,
 body,
 body > .ember-view {
@@ -46,9 +51,73 @@ a {
   clear: both;
 }
 
+main {
+  background: #1d2837;
+}
+
+.nav {
+  a {
+    font-size: 16px;
+    margin: 0 10px;
+    line-height: 1.8px;
+    padding: 10px;
+    color: $text-color;
+    font-weight: 400;
+
+    &:hover, &.active {
+      border-bottom: 1px solid $accent-color
+    }
+  }
+}
+
 .ember-burger-menu {
-  .bm-outlet > .bm-content {
-    background: #1d2837;
+  &.multiple {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 50vh;
+    width: 100vw;
+    visibility: hidden;
+
+    &.is-open {
+      visibility: visible;
+    }
+
+    &.bm-id--green {
+      .bm-menu {
+        background: $green;
+
+        li > a:hover {
+          background: darken($green, 10);
+        }
+      }
+    }
+
+    &.bm-id--yellow {
+      .bm-menu {
+        background: $yellow;
+
+        li > a:hover {
+          background: darken($yellow, 10);
+        }
+      }
+    }
+
+    &.bm-id--blue {
+      top: 50vh;
+
+      .bm-menu {
+        background: $blue;
+
+        li > a:hover {
+          background: darken($blue, 10);
+        }
+      }
+    }
+
+    &.bm-id--red {
+      top: 50vh;
+    }
   }
 
   .bm-menu {
@@ -133,6 +202,18 @@ a {
   font-weight: 300;
   background: transparent;
 
+  &.btn-green {
+    border-color: $green;
+  }
+
+  &.btn-yellow {
+    border-color: $yellow;
+  }
+
+  &.btn-blue {
+    border-color: $blue;
+  }
+
   &:hover, &:focus, &:active, &:active:focus, &.active, &.active:hover, &.active:focus {
     z-index: 0;
     outline: 0;
@@ -140,6 +221,21 @@ a {
     background: $accent-color;
     color: $text-color;
     border-color: darken($accent-color, 5);
+
+    &.btn-green {
+      background: $green;
+      border-color: darken($green, 5);
+    }
+
+    &.btn-yellow {
+      background: $yellow;
+      border-color: darken($yellow, 5);
+    }
+
+    &.btn-blue {
+      background: $blue;
+      border-color: darken($blue, 5);
+    }
   }
 }
 
@@ -242,6 +338,11 @@ main {
         .btn-outline {
           margin: 0 0 10px 10px;
         }
+      }
+
+      &.multiple-options {
+        z-index: 10;
+        position: relative;
       }
 
       .options {

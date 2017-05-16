@@ -9,7 +9,7 @@ const {
 } = Ember;
 
 const template = hbs`
-  {{#bm-menu-item menuItems=menuItems dismissOnClick=dismissOnClick}}
+  {{#bm-menu-item state=state menuItems=menuItems dismissOnClick=dismissOnClick}}
     Content
   {{/bm-menu-item}}
 `;
@@ -20,7 +20,7 @@ moduleForComponent('bm-menu-item', 'Integration | Component | bm menu item', {
   beforeEach() {
     this.setProperties({
       menuItems: emberArray([]),
-      state: getOwner(this).lookup('service:burger-menu'),
+      state: getOwner(this).lookup('service:burger-menu').get('states.default'),
       dismissOnClick: false
     });
   }

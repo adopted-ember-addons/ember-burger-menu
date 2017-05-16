@@ -8,6 +8,7 @@ const {
   $,
   on,
   run,
+  guidFor,
   observer,
   computed,
   computed: { alias },
@@ -15,12 +16,20 @@ const {
 } = Ember;
 
 export default Ember.Component.extend(DomMixin, SwipeSupportMixin, {
-  classNames: ['ember-burger-menu'],
-  classNameBindings: ['open:is-open', 'translucentOverlay', 'animationClass', 'position'],
-  attributeBindings: ['style'],
   layout,
+  classNames: ['ember-burger-menu'],
+  classNameBindings: ['open:is-open', 'translucentOverlay', 'animationClass', 'menuIdClass', 'position'],
+  attributeBindings: ['style'],
 
-  state: service('burgerMenu'),
+  burgerMenu: service('burgerMenu'),
+
+  menuId: computed(function() {
+    return guidFor(this);
+  }),
+  state: computed('menuId', function() {
+    console.log(this.get('menuId'));
+    return this.get(`burgerMenu.states.${this.get('menuId')}`);
+  }).readOnly(),
 
   translucentOverlay: true,
   dismissOnClick: true,
@@ -41,43 +50,46 @@ export default Ember.Component.extend(DomMixin, SwipeSupportMixin, {
     return `bm--${this.get('state.styles.animation')}`;
   }).readOnly(),
 
+  menuIdClass: computed('menuId', function() {
+    return `bm-id--${this.get('menuId')}`;
+  }).readOnly(),
+
   willDestroyElement() {
     this._super(...arguments);
     run.cancel(this._setupEventsTimer);
   },
 
   setupEvents: on('didInsertElement', observer('open', 'locked', function() {
-    if (this.get('locked')) {
-      this._setupEventsTimer = run.scheduleOnce('afterRender', this, '_teardownEvents');
-    } else {
-      let methodName = this.get('open') ? '_setupEvents' : '_teardownEvents';
-      this._setupEventsTimer = run.scheduleOnce('afterRender', this, methodName);
-    }
+    let methodName = (this.get('open') && !this.get('locked')) ? '_setupEvents' : '_teardownEvents';
+    this._setupEventsTimer = run.scheduleOnce('afterRender', this, methodName);
   })),
 
   _setupEvents() {
+    let elementId = this.get('elementId');
+
     if (this.get('dismissOnClick')) {
-      this.addEventListener(this.$(), 'click', this.onClick);
-      this.addEventListener(this.$(), 'touchstart', this.onClick);
+      this.addEventListener($('body'), `click.${elementId}`, this.onClick);
+      this.addEventListener($('body'), `touchstart.${elementId}`, this.onClick);
     }
 
     if (this.get('dismissOnEsc')) {
-      this.addEventListener(document, 'keyup', this.onKeyup);
+      this.addEventListener(document, `keyup.${elementId}`, this.onKeyup);
     }
   },
 
   _teardownEvents() {
-    this.removeEventListener(this.$(), 'click', this.onClick);
-    this.removeEventListener(this.$(), 'touchstart', this.onClick);
-    this.removeEventListener(document, 'keyup', this.onKeyup);
+    let elementId = this.get('elementId');
+
+    this.removeEventListener($('body'), `click.${elementId}`, this.onClick);
+    this.removeEventListener($('body'), `touchstart.${elementId}`, this.onClick);
+    this.removeEventListener(document, `keyup.${elementId}`, this.onKeyup);
   },
 
   onClick(e) {
-    // Close the menu if clicked outside of it
-    if ($(e.target).closest('.bm-menu').length === 0) {
-      e.stopPropagation();
-      e.preventDefault();
+    let elementId = this.get('elementId');
 
+    // Close the menu if clicked outside of it
+    if ($(e.target).closest(`#${elementId} .bm-menu`).length === 0) {
       this.set('open', false);
     }
   },

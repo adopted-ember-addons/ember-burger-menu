@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 const {
   inject,
-  computed: { alias }
+  computed: { alias, readOnly }
 } = Ember;
 
 export default Ember.Controller.extend({
@@ -17,18 +17,18 @@ export default Ember.Controller.extend({
     'gesturesEnabled'
   ],
 
-  application: inject.controller(),
   burgerMenu: inject.service(),
+  burgerMenuState: readOnly('burgerMenu.states.index'),
 
-  animation: alias('burgerMenu.animation'),
-  itemAnimation: alias('burgerMenu.itemAnimation'),
-  position: alias('burgerMenu.position'),
-  locked: alias('burgerMenu.locked'),
+  translucentOverlay: true,
+  dismissOnClick: true,
+  dismissOnEsc: true,
+  gesturesEnabled: true,
 
-  translucentOverlay: alias('application.translucentOverlay'),
-  dismissOnClick: alias('application.dismissOnClick'),
-  dismissOnEsc: alias('application.dismissOnEsc'),
-  gesturesEnabled: alias('application.gesturesEnabled'),
+  animation: alias('burgerMenuState.animation'),
+  itemAnimation: alias('burgerMenuState.itemAnimation'),
+  position: alias('burgerMenuState.position'),
+  locked: alias('burgerMenuState.locked'),
 
   animations: [
     'slide',
@@ -52,7 +52,7 @@ export default Ember.Controller.extend({
 
   actions: {
     setMenu() {
-      this.get('burgerMenu').set(...arguments);
+      this.get('burgerMenuState').set(...arguments);
     }
   }
 });

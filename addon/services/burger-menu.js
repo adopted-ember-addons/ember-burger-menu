@@ -5,7 +5,7 @@ const {
   computed
 } = Ember;
 
-export default Ember.Service.extend({
+const State = Ember.Object.extend({
   open: false,
   locked: false,
   width: 300,
@@ -33,4 +33,24 @@ export default Ember.Service.extend({
       toggle: () => this.toggleProperty('open')
     };
   }).readOnly()
+});
+
+/**
+ * States is an object proxy that will create a new state
+ * on `get` if the key doesnt exist already in the content.
+ */
+const States = Ember.ObjectProxy.extend({
+  unknownProperty(key) {
+    let content = this.get('content');
+
+    if (!content[key]) {
+      content[key] = State.create();
+    }
+
+    return content[key];
+  }
+});
+
+export default Ember.Service.extend({
+  states: computed(() => States.create({ content: {} })).readOnly()
 });

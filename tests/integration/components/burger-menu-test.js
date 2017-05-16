@@ -12,6 +12,7 @@ const {
 
 const template = hbs`
   {{#burger-menu
+    menuId="default"
     translucentOverlay=translucentOverlay
     dismissOnClick=dismissOnClick
     dismissOnEsc=dismissOnEsc
@@ -64,7 +65,7 @@ moduleForComponent('burger-menu', 'Integration | Component | burger menu', {
       dismissOnClick: true,
       dismissOnEsc: true,
       gesturesEnabled: true,
-      state: getOwner(this).lookup('service:burger-menu')
+      state: getOwner(this).lookup('service:burger-menu').get('states.default')
     });
   }
 });

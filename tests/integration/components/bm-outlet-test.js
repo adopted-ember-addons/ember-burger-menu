@@ -17,7 +17,7 @@ moduleForComponent('bm-outlet', 'Integration | Component | bm outlet', {
 
   beforeEach() {
     this.setProperties({
-      state: getOwner(this).lookup('service:burger-menu')
+      state: getOwner(this).lookup('service:burger-menu').get('states.default')
     });
   }
 });

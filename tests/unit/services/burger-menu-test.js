@@ -6,7 +6,11 @@ moduleFor('service:burger-menu', 'Unit | Service | burger menu', {
 });
 
 // Replace this with your real tests.
-test('it exists', function(assert) {
+test('states', function(assert) {
   let service = this.subject();
-  assert.ok(service);
+  let fooState = service.get('states.foo');
+
+  assert.ok(fooState);
+  assert.equal(fooState.get('animation'), 'slide');
+  assert.equal(service.get('states.foo'), fooState, 'Make sure we are not recreating state');
 });

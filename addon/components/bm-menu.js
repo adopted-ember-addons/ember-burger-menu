@@ -5,8 +5,7 @@ import computedStyleFor from 'ember-burger-menu/computed/style-for';
 const {
   computed,
   observer,
-  A: emberArray,
-  inject: { service }
+  A: emberArray
 } = Ember;
 
 export const OUTLET_MENU_ANIMATIONS = [
@@ -16,7 +15,7 @@ export const OUTLET_MENU_ANIMATIONS = [
 
 export default Ember.Component.extend({
   layout,
-  state: service('burgerMenu'),
+  state: null,
 
   itemTagName: 'div',
   dismissOnItemClick: false,

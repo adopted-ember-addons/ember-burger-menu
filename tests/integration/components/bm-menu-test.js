@@ -11,6 +11,7 @@ const {
 const template = hbs`
   {{#bm-menu
     itemTagName=itemTagName
+    state=state
     as |menu|
   }}
     {{#menu.item}}One{{/menu.item}}
@@ -33,7 +34,7 @@ moduleForComponent('bm-menu', 'Integration | Component | bm menu', {
 
   beforeEach() {
     this.setProperties({
-      state: getOwner(this).lookup('service:burger-menu'),
+      state: getOwner(this).lookup('service:burger-menu').get('states.default'),
       itemTagName: 'li'
     });
   }
