@@ -1,76 +1,13 @@
-{{#each colors as |color|}}
-  {{#burger-menu
-    menuId=color
-    translucentOverlay=false
-    dismissOnClick=dismissOnClick
-    dismissOnEsc=dismissOnEsc
-    gesturesEnabled=gesturesEnabled
-    classNames="multiple"
-    position=(if (or (eq color 'yellow') (eq color 'red')) 'right' 'left')
-    as |burger|}}
-    {{#burger.menu itemTagName="li" dismissOnItemClick=true as |menu|}}
-      <a {{action burger.state.actions.close}} class="close {{burger.state.position}} fa fa-times"></a>
-      <h2>{{titleize color}} Menu</h2>
-
-      <ul>
-      {{#menu.item}}
-        <a href="https://github.com/offirgolan/ember-burger-menu" target="_blank">
-          <i class="fa fa-github" aria-hidden="true"></i> GitHub
-        </a>
-      {{/menu.item}}
-
-      {{#menu.item}}
-        <a href="https://github.com/offirgolan/ember-burger-menu/issues" target="_blank">
-          <i class="fa fa-bug" aria-hidden="true"></i> Issues
-        </a>
-      {{/menu.item}}
-
-      {{#menu.item}}
-        <a href="https://github.com/offirgolan/ember-burger-menu/pulls" target="_blank">
-          <i class="fa fa-exchange fa-rotate-90" aria-hidden="true"></i> Pull Requests
-        </a>
-      {{/menu.item}}
-
-      {{#menu.item}}
-        <a href="https://github.com/offirgolan/ember-burger-menu/blob/master/README.md" target="_blank">
-          <i class="fa fa-file-text-o" aria-hidden="true"></i> Documentation
-        </a>
-      {{/menu.item}}
-
-      {{#menu.item}}
-        <a href="https://github.com/offirgolan/ember-burger-menu/graphs" target="_blank">
-          <i class="fa fa-bar-chart" aria-hidden="true"></i> Analytics
-        </a>
-      {{/menu.item}}
-    </ul>
-    {{/burger.menu}}
-  {{/burger-menu}}
-{{/each}}
-
 <main class="text-center">
-<div class="header">
-    <img src="images/ember-logo.png" ondragstart="return false;"/>
-    <h1>Burger Menu</h1>
-
-    <div class="description">
-      <p>
-        An off-canvas sidebar component with a collection of animations and styles using CSS transitions.
-      </p>
-    </div>
-
-    <div class="nav">
-      {{#link-to 'index'}}Home{{/link-to}}
-      {{#link-to 'multiple'}}Multiple{{/link-to}}
-    </div>
-</div>
+  {{partial 'header'}}
 
   <div class="content">
     <div class="container multiple-options">
       <div class="col-xs-4 col-xs-offset-2 animations multiple-options text-right">
           <h4>Menus</h4>
-          {{#each colors as |color|}}
-            <button class="btn btn-default btn-outline {{concat 'btn-' color}} {{if (get (get burgerMenu.states color) 'open') 'active'}}" {{action (get (get burgerMenu.states color) 'actions.toggle')}}>
-              {{titleize color}} Menu
+          {{#each menus as |menu|}}
+            <button class="btn btn-default btn-outline {{concat 'btn-' menu.color}} {{if (get (get burgerMenu.states menu.color) 'open') 'active'}}" {{action (get (get burgerMenu.states menu.color) 'actions.toggle')}}>
+              {{titleize menu.color}} Menu
             </button>
           {{/each}}
         </div>
@@ -100,11 +37,27 @@
           </div>
         </div>
       </div>
-    <div class="inspiration">
-      <p>
-        Inspired by <a href="https://github.com/codrops/SidebarTransitions">Sidebar Transitions</a> by Codrops
-      </p>
-    </div>
+
+    {{partial 'inspiration'}}
   </div>
 </main>
 
+{{#each menus as |m|}}
+  {{#burger-menu
+    translucentOverlay=false
+    dismissOnClick=dismissOnClick
+    dismissOnEsc=dismissOnEsc
+    gesturesEnabled=gesturesEnabled
+    classNames="multiple"
+    position=m.position
+    animation=m.animation
+    menuId=m.color
+    as |burger|}}
+    {{#burger.menu itemTagName="li" dismissOnItemClick=true as |menu|}}
+      <a {{action burger.state.actions.close}} class="close {{burger.state.position}} fa fa-times"></a>
+      <h2>{{titleize m.color}} Menu</h2>
+
+      {{partial 'menu'}}
+    {{/burger.menu}}
+  {{/burger-menu}}
+{{/each}}

@@ -23,13 +23,6 @@ export default Ember.Component.extend(DomMixin, SwipeSupportMixin, {
 
   burgerMenu: service('burgerMenu'),
 
-  menuId: computed(function() {
-    return guidFor(this);
-  }),
-  state: computed('menuId', function() {
-    return this.get(`burgerMenu.states.${this.get('menuId')}`);
-  }).readOnly(),
-
   translucentOverlay: true,
   dismissOnClick: true,
   dismissOnEsc: true,
@@ -45,6 +38,17 @@ export default Ember.Component.extend(DomMixin, SwipeSupportMixin, {
 
   style: computedStyleFor('container').readOnly(),
 
+  menuId: computed(function() {
+    return guidFor(this);
+  }),
+
+  /**
+   * Create an initial state object. All modified attributes
+   * will be stored in `content` and will be applied to the real
+   * state object after init.
+   */
+  state: computed(() => Ember.ObjectProxy.create({ content: {} })),
+
   animationClass: computed('state.styles.animation', function() {
     return `bm--${this.get('state.styles.animation')}`;
   }).readOnly(),
@@ -53,12 +57,21 @@ export default Ember.Component.extend(DomMixin, SwipeSupportMixin, {
     return `bm-id--${this.get('menuId')}`;
   }).readOnly(),
 
+  init() {
+    this._super(...arguments);
+
+    let state = this.get(`burgerMenu.states.${this.get('menuId')}`);
+
+    state.setProperties(this.get('state.content'));
+    this.set('state', state);
+  },
+
   willDestroyElement() {
     this._super(...arguments);
     run.cancel(this._setupEventsTimer);
   },
 
-  setupEvents: on('didInsertElement', observer('open', 'locked', function() {
+  setupEvents: on('didReceiveAttrs', observer('open', 'locked', function() {
     let methodName = (this.get('open') && !this.get('locked')) ? '_setupEvents' : '_teardownEvents';
     this._setupEventsTimer = run.scheduleOnce('afterRender', this, methodName);
   })),
