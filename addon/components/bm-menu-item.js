@@ -35,6 +35,8 @@ export default Ember.Component.extend({
   },
 
   click() {
+    this._super(...arguments);
+
     if (this.get('dismissOnClick')) {
       this.get('state.actions').close();
     }

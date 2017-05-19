@@ -17,7 +17,7 @@ const {
 export default Ember.Component.extend(DomMixin, SwipeSupportMixin, {
   layout,
   classNames: ['ember-burger-menu'],
-  classNameBindings: ['open:is-open', 'translucentOverlay', 'animationClass', 'menuIdClass', 'position'],
+  classNameBindings: ['open:is-open', 'translucentOverlay', 'animationClass', 'position'],
   attributeBindings: ['style'],
 
   translucentOverlay: true,
