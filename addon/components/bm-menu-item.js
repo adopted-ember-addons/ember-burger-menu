@@ -5,8 +5,7 @@ import computedStyleFor from 'ember-burger-menu/computed/style-for';
 const {
   $,
   run,
-  computed,
-  inject: { service }
+  computed
 } = Ember;
 
 export default Ember.Component.extend({
@@ -14,7 +13,7 @@ export default Ember.Component.extend({
   classNames: ['bm-menu-item'],
   attributeBindings: ['style'],
 
-  state: service('burgerMenu'),
+  state: null,
 
   menuItems: null,
   dismissOnClick: false,
@@ -36,8 +35,10 @@ export default Ember.Component.extend({
   },
 
   click() {
-    if (this.get('dismissOnClick') && !this.get('state.locked')) {
-      this.set('state.open', false);
+    this._super(...arguments);
+
+    if (this.get('dismissOnClick')) {
+      this.get('state.actions').close();
     }
   }
 });

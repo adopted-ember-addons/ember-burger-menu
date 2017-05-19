@@ -2,12 +2,11 @@ import Ember from 'ember';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 import Animation from 'ember-burger-menu/animations/base';
-import triggerKeyboardEvent, { KEYS } from '../../helpers/trigger-keyboard-event';
 import triggerSwipeEvent from '../../helpers/trigger-swipe-event';
+import { click, keyEvent } from 'ember-native-dom-helpers';
 
 const {
-  run,
-  getOwner
+  run
 } = Ember;
 
 const template = hbs`
@@ -18,6 +17,11 @@ const template = hbs`
     gesturesEnabled=gesturesEnabled
     open=open
     locked=locked
+    width=width
+    position=position
+    itemAnimation=itemAnimation
+    animation=animation
+    customAnimation=customAnimation
     as |burger|
   }}
     {{#burger.menu itemTagName="li" as |menu|}}
@@ -60,11 +64,15 @@ moduleForComponent('burger-menu', 'Integration | Component | burger menu', {
     this.setProperties({
       open: false,
       locked: false,
+      width: 300,
+      position: 'left',
+      animation: 'slide',
+      itemAnimation: null,
+      customAnimation: null,
       translucentOverlay: true,
       dismissOnClick: true,
       dismissOnEsc: true,
-      gesturesEnabled: true,
-      state: getOwner(this).lookup('service:burger-menu')
+      gesturesEnabled: true
     });
   }
 });
@@ -79,62 +87,78 @@ test('it renders', function(assert) {
 test('animation and itemAnimation set correct classes', function(assert) {
   this.render(template);
 
-  let state = this.get('state');
-
-  run(() => state.set('animation', 'push'));
+  run(() => this.set('animation', 'push'));
   assert.ok(this.$('.ember-burger-menu').hasClass('bm--push'), 'Container has correct animation class');
 
   assert.notOk(this.$('.bm-menu').hasClass('bm-item--stack'), 'Menu initially has no item animation class');
-  run(() => state.set('itemAnimation', 'stack'));
+
+  run(() => this.set('itemAnimation', 'stack'));
   assert.ok(this.$('.bm-menu').hasClass('bm-item--stack'), 'Menu has correct item animation class');
 });
 
-test('menu state controls rendering', function(assert) {
+test('menu options work', function(assert) {
   this.render(template);
 
-  let state = this.get('state');
-
   // Open
-  assert.equal(state.get('open'), false, 'Open is initialy false');
+  assert.equal(this.get('open'), false, 'Open is initialy false');
   assert.notOk(this.$('.ember-burger-menu').hasClass('is-open'), 'Menu is closed');
-  run(() => state.set('open', true));
+
+  run(() => this.set('open', true));
   assert.ok(this.$('.ember-burger-menu').hasClass('is-open'), 'Menu is open');
 
   // Position
   assert.ok(this.$('.ember-burger-menu').hasClass('left'), 'Initial position is left');
-  run(() => state.set('position', 'right'));
+
+  run(() => this.set('position', 'right'));
   assert.ok(this.$('.ember-burger-menu').hasClass('right'), 'Position was changed to right');
 
   // Animation
   assert.ok(this.$('.ember-burger-menu').hasClass('bm--slide'), 'Initial animation is slide');
-  run(() => state.set('animation', 'push'));
+
+  run(() => this.set('animation', 'push'));
   assert.ok(this.$('.ember-burger-menu').hasClass('bm--push'), 'Animation was changed to push');
 });
 
 test('menu state actions work', function(assert) {
-  this.render(template);
+  this.render(hbs`
+    {{#burger-menu open=open dismissOnClick=false as |burger|}}
+      {{#burger.menu itemTagName="li" as |menu|}}
+        <ul>
+          {{#menu.item}}One{{/menu.item}}
+          {{#menu.item}}Two{{/menu.item}}
+        </ul>
+      {{/burger.menu}}
 
-  let state = this.get('state');
-  let actions = state.get('actions');
+      {{#burger.outlet}}
+        <a id="open" {{action burger.state.actions.open}}></a>
+        <a id="close" {{action burger.state.actions.close}}></a>
+        <a id="toggle" {{action burger.state.actions.toggle}}></a>
+      {{/burger.outlet}}
+    {{/burger-menu}}
+  `);
 
   // Open
-  assert.equal(state.get('open'), false, 'Open is initialy false');
+  assert.equal(this.get('open'), false, 'Open is initialy false');
   assert.notOk(this.$('.ember-burger-menu').hasClass('is-open'), 'Menu is closed');
-  run(() => actions.open());
+
+  click('#open');
   assert.ok(this.$('.ember-burger-menu').hasClass('is-open'), 'Menu is open');
 
   // Close
-  assert.equal(state.get('open'), true, 'Open is initialy true');
+  assert.equal(this.get('open'), true, 'Open is initialy true');
   assert.ok(this.$('.ember-burger-menu').hasClass('is-open'), 'Menu is open');
-  run(() => actions.close());
+
+  click('#close');
   assert.notOk(this.$('.ember-burger-menu').hasClass('is-open'), 'Menu is closed');
 
   // Toggle
-  assert.equal(state.get('open'), false, 'Open is initialy false');
+  assert.equal(this.get('open'), false, 'Open is initialy false');
   assert.notOk(this.$('.ember-burger-menu').hasClass('is-open'), 'Menu is closed');
-  run(() => actions.toggle());
+
+  click('#toggle');
   assert.ok(this.$('.ember-burger-menu').hasClass('is-open'), 'Menu is open');
-  run(() => actions.toggle());
+
+  click('#toggle');
   assert.notOk(this.$('.ember-burger-menu').hasClass('is-open'), 'Menu is closed');
 });
 
@@ -155,16 +179,10 @@ test('clicking outside of menu closes it -- dismissOnClick = true', function(ass
 
   assert.ok(this.$('.ember-burger-menu').hasClass('is-open'), 'Menu is open');
 
-  run(() => {
-    this.$('.bm-menu li:first').click();
-  });
-
+  click(this.$('.bm-menu li:first')[0]);
   assert.ok(this.$('.ember-burger-menu').hasClass('is-open'), 'Clicking on the menu doesnt close it');
 
-  run(() => {
-    this.$('.bm-content').click();
-  });
-
+  click('.bm-content');
   assert.notOk(this.$('.ember-burger-menu').hasClass('is-open'), 'Clicking in the content closes the menu');
 });
 
@@ -176,16 +194,10 @@ test('clicking outside of menu doesnt close it -- dismissOnClick = false', funct
 
   assert.ok(this.$('.ember-burger-menu').hasClass('is-open'), 'Menu is open');
 
-  run(() => {
-    this.$('.bm-menu li:first').click();
-  });
-
+  click(this.$('.bm-menu li:first')[0]);
   assert.ok(this.$('.ember-burger-menu').hasClass('is-open'), 'Clicking on the menu doesnt close it');
 
-  run(() => {
-    this.$('.bm-content').click();
-  });
-
+  click('.bm-content');
   assert.ok(this.$('.ember-burger-menu').hasClass('is-open'), 'Clicking in the content doesnt close the menu');
 });
 
@@ -197,16 +209,10 @@ test('clicking outside of locked menu doesnt close it', function(assert) {
 
   assert.ok(this.$('.ember-burger-menu').hasClass('is-open'), 'Menu is open');
 
-  run(() => {
-    this.$('.bm-menu li:first').click();
-  });
-
+  click(this.$('.bm-menu li:first')[0]);
   assert.ok(this.$('.ember-burger-menu').hasClass('is-open'), 'Clicking on the menu doesnt close it');
 
-  run(() => {
-    this.$('.bm-content').click();
-  });
-
+  click('.bm-content');
   assert.ok(this.$('.ember-burger-menu').hasClass('is-open'), 'Clicking in the content doesnt close the menu');
 });
 
@@ -217,10 +223,7 @@ test('pressing ESC closes the menu -- dismissOnEsc = true', function(assert) {
 
   assert.ok(this.$('.ember-burger-menu').hasClass('is-open'), 'Menu is open');
 
-  run(() => {
-    triggerKeyboardEvent(this.$(), 'keyup', KEYS.ESCAPE);
-  });
-
+  keyEvent('.bm-outlet', 'keyup', 27);
   assert.notOk(this.$('.ember-burger-menu').hasClass('is-open'), 'Menu is closed');
 });
 
@@ -232,10 +235,7 @@ test('pressing ESC doesnt close the menu -- dismissOnEsc = false', function(asse
 
   assert.ok(this.$('.ember-burger-menu').hasClass('is-open'), 'Menu is open');
 
-  run(() => {
-    triggerKeyboardEvent(this.$(), 'keyup', KEYS.ESCAPE);
-  });
-
+  keyEvent('.bm-outlet', 'keyup', 27);
   assert.ok(this.$('.ember-burger-menu').hasClass('is-open'), 'Menu is open');
 });
 
@@ -247,10 +247,7 @@ test('pressing ESC doesnt close a locked menu', function(assert) {
 
   assert.ok(this.$('.ember-burger-menu').hasClass('is-open'), 'Menu is open');
 
-  run(() => {
-    triggerKeyboardEvent(this.$(), 'keyup', KEYS.ESCAPE);
-  });
-
+  keyEvent('.bm-outlet', 'keyup', 27);
   assert.ok(this.$('.ember-burger-menu').hasClass('is-open'), 'Menu is open');
 });
 
@@ -273,7 +270,7 @@ test('swipe events toggles the menu', function(assert) {
 
   // Test right sided menu
   run(() => {
-    this.set('state.position', 'right');
+    this.set('position', 'right');
   });
 
   run(() => {
@@ -319,16 +316,14 @@ test('swipe events dont toggle a locked menu', function(assert) {
 test('custom animation', function(assert) {
   this.render(template);
 
-  let state = this.get('state');
-
-  run(() => state.set('customAnimation', CustomAnimation));
+  run(() => this.set('customAnimation', CustomAnimation));
 
   assert.ok(this.$('.ember-burger-menu').hasClass('bm--custom-animation'), 'Custom container has correct CSS class');
   assert.equal(this.$('.ember-burger-menu').css('color'), 'rgb(0, 128, 0)', 'Custom container styles applied');
   assert.equal(this.$('.bm-outlet').css('transform'), 'none', 'Custom outlet styles applied');
   assert.equal(this.$('.bm-menu').css('color'), 'rgb(255, 0, 0)', 'Custom menu styles applied');
 
-  run(() => state.set('open', true));
+  run(() => this.set('open', true));
 
   assert.notEqual(this.$('.bm-outlet').css('transform'), 'none', 'Custom outlet styles applied');
 });

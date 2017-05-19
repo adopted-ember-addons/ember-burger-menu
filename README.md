@@ -13,7 +13,6 @@ An off-canvas sidebar component with a collection of animations and styles using
 
 - Easy to use & setup off-canvas menu
 - Mix and match from many menu & menu item animations
-- Control your menu from anywhere in your app
 - Swipe gesture support with changeable thresholds
 - Easily create your own animations
 
@@ -123,8 +122,7 @@ This addon utilizes contextual components to be able to correctly control and an
 
 - #### `locked`
 
-  Lock the menu in its current open / closed state. Please note that changes made
-  directly via the burgerMenu service or {{burger.state.actions}} will still propagate.
+  Lock the menu in its current open / closed state.
 
   **Default: false**
 
@@ -214,29 +212,7 @@ The individual menu item. This is required if you have specified an [itemAnimati
 
 ## The Menu State
 
-### Via Component
-
-The `{{burger-menu}}` component exposes multiple contextual components, but it also exposes a state object which allows you to control the state of the menu.
-
-```hbs
-{{#burger-menu as |burger|}}
-  {{#burger.outlet}}
-    <a {{action burger.state.actions.toggle}} class="close fa fa-times"></a>
-  {{/burger.outlet}}
-{{/burger-menu}}
-```
-
-### Via Service
-
-If you need a more programmatic solution, you can grab the menu state via injecting the `burgerMenu` service.
-
-```js
-export default Ember.Component.extend({
-  burgerMenu: Ember.inject.service()
-})
-```
-
-### Usage
+The `{{burger-menu}}` component exposes multiple contextual components, but it also exposes a state object.
 
 You can use the menu state object to modify pretty much any property.
 
@@ -247,13 +223,7 @@ You can use the menu state object to modify pretty much any property.
 - `itemAnimation`
 - `customAnimation`
 
-```js
-burgerMenu.set('width', 500);
-burgerMenu.toggleProperty('open');
-```
-
-The state object also exposes some actions.
-
+The state object also exposes some actions:
 
 - #### `open`
 

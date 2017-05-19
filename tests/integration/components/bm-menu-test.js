@@ -2,15 +2,16 @@ import Ember from 'ember';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 import Animation from 'ember-burger-menu/animations/base';
+import State from 'ember-burger-menu/-private/state';
 
 const {
-  run,
-  getOwner
+  run
 } = Ember;
 
 const template = hbs`
   {{#bm-menu
     itemTagName=itemTagName
+    state=state
     as |menu|
   }}
     {{#menu.item}}One{{/menu.item}}
@@ -33,7 +34,7 @@ moduleForComponent('bm-menu', 'Integration | Component | bm menu', {
 
   beforeEach() {
     this.setProperties({
-      state: getOwner(this).lookup('service:burger-menu'),
+      state: State.create(),
       itemTagName: 'li'
     });
   }

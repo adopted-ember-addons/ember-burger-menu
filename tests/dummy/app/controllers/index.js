@@ -1,10 +1,5 @@
 import Ember from 'ember';
 
-const {
-  inject,
-  computed: { alias }
-} = Ember;
-
 export default Ember.Controller.extend({
   queryParams: [
     'animation',
@@ -17,18 +12,15 @@ export default Ember.Controller.extend({
     'gesturesEnabled'
   ],
 
-  application: inject.controller(),
-  burgerMenu: inject.service(),
+  translucentOverlay: true,
+  dismissOnClick: true,
+  dismissOnEsc: true,
+  gesturesEnabled: true,
 
-  animation: alias('burgerMenu.animation'),
-  itemAnimation: alias('burgerMenu.itemAnimation'),
-  position: alias('burgerMenu.position'),
-  locked: alias('burgerMenu.locked'),
-
-  translucentOverlay: alias('application.translucentOverlay'),
-  dismissOnClick: alias('application.dismissOnClick'),
-  dismissOnEsc: alias('application.dismissOnEsc'),
-  gesturesEnabled: alias('application.gesturesEnabled'),
+  animation: 'slide',
+  itemAnimation: null,
+  position: 'left',
+  locked: false,
 
   animations: [
     'slide',
@@ -52,7 +44,7 @@ export default Ember.Controller.extend({
 
   actions: {
     setMenu() {
-      this.get('burgerMenu').set(...arguments);
+      this.set(...arguments);
     }
   }
 });
