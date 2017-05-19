@@ -1,10 +1,10 @@
 import Ember from 'ember';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
+import State from 'ember-burger-menu/-private/state';
 
 const {
   run,
-  getOwner,
   A: emberArray
 } = Ember;
 
@@ -20,7 +20,7 @@ moduleForComponent('bm-menu-item', 'Integration | Component | bm menu item', {
   beforeEach() {
     this.setProperties({
       menuItems: emberArray([]),
-      state: getOwner(this).lookup('service:burger-menu').get('states.default'),
+      state: State.create(),
       dismissOnClick: false
     });
   }

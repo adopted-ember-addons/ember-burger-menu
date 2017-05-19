@@ -74,16 +74,12 @@ main {
   &.multiple {
     position: absolute;
     top: 0;
-    left: 0;
     height: 50vh;
-    width: 100vw;
-    visibility: hidden;
+    width: 250px;
 
-    &.is-open {
-      visibility: visible;
-    }
+    &.green {
+      left: 0;
 
-    &.bm-id--green {
       .bm-menu {
         background: $green;
 
@@ -93,7 +89,9 @@ main {
       }
     }
 
-    &.bm-id--yellow {
+    &.yellow {
+      right: 0;
+
       .bm-menu {
         background: $yellow;
 
@@ -103,8 +101,9 @@ main {
       }
     }
 
-    &.bm-id--blue {
+    &.blue {
       top: 50vh;
+      left: 0;
 
       .bm-menu {
         background: $blue;
@@ -115,8 +114,9 @@ main {
       }
     }
 
-    &.bm-id--red {
+    &.red {
       top: 50vh;
+      right: 0;
     }
   }
 
@@ -338,11 +338,6 @@ main {
         .btn-outline {
           margin: 0 0 10px 10px;
         }
-      }
-
-      &.multiple-options {
-        z-index: 10;
-        position: relative;
       }
 
       .options {

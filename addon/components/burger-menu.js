@@ -2,17 +2,16 @@ import Ember from 'ember';
 import layout from '../templates/components/burger-menu';
 import computedStyleFor from 'ember-burger-menu/computed/style-for';
 import SwipeSupportMixin from 'ember-burger-menu/mixins/swipe-support';
+import State from 'ember-burger-menu/-private/state';
 import DomMixin from 'ember-lifeline/mixins/dom';
 
 const {
   $,
   on,
   run,
-  guidFor,
   observer,
   computed,
-  computed: { alias },
-  inject: { service }
+  computed: { alias }
 } = Ember;
 
 export default Ember.Component.extend(DomMixin, SwipeSupportMixin, {
@@ -21,12 +20,12 @@ export default Ember.Component.extend(DomMixin, SwipeSupportMixin, {
   classNameBindings: ['open:is-open', 'translucentOverlay', 'animationClass', 'menuIdClass', 'position'],
   attributeBindings: ['style'],
 
-  burgerMenu: service('burgerMenu'),
-
   translucentOverlay: true,
   dismissOnClick: true,
   dismissOnEsc: true,
   gesturesEnabled: true,
+
+  state: computed(() => State.create()).readOnly(),
 
   open: alias('state.open'),
   locked: alias('state.locked'),
@@ -38,33 +37,9 @@ export default Ember.Component.extend(DomMixin, SwipeSupportMixin, {
 
   style: computedStyleFor('container').readOnly(),
 
-  menuId: computed(function() {
-    return guidFor(this);
-  }),
-
-  /**
-   * Create an initial state object. All modified attributes
-   * will be stored in `content` and will be applied to the real
-   * state object after init.
-   */
-  state: computed(() => Ember.ObjectProxy.create({ content: {} })),
-
   animationClass: computed('state.styles.animation', function() {
     return `bm--${this.get('state.styles.animation')}`;
   }).readOnly(),
-
-  menuIdClass: computed('menuId', function() {
-    return `bm-id--${this.get('menuId')}`;
-  }).readOnly(),
-
-  init() {
-    this._super(...arguments);
-
-    let state = this.get(`burgerMenu.states.${this.get('menuId')}`);
-
-    state.setProperties(this.get('state.content'));
-    this.set('state', state);
-  },
 
   willDestroyElement() {
     this._super(...arguments);

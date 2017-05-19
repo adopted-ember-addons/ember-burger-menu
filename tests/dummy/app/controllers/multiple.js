@@ -1,9 +1,5 @@
 import Ember from 'ember';
 
-const {
-  inject
-} = Ember;
-
 export default Ember.Controller.extend({
   queryParams: [
     'animation',
@@ -16,25 +12,27 @@ export default Ember.Controller.extend({
     'gesturesEnabled'
   ],
 
-  burgerMenu: inject.service(),
-
   dismissOnClick: false,
   dismissOnEsc: true,
   gesturesEnabled: true,
 
   menus: [{
+    open: false,
     color: 'green',
     position: 'left',
     animation: 'slide'
   }, {
+    open: false,
     color: 'yellow',
     position: 'right',
     animation: 'slide'
   }, {
+    open: false,
     color: 'blue',
     position: 'left',
     animation: 'fall-down'
   }, {
+    open: false,
     color: 'red',
     position: 'right',
     animation: 'fall-down'
