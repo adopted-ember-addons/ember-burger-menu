@@ -212,16 +212,16 @@ The individual menu item. This is required if you have specified an [itemAnimati
 
 ## The Menu State
 
-The `{{burger-menu}}` component exposes multiple contextual components,
-but it also exposes a state object which gives you full access to any menu properties you might need.
+The `{{burger-menu}}` component exposes multiple contextual components, but it also exposes a state object.
 
-```hbs
-{{#burger-menu as |burger|}}
-  {{#burger.outlet}}
-    <a {{action burger.state.actions.toggle}} class="close fa fa-times"></a>
-  {{/burger.outlet}}
-{{/burger-menu}}
-```
+You can use the menu state object to modify pretty much any property.
+
+- `open`
+- `width`
+- `position`
+- `animation`
+- `itemAnimation`
+- `customAnimation`
 
 The state object also exposes some actions:
 
