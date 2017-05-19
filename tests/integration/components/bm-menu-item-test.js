@@ -2,6 +2,7 @@ import Ember from 'ember';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 import State from 'ember-burger-menu/-private/state';
+import { click } from 'ember-native-dom-helpers';
 
 const {
   run,
@@ -37,11 +38,11 @@ test('dismissOnClick closes the menu', function(assert) {
   let state = this.get('state');
 
   run(() => state.set('open', 'true'));
-  this.$('.bm-menu-item').click();
+  click('.bm-menu-item');
   assert.ok(this.get('state.open'), 'Menu should still be open');
 
   this.set('dismissOnClick', true);
-  this.$('.bm-menu-item').click();
+  click('.bm-menu-item');
   assert.notOk(this.get('state.open'), 'Menu should be closed');
 });
 
@@ -53,10 +54,10 @@ test('dismissOnClick doesnt close a locked menu', function(assert) {
   run(() => state.set('open', true));
   run(() => state.set('locked', true));
 
-  this.$('.bm-menu-item').click();
+  click('.bm-menu-item');
   assert.ok(this.get('state.open'), 'Menu should still be open');
 
   this.set('dismissOnClick', true);
-  this.$('.bm-menu-item').click();
+  click('.bm-menu-item');
   assert.ok(this.get('state.open'), 'Menu should still be open');
 });
