@@ -122,8 +122,7 @@ This addon utilizes contextual components to be able to correctly control and an
 
 - #### `locked`
 
-  Lock the menu in its current open / closed state. Please note that changes made
-  directly via {{burger.state.actions}} will still propagate.
+  Lock the menu in its current open / closed state.
 
   **Default: false**
 

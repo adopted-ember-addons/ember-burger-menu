@@ -77,31 +77,30 @@ export default Ember.Component.extend(DomMixin, SwipeSupportMixin, {
 
     // Close the menu if clicked outside of it
     if ($(e.target).closest(`#${elementId} .bm-menu`).length === 0) {
-      this.set('open', false);
+      this.get('state.actions').close();
     }
   },
 
   onKeyup(e) {
     if (e.keyCode === 27) {
-      this.set('open', false);
+      this.get('state.actions').close();
     }
   },
 
   onSwipe(direction, target) {
     let position = this.get('position');
     let open = this.get('open');
-    let locked = this.get('locked');
     let gesturesEnabled = this.get('gesturesEnabled');
     let isMenuSwipe = $(target).closest('.bm-menu').length > 0;
 
-    if (!gesturesEnabled || locked) {
+    if (!gesturesEnabled) {
       return;
     }
 
     if (open && isMenuSwipe && position === direction) {
-      this.set('open', false);
+      this.get('state.actions').close();
     } else if (!open && position !== direction) {
-      this.set('open', true);
+      this.get('state.actions').open();
     }
   }
 });

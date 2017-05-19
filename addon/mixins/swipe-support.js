@@ -2,14 +2,12 @@ import Ember from 'ember';
 
 const {
   isNone,
-  inject: { service },
   computed: { alias }
 } = Ember;
 
 let meta;
 
 export default Ember.Mixin.create({
-  state: service('burgerMenu'),
   minSwipeDistance: alias('state.minSwipeDistance'),
   maxSwipeTime: alias('state.maxSwipeTime'),
 

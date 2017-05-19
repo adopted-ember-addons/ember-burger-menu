@@ -28,9 +28,9 @@ export default Ember.Object.extend({
 
   actions: computed(function() {
     return {
-      open: () => this.set('open', true),
-      close: () => this.set('open', false),
-      toggle: () => this.toggleProperty('open')
+      open: () => !this.get('locked') && this.set('open', true),
+      close: () => !this.get('locked') && this.set('open', false),
+      toggle: () => !this.get('locked') && this.toggleProperty('open')
     };
   }).readOnly()
 });
