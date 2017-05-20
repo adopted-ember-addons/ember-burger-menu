@@ -1,5 +1,19 @@
 # Changelog
 
+## v2.0.0
+
+### Pull Requests
+
+- [#79](https://github.com/offirgolan/ember-burger-menu/pull/79) [FEATURE] Multiple Menu Support *by [@offirgolan](https://github.com/offirgolan)*
+
+### Release Notes
+
+- Multiple menus can now co-exist in your application
+- Improved event listeners
+- **[BREAKING]** Removed `burger-menu` service as it was used to back a single menu state and no longer makes sense to have.
+- **[BREAKING]** When the menu is in a `locked` state, actions can no longer change the state of the menu.
+- **[BREAKING]** The default height is no longer set to `100vh`, instead it is set to `100%`. If you upgrade and your menu is no longer visible, please check the available viewport height.
+
 ## v1.1.3
 
 ### Pull Requests
