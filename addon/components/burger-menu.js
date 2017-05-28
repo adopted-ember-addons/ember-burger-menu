@@ -47,6 +47,9 @@ export default Ember.Component.extend(DomMixin, SwipeSupportMixin, {
   },
 
   setupEvents: on('didReceiveAttrs', observer('open', 'locked', function() {
+    if (!self.document) {
+      return;
+    }
     let methodName = (this.get('open') && !this.get('locked')) ? '_setupEvents' : '_teardownEvents';
     this._setupEventsTimer = run.scheduleOnce('afterRender', this, methodName);
   })),
