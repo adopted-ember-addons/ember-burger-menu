@@ -1,6 +1,7 @@
 import Ember from 'ember';
 import layout from '../templates/components/bm-menu-item';
 import computedStyleFor from 'ember-burger-menu/computed/style-for';
+import isFastboot from 'ember-burger-menu/utils/is-fastboot';
 
 const {
   $,
@@ -20,9 +21,10 @@ export default Ember.Component.extend({
   style: computedStyleFor('menuItem').readOnly(),
 
   index: computed('menuItems.[]', function() {
-    if (!self.document) {
-      return;
+    if (isFastboot()) {
+      return -1;
     }
+
     let $item = this.$();
     return $item ? $('.bm-menu-item', $item.closest('.bm-menu')).index($item) : -1;
   }).readOnly(),
