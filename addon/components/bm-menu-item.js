@@ -20,6 +20,9 @@ export default Ember.Component.extend({
   style: computedStyleFor('menuItem').readOnly(),
 
   index: computed('menuItems.[]', function() {
+    if (!self.document) {
+      return;
+    }
     let $item = this.$();
     return $item ? $('.bm-menu-item', $item.closest('.bm-menu')).index($item) : -1;
   }).readOnly(),
