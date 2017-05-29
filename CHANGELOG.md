@@ -1,5 +1,11 @@
 # Changelog
 
+## v2.0.1
+
+### Pull Requests
+
+- [#80](https://github.com/offirgolan/ember-burger-menu/pull/80) Fastboot *by [@mayko780](https://github.com/mayko780)*
+
 ## v2.0.0
 
 ### Pull Requests
