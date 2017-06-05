@@ -1,53 +1,25 @@
-<main class="text-center">
+<main class="text-center multiple">
   {{partial 'header'}}
 
-  <div class="content">
-    <div class="container multiple-options">
-      <div class="col-xs-4 col-xs-offset-2 animations text-right">
-          <h4>Menus</h4>
-          {{#each menus as |menu|}}
-            <button class="btn btn-default btn-outline {{concat 'btn-' menu.color}} {{if menu.open 'active'}}" {{action (toggle 'open' menu)}}>
-              {{titleize menu.color}} Menu
-            </button>
-          {{/each}}
-        </div>
 
-        <div class="col-xs-6 options text-left">
-          <h4>Options</h4>
+  <div class="content multiple">
+    {{#each menus as |menu|}}
+      <a class="hamburger {{if menu.open 'burger-hidden'}} {{menu.color}}" {{action (toggle 'open' menu)}}>
+        <i class="fa fa-bars" aria-hidden="true"></i>
+      </a>
+    {{/each}}
 
-          <div class="option">
-            <label for="dismissOnClick">Dismiss on Click</label>
-            <a id="dismissOnClick" {{action (toggle 'dismissOnClick' this)}} class="checkbox">
-              <i class="fa {{if dismissOnClick 'fa-check-square' 'fa-square'}}" aria-hidden="true"></i>
-            </a>
-          </div>
-
-          <div class="option">
-            <label for="dismissOnEsc">Dismiss on Escape</label>
-            <a id="dismissOnEsc" {{action (toggle 'dismissOnEsc' this)}} class="checkbox">
-              <i class="fa {{if dismissOnEsc 'fa-check-square' 'fa-square'}}" aria-hidden="true"></i>
-            </a>
-          </div>
-
-          <div class="option">
-            <label for="gesturesEnabled">Gestures Enabled</label>
-            <a id="gesturesEnabled" {{action (toggle 'gesturesEnabled' this)}} class="checkbox">
-              <i class="fa {{if gesturesEnabled 'fa-check-square' 'fa-square'}}" aria-hidden="true"></i>
-            </a>
-          </div>
-        </div>
-      </div>
-
-    {{partial 'inspiration'}}
+    <img src="images/Gene_Belcher.png" width="150" ondragstart="return false;"/>
+    <h5><i>"This is me now!"</i></h5>
   </div>
 </main>
 
 {{#each menus as |m|}}
   {{#burger-menu
     translucentOverlay=false
-    dismissOnClick=dismissOnClick
-    dismissOnEsc=dismissOnEsc
-    gesturesEnabled=gesturesEnabled
+    dismissOnClick=false
+    dismissOnEsc=true
+    gesturesEnabled=true
     classNames=(array "multiple" m.color)
     position=m.position
     animation=m.animation
