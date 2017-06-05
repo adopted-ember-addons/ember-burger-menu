@@ -5,6 +5,13 @@ $green : #388E3C;
 $blue : #1976D2;
 $yellow : #FFA000;
 
+@mixin link-color($color) {
+  color: $color;
+
+  &:hover, &:focus, &:active, &:active:focus, &.active, &.active:hover, &.active:focus {
+    color: $color;
+  }
+}
 
 html,
 body,
@@ -51,10 +58,6 @@ a {
   clear: both;
 }
 
-main {
-  background: #1d2837;
-}
-
 .nav {
   a {
     font-size: 16px;
@@ -73,12 +76,12 @@ main {
 .ember-burger-menu {
   &.multiple {
     position: absolute;
-    top: 0;
-    height: 50vh;
-    width: 250px;
+    height: 45vh;
+    width: 100%;
 
     &.green {
       left: 0;
+      top: 55vh;
 
       .bm-menu {
         background: $green;
@@ -91,6 +94,7 @@ main {
 
     &.yellow {
       right: 0;
+      top: 55vh;
 
       .bm-menu {
         background: $yellow;
@@ -102,7 +106,7 @@ main {
     }
 
     &.blue {
-      top: 50vh;
+      top: 55vh;
       left: 0;
 
       .bm-menu {
@@ -115,13 +119,14 @@ main {
     }
 
     &.red {
-      top: 50vh;
+      top: 55vh;
       right: 0;
     }
   }
 
   .bm-menu {
     background: $accent-color;
+    overflow: auto;
 
     a.close {
       position: absolute;
@@ -202,18 +207,6 @@ main {
   font-weight: 300;
   background: transparent;
 
-  &.btn-green {
-    border-color: $green;
-  }
-
-  &.btn-yellow {
-    border-color: $yellow;
-  }
-
-  &.btn-blue {
-    border-color: $blue;
-  }
-
   &:hover, &:focus, &:active, &:active:focus, &.active, &.active:hover, &.active:focus {
     z-index: 0;
     outline: 0;
@@ -221,21 +214,6 @@ main {
     background: $accent-color;
     color: $text-color;
     border-color: darken($accent-color, 5);
-
-    &.btn-green {
-      background: $green;
-      border-color: darken($green, 5);
-    }
-
-    &.btn-yellow {
-      background: $yellow;
-      border-color: darken($yellow, 5);
-    }
-
-    &.btn-blue {
-      background: $blue;
-      border-color: darken($blue, 5);
-    }
   }
 }
 
@@ -244,8 +222,7 @@ main {
 }
 
 .hamburger {
-  position: fixed;
-  top: 0;
+  position: absolute;
   padding: 10px 20px;
   z-index: 100;
   font-size: 30px;
@@ -254,6 +231,35 @@ main {
   opacity: 1;
   transition: opacity 0.3s;
   -webkit-transition: opacity 0.3s;
+  color: white;
+
+  &:hover, &:focus, &:active, &:active:focus, &.active, &.active:hover, &.active:focus {
+
+  }
+
+  &.green {
+    left: 0;
+    top: 0;
+    @include link-color($green);
+  }
+
+  &.yellow {
+    right: 0;
+    top: 0;
+    @include link-color($yellow);
+  }
+
+  &.blue {
+    left: 0;
+    bottom: 0;
+    @include link-color($blue);
+  }
+
+  &.red {
+    right: 0;
+    bottom: 0;
+    @include link-color($accent-color);
+  }
 
   &.burger-hidden {
     opacity: 0;
@@ -287,11 +293,13 @@ main {
 
 main {
   height: 100%;
+  overflow: auto;
+  background: #1d2837;
 
   .header {
     background: #233040;
     padding: 10px;
-    height: 50%;
+    height: 55vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -319,7 +327,8 @@ main {
   }
 
   .content {
-    height: 50%;
+    height: 45vh;
+    position: relative;
 
     .container {
       padding-top: 30px;
@@ -361,6 +370,13 @@ main {
 
     .inspiration {
       padding: 40px 0;
+    }
+
+    &.multiple {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
     }
   }
 }
