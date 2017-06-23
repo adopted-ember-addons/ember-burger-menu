@@ -84,6 +84,7 @@
 				background: $overlay-background;
 				content: '';
 				opacity: 0;
+				z-index: 100;
 				-webkit-transition: opacity $t-duration, width 0.1s $t-duration, height 0.1s $t-duration;
 				transition: opacity $t-duration, width 0.1s $t-duration, height 0.1s $t-duration;
 			}
