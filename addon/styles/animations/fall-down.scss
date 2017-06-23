@@ -6,7 +6,8 @@
 	-webkit-perspective-origin: 0% 50%;
 	perspective-origin: 0% 50%;
 
-	.bm-menu {
+	& > .bm-menu-container .bm-menu,
+	& > .bm-outlet > .bm-menu-container .bm-menu {
 		z-index: 1;
 		opacity: 1;
 		-webkit-transform: translate3d(0, -100%, 0);
@@ -14,7 +15,8 @@
 	}
 
 	&.is-open {
-		.bm-menu {
+		& > .bm-menu-container .bm-menu,
+		& > .bm-outlet > .bm-menu-container .bm-menu {
 			-webkit-transition: -webkit-transform ease-in-out $t-duration;
 			transition: transform ease-in-out $t-duration;
 			-webkit-transform: translate3d(0, 0, 0);

@@ -17,6 +17,8 @@ export default Ember.Component.extend({
   layout,
   state: null,
 
+  classNames: ['bm-menu-container'],
+
   itemTagName: 'div',
   dismissOnItemClick: false,
 

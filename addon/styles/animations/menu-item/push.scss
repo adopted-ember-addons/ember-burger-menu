@@ -2,7 +2,8 @@
 
 .ember-burger-menu {
 	&.is-open {
-		.bm-menu.bm-item--push {
+		& > .bm-menu-container .bm-menu.bm-item--push,
+		& > .bm-outlet > .bm-menu-container .bm-menu.bm-item--push {
 			.bm-menu-item {
 				-webkit-transition: -webkit-transform cubic-bezier(0.7, 0, 0.3, 1) $t-menu-item-duration;
 				transition: transform cubic-bezier(0.7, 0, 0.3, 1) $t-menu-item-duration;

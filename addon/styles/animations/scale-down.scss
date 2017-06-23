@@ -4,19 +4,21 @@
 	-webkit-perspective: 1500px;
 	perspective: 1500px;
 
-	.bm-outlet {
+	& > .bm-outlet {
 		-webkit-transform-style: preserve-3d;
 		transform-style: preserve-3d;
 	}
 
-	.bm-menu {
+	& > .bm-menu-container .bm-menu,
+	& > .bm-outlet > .bm-menu-container .bm-menu {
 		opacity: 1;
 		-webkit-transform: translate3d(-100%, 0, 0);
 		transform: translate3d(-100%, 0, 0);
 	}
 
 	&.right {
-		.bm-menu {
+		& > .bm-menu-container .bm-menu,
+		& > .bm-outlet > .bm-menu-container .bm-menu {
 			-webkit-transform: translate3d(100%, 0, 0);
 			transform: translate3d(100%, 0, 0);
 		}
@@ -24,7 +26,8 @@
 
 
 	&.is-open {
-		.bm-menu {
+		& > .bm-menu-container .bm-menu,
+		& > .bm-outlet > .bm-menu-container .bm-menu {
 			-webkit-transform: translate3d(0, 0, 0);
 			transform: translate3d(0, 0, 0);
 		}
