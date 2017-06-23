@@ -110,6 +110,13 @@
 		}
 	}
 
+	&:not(.translucent-overlay) {
+		.bm-menu::after,
+		.bm-outlet::after {
+			display: none;
+		}
+	}
+
 	&.is-open {
 		&:after {
 			display: none;
