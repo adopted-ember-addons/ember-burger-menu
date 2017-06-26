@@ -1,16 +1,15 @@
-.ember-burger-menu.bm--open-door {
+.ember-burger-menu.bm--push-rotate {
 	-webkit-perspective: 1500px;
 	perspective: 1500px;
 
-	& > .bm-outlet {
-		-webkit-transform-origin: 100% 50%;
-		transform-origin: 100% 50%;
+	> .bm-outlet {
+		-webkit-transform-origin: 0% 50%;
+		transform-origin: 0% 50%;
 		-webkit-transform-style: preserve-3d;
 		transform-style: preserve-3d;
 	}
 
 	#{$bm-menu-selector} {
-		opacity: 1;
 		-webkit-transform: translate3d(-100%, 0, 0);
 		transform: translate3d(-100%, 0, 0);
 
@@ -20,11 +19,6 @@
 	}
 
 	&.right {
-		& > .bm-outlet {
-			-webkit-transform-origin: 0% 50%;
-			transform-origin: 0% 50%;
-		}
-
 		#{$bm-menu-selector} {
 			-webkit-transform: translate3d(100%, 0, 0);
 			transform: translate3d(100%, 0, 0);
@@ -32,21 +26,13 @@
 	}
 
 	&.is-open {
-		& > .bm-outlet {
-			-webkit-transform: rotateY(-10deg);
-			transform: rotateY(-10deg);
+		> .bm-outlet {
+			pointer-events: none;
 		}
 
 		#{$bm-menu-selector} {
 			-webkit-transform: translate3d(0, 0, 0);
 			transform: translate3d(0, 0, 0);
-		}
-
-		&.right {
-			& > .bm-outlet {
-				-webkit-transform: rotateY(10deg);
-				transform: rotateY(10deg);
-			}
 		}
 	}
 }
