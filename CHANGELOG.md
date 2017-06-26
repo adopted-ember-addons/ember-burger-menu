@@ -1,5 +1,21 @@
 # Changelog
 
+## v3.0.0
+
+### Pull Requests
+
+- [#88](https://github.com/offirgolan/ember-burger-menu/pull/88) Better Sass *by [@offirgolan](https://github.com/offirgolan)*
+
+### Release Notes
+
+- Hard dependency on sass (now required in the host application)
+  - Allows to override various variables
+  - Allows to selective import only the sass files you need
+- More fine grain selector matching to support multi-level nested burger menus
+- **[BREAKING]** `slide-shrink` renamed to `squeeze`
+- **[BREAKING]** Menu item class has now been moved to the top level `ember-burger-menu` element. It can now be accessed via `.ember-burger-menu.bm-item--stack`
+- **[BREAKING]** Please see [Custom Animations](https://github.com/offirgolan/ember-burger-menu#custom-animations) for the new sass structure for custom animations
+
 ## v2.0.1
 
 ### Pull Requests
