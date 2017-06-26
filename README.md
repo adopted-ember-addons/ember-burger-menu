@@ -327,7 +327,7 @@ If you need to add some base CSS to your animation, you can target the menu as s
   #{$bm-menu} {}
   > .bm-outlet {}
 
-	&.is-open {
+  &.is-open {
     #{$bm-menu} {}
     > .bm-outlet {}
   }
