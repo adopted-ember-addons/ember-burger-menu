@@ -324,11 +324,11 @@ If you need to add some base CSS to your animation, you can target the menu as s
 
 ```sass
 .ember-burger-menu.bm--my-custom-animation {
-  #{$bm-menu-selector} {}
+  #{$bm-menu} {}
   > .bm-outlet {}
 
 	&.is-open {
-    #{$bm-menu-selector} {}
+    #{$bm-menu} {}
     > .bm-outlet {}
   }
 }
@@ -338,12 +338,12 @@ And the menu items as such:
 
 ```sass
 .ember-burger-menu.bm-item--my-custom-item-animation {
-  #{$bm-menu-selector} {
+  #{$bm-menu} {
     .bm-menu-item {}
   }
 
   &.is-open {
-    #{$bm-menu-selector} {
+    #{$bm-menu} {
       .bm-menu-item {}
     }
   }

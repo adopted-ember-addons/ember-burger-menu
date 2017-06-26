@@ -1,5 +1,5 @@
 .ember-burger-menu.bm--reveal {
-	#{$bm-menu-selector} {
+	#{$bm-menu} {
 		z-index: 1;
 
 		&::after {

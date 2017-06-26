@@ -3,7 +3,7 @@
 	height: 100%;
 	overflow: hidden;
 
-	#{$bm-menu-selector} {
+	#{$bm-menu} {
 		position: absolute;
 		top: 0;
 		z-index: 100;
@@ -14,7 +14,7 @@
 	}
 
 	&[class*="bm-item-"] {
-		#{$bm-menu-selector} {
+		#{$bm-menu} {
 			.bm-menu-item {
 				-webkit-transition: all 0s;
 				transition: all 0s;
@@ -42,7 +42,7 @@
 	}
 
 	&.translucent-overlay {
-		#{$bm-menu-selector} {
+		#{$bm-menu} {
 			&::after {
 				position: absolute;
 				top: 0;
@@ -74,7 +74,7 @@
 		}
 
 		&.is-open {
-			#{$bm-menu-selector} {
+			#{$bm-menu} {
 				&::after {
 					width: 0;
 					height: 0;
@@ -101,7 +101,7 @@
 			display: none;
 		}
 
-		#{$bm-menu-selector} {
+		#{$bm-menu} {
 			visibility: visible;
 			-webkit-transition: -webkit-transform $bm-transition-duration;
 			transition: transform $bm-transition-duration;
@@ -114,7 +114,7 @@
 	}
 
 	&.left {
-		#{$bm-menu-selector} {
+		#{$bm-menu} {
 			left: 0;
 			right: initial;
 		}
@@ -126,7 +126,7 @@
 	}
 
 	&.right {
-		#{$bm-menu-selector} {
+		#{$bm-menu} {
 			right: 0;
 			left: initial;
 		}

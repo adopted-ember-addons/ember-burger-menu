@@ -1,18 +1,18 @@
 .ember-burger-menu.bm--slide {
-	#{$bm-menu-selector} {
+	#{$bm-menu} {
 		-webkit-transform: translate3d(-100%, 0, 0);
 		transform: translate3d(-100%, 0, 0);
 	}
 
 	&.right {
-		#{$bm-menu-selector} {
+		#{$bm-menu} {
 			-webkit-transform: translate3d(100%, 0, 0);
 			transform: translate3d(100%, 0, 0);
 		}
 	}
 
 	&.is-open {
-		#{$bm-menu-selector} {
+		#{$bm-menu} {
 			-webkit-transform: translate3d(0, 0, 0);
 			transform: translate3d(0, 0, 0);
 		}
