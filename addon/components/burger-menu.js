@@ -18,7 +18,7 @@ const {
 export default Ember.Component.extend(DomMixin, SwipeSupportMixin, {
   layout,
   classNames: ['ember-burger-menu'],
-  classNameBindings: ['open:is-open', 'translucentOverlay', 'animationClass', 'position'],
+  classNameBindings: ['open:is-open', 'translucentOverlay', 'animationClass', 'itemAnimationClass', 'position'],
   attributeBindings: ['style'],
 
   translucentOverlay: true,
@@ -39,7 +39,13 @@ export default Ember.Component.extend(DomMixin, SwipeSupportMixin, {
   style: computedStyleFor('container').readOnly(),
 
   animationClass: computed('state.styles.animation', function() {
-    return `bm--${this.get('state.styles.animation')}`;
+    let animation = this.get('state.styles.animation');
+    return animation ? `bm--${animation}` : '';
+  }).readOnly(),
+
+  itemAnimationClass: computed('state.styles.itemAnimation', function() {
+    let itemAnimation = this.get('state.styles.itemAnimation');
+    return itemAnimation ? `bm-item--${itemAnimation}` : '';
   }).readOnly(),
 
   willDestroyElement() {

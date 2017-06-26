@@ -1,5 +1,9 @@
-$overlay-background: rgba(0,0,0,0.2);
+// Selectors
+$bm-menu-selector: '& > .bm-menu-container .bm-menu, & > .bm-outlet > .bm-menu-container .bm-menu';
 
 // Transitions
-$t-duration: 0.5s;
-$t-menu-item-duration: $t-duration * 1.35;
+$bm-transition-duration: 0.5s !default;
+$bm-menu-item-transition-duration: $bm-transition-duration * 1.35 !default;
+
+// Colors
+$bm-overlay-background: rgba(0,0,0,0.2) !default;

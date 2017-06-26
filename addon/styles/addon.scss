@@ -21,22 +21,23 @@
 	height: 100%;
 	overflow: hidden;
 
-	& > .bm-menu-container .bm-menu,
-	& > .bm-outlet > .bm-menu-container .bm-menu {
+	#{$bm-menu-selector} {
 		position: absolute;
 		top: 0;
 		z-index: 100;
 		visibility: hidden;
 		height: 100%;
-		-webkit-transition: all $t-duration;
-		transition: all $t-duration;
+		-webkit-transition: all $bm-transition-duration;
+		transition: all $bm-transition-duration;
+	}
 
-		&[class*="bm-item-"] {
+	&[class*="bm-item-"] {
+		#{$bm-menu-selector} {
 			.bm-menu-item {
 				-webkit-transition: all 0s;
 				transition: all 0s;
-				-webkit-transition-delay: $t-duration;
-				transition-delay: $t-duration;
+				-webkit-transition-delay: $bm-transition-duration;
+				transition-delay: $bm-transition-duration;
 			}
 		}
 	}
@@ -46,8 +47,8 @@
 		z-index: 99;
 		height: 100%;
 		perspective: 1000px;
-		-webkit-transition: -webkit-transform $t-duration, margin $t-duration;
-		transition: transform $t-duration, margin $t-duration;
+		-webkit-transition: -webkit-transform $bm-transition-duration, margin $bm-transition-duration;
+		transition: transform $bm-transition-duration, margin $bm-transition-duration;
 
 		> .bm-content {
 			position: relative;
@@ -58,19 +59,18 @@
 	}
 
 	&.translucent-overlay {
-		& > .bm-menu-container .bm-menu,
-		& > .bm-outlet > .bm-menu-container .bm-menu {
+		#{$bm-menu-selector} {
 			&::after {
 				position: absolute;
 				top: 0;
 				right: 0;
 				width: 100%;
 				height: 100%;
-				background: $overlay-background;
+				background: $bm-overlay-background;
 				content: '';
 				opacity: 1;
-				-webkit-transition: opacity $t-duration;
-				transition: opacity $t-duration;
+				-webkit-transition: opacity $bm-transition-duration;
+				transition: opacity $bm-transition-duration;
 			}
 		}
 
@@ -81,24 +81,23 @@
 				right: 0;
 				width: 0;
 				height: 0;
-				background: $overlay-background;
+				background: $bm-overlay-background;
 				content: '';
 				opacity: 0;
 				z-index: 100;
-				-webkit-transition: opacity $t-duration, width 0.1s $t-duration, height 0.1s $t-duration;
-				transition: opacity $t-duration, width 0.1s $t-duration, height 0.1s $t-duration;
+				-webkit-transition: opacity $bm-transition-duration, width 0.1s $bm-transition-duration, height 0.1s $bm-transition-duration;
+				transition: opacity $bm-transition-duration, width 0.1s $bm-transition-duration, height 0.1s $bm-transition-duration;
 			}
 		}
 
 		&.is-open {
-			& > .bm-menu-container .bm-menu,
-			& > .bm-outlet > .bm-menu-container .bm-menu {
+			#{$bm-menu-selector} {
 				&::after {
 					width: 0;
 					height: 0;
 					opacity: 0;
-					-webkit-transition: opacity $t-duration, width 0.1s $t-duration, height 0.1s $t-duration;
-					transition: opacity $t-duration, width 0.1s $t-duration, height 0.1s $t-duration;
+					-webkit-transition: opacity $bm-transition-duration, width 0.1s $bm-transition-duration, height 0.1s $bm-transition-duration;
+					transition: opacity $bm-transition-duration, width 0.1s $bm-transition-duration, height 0.1s $bm-transition-duration;
 				}
 			}
 
@@ -107,31 +106,22 @@
 					width: 100%;
 					height: 100%;
 					opacity: 1;
-					-webkit-transition: opacity $t-duration;
-					transition: opacity $t-duration;
+					-webkit-transition: opacity $bm-transition-duration;
+					transition: opacity $bm-transition-duration;
 				}
 			}
 		}
 	}
-
-	// &:not(.translucent-overlay) {
-	// 	& > .bm-menu-container .bm-menu::after,
-	// 	& > .bm-outlet > .bm-menu-container .bm-menu::after
-	// 	& > .bm-outlet::after {
-	// 		display: none;
-	// 	}
-	// }
 
 	&.is-open {
 		&:after {
 			display: none;
 		}
 
-		& > .bm-menu-container .bm-menu,
-		& > .bm-outlet > .bm-menu-container .bm-menu {
+		#{$bm-menu-selector} {
 			visibility: visible;
-			-webkit-transition: -webkit-transform $t-duration;
-			transition: transform $t-duration;
+			-webkit-transition: -webkit-transform $bm-transition-duration;
+			transition: transform $bm-transition-duration;
 
 			.bm-menu-item {
 				-webkit-transition-delay: 0s;
@@ -141,8 +131,7 @@
 	}
 
 	&.left {
-		& > .bm-menu-container .bm-menu,
-		& > .bm-outlet > .bm-menu-container .bm-menu {
+		#{$bm-menu-selector} {
 			left: 0;
 			right: initial;
 		}
@@ -154,8 +143,7 @@
 	}
 
 	&.right {
-		& > .bm-menu-container .bm-menu,
-		& > .bm-outlet > .bm-menu-container .bm-menu {
+		#{$bm-menu-selector} {
 			right: 0;
 			left: initial;
 		}

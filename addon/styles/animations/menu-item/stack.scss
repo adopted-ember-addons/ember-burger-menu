@@ -1,12 +1,9 @@
-@import '../../variables';
-
-.ember-burger-menu {
+.ember-burger-menu.bm-item--stack {
 	&.is-open {
-		& > .bm-menu-container .bm-menu.bm-item--stack,
-		& > .bm-outlet > .bm-menu-container .bm-menu.bm-item--stack {
+		#{$bm-menu-selector} {
 			.bm-menu-item {
-				-webkit-transition: -webkit-transform cubic-bezier(0.7, 0, 0.3, 1) $t-menu-item-duration;
-				transition: transform cubic-bezier(0.7, 0, 0.3, 1) $t-menu-item-duration;
+				-webkit-transition: -webkit-transform cubic-bezier(0.7, 0, 0.3, 1) $bm-menu-item-transition-duration;
+				transition: transform cubic-bezier(0.7, 0, 0.3, 1) $bm-menu-item-transition-duration;
 			}
 		}
 	}
