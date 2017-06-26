@@ -5,6 +5,8 @@ $green : #388E3C;
 $blue : #1976D2;
 $yellow : #FFA000;
 
+$animation-duration: 0.2s;
+
 @mixin link-color($color) {
   color: $color;
 
@@ -173,8 +175,8 @@ a {
           text-transform: uppercase;
           text-shadow: 0 0 1px rgba(255,255,255,0.1);
           letter-spacing: 1px;
-          -webkit-transition: background 0.3s;
-          transition: background 0.3s;
+          -webkit-transition: background $animation-duration;
+          transition: background $animation-duration;
           cursor: pointer;
 
           > i {
@@ -229,8 +231,8 @@ a {
   color: $text-color;
   cursor: pointer;
   opacity: 1;
-  transition: opacity 0.3s;
-  -webkit-transition: opacity 0.3s;
+  transition: opacity $animation-duration;
+  -webkit-transition: opacity $animation-duration;
   color: white;
 
   &:hover, &:focus, &:active, &:active:focus, &.active, &.active:hover, &.active:focus {

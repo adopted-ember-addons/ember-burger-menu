@@ -1,7 +1,7 @@
 import Animation from 'ember-burger-menu/animations/base';
 
 export default Animation.extend({
-  animation: 'slide-shrink',
+  animation: 'squeeze',
 
   outlet(open, width, right) {
     return {

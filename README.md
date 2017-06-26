@@ -46,7 +46,7 @@ If it is a bug [please open an issue on GitHub](http://github.com/offirgolan/emb
 - scale-down
 - scale-rotate
 - slide-reverse
-- slide-shrink
+- squeeze
 
 ### Menu Item Animations
 
@@ -297,13 +297,13 @@ If you need to add some base CSS to your animation, you can target the menu as s
 And the menu items as such:
 
 ```sass
-.ember-burger-menu {
-  .bm-menu.bm-item--my-custom-item-animation {
+.ember-burger-menu.bm-item--my-custom-item-animation {
+  .bm-menu {
     .bm-menu-item {}
   }
 
   &.is-open {
-    .bm-menu.bm-item--my-custom-item-animation {
+    .bm-menu {
       .bm-menu-item {}
     }
   }
