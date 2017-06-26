@@ -1,0 +1,10 @@
+// Selectors
+$bm-menu: '& > .bm-menu-container .bm-menu, & > .bm-outlet > .bm-menu-container .bm-menu';
+
+// Transitions
+$bm-transition-duration: 0.5s !default;
+$bm-menu-item-transition-duration: $bm-transition-duration * 1.35 !default;
+
+// Colors
+$bm-overlay-background: rgba(0, 0, 0, 0.2) !default;
+$bm-outlet-content-background: #ffffff !default;

@@ -1,7 +1,5 @@
-@import '../variables';
-
 .ember-burger-menu.bm--reveal {
-	.bm-menu {
+	#{$bm-menu} {
 		z-index: 1;
 
 		&::after {

@@ -1,0 +1,10 @@
+.ember-burger-menu.bm-item--stack {
+	&.is-open {
+		#{$bm-menu} {
+			.bm-menu-item {
+				-webkit-transition: -webkit-transform cubic-bezier(0.7, 0, 0.3, 1) $bm-menu-item-transition-duration;
+				transition: transform cubic-bezier(0.7, 0, 0.3, 1) $bm-menu-item-transition-duration;
+			}
+		}
+	}
+}

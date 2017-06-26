@@ -7,6 +7,7 @@
     "test": "tests"
   },
   "scripts": {
+    "postinstall": "npm rebuild node-sass",
     "build": "ember build",
     "start": "ember server",
     "test": "ember try:each"
@@ -37,6 +38,7 @@
     "ember-cli-jshint": "^2.0.1",
     "ember-cli-qunit": "^3.1.0",
     "ember-cli-release": "1.0.0-beta.2",
+    "ember-cli-sass": "^6.1.2",
     "ember-cli-shims": "^1.0.2",
     "ember-cli-sri": "^2.1.0",
     "ember-cli-test-loader": "^1.1.0",
@@ -56,12 +58,13 @@
     "loader.js": "^4.2.3"
   },
   "keywords": [
-    "ember-addon"
+    "ember-addon",
+    "burger-menu",
+    "sidebar"
   ],
   "dependencies": {
     "ember-cli-babel": "^5.2.4",
     "ember-cli-htmlbars": "^1.1.1",
-    "ember-cli-sass": "^6.1.2",
     "ember-lifeline": "^1.0.4",
     "ember-require-module": "^0.1.1",
     "ember-wormhole": "^0.5.0"

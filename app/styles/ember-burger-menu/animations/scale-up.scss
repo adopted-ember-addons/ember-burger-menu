@@ -1,18 +1,16 @@
-@import '../variables';
-
 .ember-burger-menu.bm--scale-up {
 	-webkit-perspective: 1500px;
 	perspective: 1500px;
 	-webkit-perspective-origin: 0% 50%;
 	perspective-origin: 0% 50%;
 
-	.bm-menu {
+	#{$bm-menu} {
 		z-index: 1;
 		opacity: 1;
 	}
 
 	&.is-open {
-		.bm-menu {
+		#{$bm-menu} {
 			-webkit-transform: translate3d(0, 0, 0);
 			transform: translate3d(0, 0, 0);
 		}

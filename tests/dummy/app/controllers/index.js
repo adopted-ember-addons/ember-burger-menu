@@ -34,7 +34,7 @@ export default Ember.Controller.extend({
     'scale-down',
     'scale-rotate',
     'slide-reverse',
-    'slide-shrink'
+    'squeeze'
   ],
 
   itemAnimations: [

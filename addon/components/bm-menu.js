@@ -10,12 +10,15 @@ const {
 
 export const OUTLET_MENU_ANIMATIONS = [
   'push',
-  'rotate-out'
+  'rotate-out',
+  'squeeze'
 ];
 
 export default Ember.Component.extend({
   layout,
   state: null,
+
+  classNames: ['bm-menu-container'],
 
   itemTagName: 'div',
   dismissOnItemClick: false,

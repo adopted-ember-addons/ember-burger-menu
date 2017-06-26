@@ -22,6 +22,46 @@ An off-canvas sidebar component with a collection of animations and styles using
 ember install ember-burger-menu
 ```
 
+### Sass
+
+Installing ember-burger-menu should also install ember-cli-sass and automatically create a scss file under `app/styles/app.scss` with
+
+```sass
+// app/styles/app.scss
+
+@import 'ember-burger-menu';
+```
+
+#### Overriding Variables
+
+Using sass, you can override default variables and easily change the default behavior of ember-burger-menu.
+See [variables.scss](app/styles/ember-burger-menu/variables.scss) for a list of variables you can change.
+
+```sass
+// app/styles/app.scss
+
+// Burger Menu Overrides
+$bm-transition-duration: 0.3s;
+$bm-overlay-background: rgba(0, 0, 0, 0.7);
+
+// Import all the styles!
+@import 'ember-burger-menu';
+```
+
+#### Import Only What You Need
+
+Using sass, you can import only the styles you need for the animations you use.
+
+```sass
+// Core Styles
+@import 'ember-burger-menu/variables';
+@import 'ember-burger-menu/structure';
+
+// Animations
+@import 'ember-burger-menu/animations/push';
+@import 'ember-burger-menu/animations/menu-item/stack';
+```
+
 ## Helpful Links
 
 - ### [Live Demo](http://offirgolan.github.io/ember-burger-menu)
@@ -46,7 +86,7 @@ If it is a bug [please open an issue on GitHub](http://github.com/offirgolan/emb
 - scale-down
 - scale-rotate
 - slide-reverse
-- slide-shrink
+- squeeze
 
 ### Menu Item Animations
 
@@ -284,12 +324,12 @@ If you need to add some base CSS to your animation, you can target the menu as s
 
 ```sass
 .ember-burger-menu.bm--my-custom-animation {
-  .bm-menu {}
-  .bm-outlet {}
+  #{$bm-menu} {}
+  > .bm-outlet {}
 
-	&.is-open {
-    .bm-menu {}
-    .bm-outlet {}
+  &.is-open {
+    #{$bm-menu} {}
+    > .bm-outlet {}
   }
 }
 ```
@@ -297,13 +337,13 @@ If you need to add some base CSS to your animation, you can target the menu as s
 And the menu items as such:
 
 ```sass
-.ember-burger-menu {
-  .bm-menu.bm-item--my-custom-item-animation {
+.ember-burger-menu.bm-item--my-custom-item-animation {
+  #{$bm-menu} {
     .bm-menu-item {}
   }
 
   &.is-open {
-    .bm-menu.bm-item--my-custom-item-animation {
+    #{$bm-menu} {
       .bm-menu-item {}
     }
   }
