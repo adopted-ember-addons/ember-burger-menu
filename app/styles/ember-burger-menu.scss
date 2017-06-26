@@ -1,157 +1,18 @@
-@import './variables';
+@import 'ember-burger-menu/variables';
+@import 'ember-burger-menu/structure';
 
-@import './animations/rotate-out';
-@import './animations/fall-down';
-@import './animations/open-door';
-@import './animations/push';
-@import './animations/push-rotate';
-@import './animations/reveal';
-@import './animations/scale-down';
-@import './animations/scale-rotate';
-@import './animations/scale-up';
-@import './animations/slide-reverse';
-@import './animations/slide';
-@import './animations/squeeze';
+@import 'ember-burger-menu/animations/rotate-out';
+@import 'ember-burger-menu/animations/fall-down';
+@import 'ember-burger-menu/animations/open-door';
+@import 'ember-burger-menu/animations/push';
+@import 'ember-burger-menu/animations/push-rotate';
+@import 'ember-burger-menu/animations/reveal';
+@import 'ember-burger-menu/animations/scale-down';
+@import 'ember-burger-menu/animations/scale-rotate';
+@import 'ember-burger-menu/animations/scale-up';
+@import 'ember-burger-menu/animations/slide-reverse';
+@import 'ember-burger-menu/animations/slide';
+@import 'ember-burger-menu/animations/squeeze';
 
-@import './animations/menu-item/push';
-@import './animations/menu-item/stack';
-
-.ember-burger-menu {
-	position: relative;
-	height: 100%;
-	overflow: hidden;
-
-	#{$bm-menu-selector} {
-		position: absolute;
-		top: 0;
-		z-index: 100;
-		visibility: hidden;
-		height: 100%;
-		-webkit-transition: all $bm-transition-duration;
-		transition: all $bm-transition-duration;
-	}
-
-	&[class*="bm-item-"] {
-		#{$bm-menu-selector} {
-			.bm-menu-item {
-				-webkit-transition: all 0s;
-				transition: all 0s;
-				-webkit-transition-delay: $bm-transition-duration;
-				transition-delay: $bm-transition-duration;
-			}
-		}
-	}
-
-	> .bm-outlet {
-		position: relative;
-		z-index: 99;
-		height: 100%;
-		perspective: 1000px;
-		-webkit-transition: -webkit-transform $bm-transition-duration, margin $bm-transition-duration;
-		transition: transform $bm-transition-duration, margin $bm-transition-duration;
-
-		> .bm-content {
-			position: relative;
-			height: 100%;
-			width: 100%;
-			background: $bm-outlet-content-background;
-			overflow: auto;
-		}
-	}
-
-	&.translucent-overlay {
-		#{$bm-menu-selector} {
-			&::after {
-				position: absolute;
-				top: 0;
-				right: 0;
-				width: 100%;
-				height: 100%;
-				background: $bm-overlay-background;
-				content: '';
-				opacity: 1;
-				-webkit-transition: opacity $bm-transition-duration;
-				transition: opacity $bm-transition-duration;
-			}
-		}
-
-		> .bm-outlet {
-			&::after {
-				position: absolute;
-				top: 0;
-				right: 0;
-				width: 0;
-				height: 0;
-				background: $bm-overlay-background;
-				content: '';
-				opacity: 0;
-				z-index: 100;
-				-webkit-transition: opacity $bm-transition-duration, width 0.1s $bm-transition-duration, height 0.1s $bm-transition-duration;
-				transition: opacity $bm-transition-duration, width 0.1s $bm-transition-duration, height 0.1s $bm-transition-duration;
-			}
-		}
-
-		&.is-open {
-			#{$bm-menu-selector} {
-				&::after {
-					width: 0;
-					height: 0;
-					opacity: 0;
-					-webkit-transition: opacity $bm-transition-duration, width 0.1s $bm-transition-duration, height 0.1s $bm-transition-duration;
-					transition: opacity $bm-transition-duration, width 0.1s $bm-transition-duration, height 0.1s $bm-transition-duration;
-				}
-			}
-
-			> .bm-outlet {
-				&::after {
-					width: 100%;
-					height: 100%;
-					opacity: 1;
-					-webkit-transition: opacity $bm-transition-duration;
-					transition: opacity $bm-transition-duration;
-				}
-			}
-		}
-	}
-
-	&.is-open {
-		&:after {
-			display: none;
-		}
-
-		#{$bm-menu-selector} {
-			visibility: visible;
-			-webkit-transition: -webkit-transform $bm-transition-duration;
-			transition: transform $bm-transition-duration;
-
-			.bm-menu-item {
-				-webkit-transition-delay: 0s;
-				transition-delay: 0s;
-			}
-		}
-	}
-
-	&.left {
-		#{$bm-menu-selector} {
-			left: 0;
-			right: initial;
-		}
-
-		> .bm-outlet {
-			left: 0;
-			right: initial;
-		}
-	}
-
-	&.right {
-		#{$bm-menu-selector} {
-			right: 0;
-			left: initial;
-		}
-
-		> .bm-outlet {
-			right: 0;
-			left: initial;
-		}
-	}
-}
+@import 'ember-burger-menu/animations/menu-item/push';
+@import 'ember-burger-menu/animations/menu-item/stack';

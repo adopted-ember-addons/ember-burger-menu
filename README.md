@@ -32,8 +32,10 @@ Installing ember-burger-menu should also install ember-cli-sass and automaticall
 @import 'ember-burger-menu';
 ```
 
+#### Overriding Variables
+
 Using sass, you can override default variables and easily change the default behavior of ember-burger-menu.
-See [variables.scss](app/styles/variables.scss) for a list of variables you can change.
+See [variables.scss](app/styles/ember-burger-menu/variables.scss) for a list of variables you can change.
 
 ```sass
 // app/styles/app.scss
@@ -42,7 +44,22 @@ See [variables.scss](app/styles/variables.scss) for a list of variables you can 
 $bm-transition-duration: 0.3s;
 $bm-overlay-background: rgba(0, 0, 0, 0.7);
 
+// Import all the styles!
 @import 'ember-burger-menu';
+```
+
+#### Import Only What You Need
+
+Using sass, you can import only the styles you need for the animations you use.
+
+```sass
+// Core Styles
+@import 'ember-burger-menu/variables';
+@import 'ember-burger-menu/structure';
+
+// Animations
+@import 'ember-burger-menu/animations/push';
+@import 'ember-burger-menu/animations/menu-item/stack';
 ```
 
 ## Helpful Links
