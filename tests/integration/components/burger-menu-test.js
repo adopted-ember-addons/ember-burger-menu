@@ -57,6 +57,16 @@ const CustomAnimation = Animation.extend({
   }
 });
 
+const CustomItemAnimation = Animation.extend({
+  itemAnimation: 'custom-animation',
+
+  menuItem(open, width, right, index) {
+    return {
+      color: open ? `rgb(${index}, 0, 0)` : 'rgb(255, 255, 255)'
+    };
+  }
+});
+
 moduleForComponent('burger-menu', 'Integration | Component | burger menu', {
   integration: true,
 
@@ -90,10 +100,10 @@ test('animation and itemAnimation set correct classes', function(assert) {
   run(() => this.set('animation', 'push'));
   assert.ok(this.$('.ember-burger-menu').hasClass('bm--push'), 'Container has correct animation class');
 
-  assert.notOk(this.$('.bm-menu').hasClass('bm-item--stack'), 'Menu initially has no item animation class');
+  assert.notOk(this.$('.ember-burger-menu').hasClass('bm-item--stack'), 'Menu initially has no item animation class');
 
   run(() => this.set('itemAnimation', 'stack'));
-  assert.ok(this.$('.bm-menu').hasClass('bm-item--stack'), 'Menu has correct item animation class');
+  assert.ok(this.$('.ember-burger-menu').hasClass('bm-item--stack'), 'Menu has correct item animation class');
 });
 
 test('menu options work', function(assert) {
@@ -326,4 +336,18 @@ test('custom animation', function(assert) {
   run(() => this.set('open', true));
 
   assert.notEqual(this.$('.bm-outlet').css('transform'), 'none', 'Custom outlet styles applied');
+});
+
+test('custom item animation', function(assert) {
+  this.render(template);
+
+  run(() => this.set('customAnimation', CustomItemAnimation));
+
+  assert.ok(this.$('.ember-burger-menu').hasClass('bm-item--custom-animation'), 'Custom menu has correct CSS class');
+  assert.equal(this.$('.bm-menu-item:first').css('color'), 'rgb(255, 255, 255)', 'Menu item has no style');
+
+  run(() => this.set('open', true));
+
+  assert.equal(this.$('.bm-menu-item:first').css('color'), 'rgb(0, 0, 0)', 'Custom menu styles applied');
+  assert.equal(this.$('.bm-menu-item:last').css('color'), 'rgb(1, 0, 0)', 'Custom menu styles applied');
 });
