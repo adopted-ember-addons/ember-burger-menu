@@ -1,4 +1,5 @@
 @import 'ember-burger-menu';
+@import 'ember-bootstrap/bootstrap';
 
 $accent-color: #e24b31;
 $text-color: #e2e2e2;
@@ -303,7 +304,6 @@ main {
   .header {
     background: #233040;
     padding: 10px;
-    height: 55vh;
     display: flex;
     align-items: center;
     justify-content: center;
