@@ -65,9 +65,10 @@ export default Ember.Component.extend(DomMixin, SwipeSupportMixin, {
   _setupEvents() {
     let elementId = this.get('elementId');
 
+
     if (this.get('dismissOnClick')) {
-      this.addEventListener($('body'), `click.${elementId}`, this.onClick);
-      this.addEventListener($('body'), `touchstart.${elementId}`, this.onClick);
+      this.addEventListener(document.body, `click.${elementId}`, this.onClick);
+      this.addEventListener(document.body, `touchstart.${elementId}`, this.onClick);
     }
 
     if (this.get('dismissOnEsc')) {
@@ -78,8 +79,8 @@ export default Ember.Component.extend(DomMixin, SwipeSupportMixin, {
   _teardownEvents() {
     let elementId = this.get('elementId');
 
-    this.removeEventListener($('body'), `click.${elementId}`, this.onClick);
-    this.removeEventListener($('body'), `touchstart.${elementId}`, this.onClick);
+    this.removeEventListener(document.body, `click.${elementId}`, this.onClick);
+    this.removeEventListener(document.body, `touchstart.${elementId}`, this.onClick);
     this.removeEventListener(document, `keyup.${elementId}`, this.onKeyup);
   },
 
