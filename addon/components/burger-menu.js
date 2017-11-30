@@ -63,30 +63,26 @@ export default Ember.Component.extend(DomMixin, SwipeSupportMixin, {
   })),
 
   _setupEvents() {
-    let elementId = this.get('elementId');
-
 
     if (this.get('dismissOnClick')) {
-      this.addEventListener(document.body, `click.${elementId}`, this.onClick);
-      this.addEventListener(document.body, `touchstart.${elementId}`, this.onClick);
+      this.addEventListener(document.body, `click`, this.onClick);
+      this.addEventListener(document.body, `touchstart`, this.onClick);
     }
 
     if (this.get('dismissOnEsc')) {
-      this.addEventListener(document, `keyup.${elementId}`, this.onKeyup);
+      this.addEventListener(window, `keyup`, this.onKeyup);
     }
   },
 
   _teardownEvents() {
-    let elementId = this.get('elementId');
 
-    this.removeEventListener(document.body, `click.${elementId}`, this.onClick);
-    this.removeEventListener(document.body, `touchstart.${elementId}`, this.onClick);
-    this.removeEventListener(document, `keyup.${elementId}`, this.onKeyup);
+    this.removeEventListener(document.body, `click`, this.onClick);
+    this.removeEventListener(document.body, `touchstart`, this.onClick);
+    this.removeEventListener(window, `keyup`, this.onKeyup);
   },
 
   onClick(e) {
     let elementId = this.get('elementId');
-
     // Close the menu if clicked outside of it
     if ($(e.target).closest(`#${elementId} .bm-menu`).length === 0) {
       this.get('state.actions').close();
