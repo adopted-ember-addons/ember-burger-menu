@@ -1,5 +1,11 @@
 # Changelog
 
+## v3.0.1
+
+### Pull Requests
+
+- [#98](https://github.com/offirgolan/ember-burger-menu/pull/98) Fix for lifeline selector issue *by [@donaldwasserman](https://github.com/donaldwasserman)*
+
 ## v3.0.0
 
 ### Pull Requests
