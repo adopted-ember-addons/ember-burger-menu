@@ -1,8 +1,4 @@
-import Ember from 'ember';
-
-const {
-  computed
-} = Ember;
+import { computed } from '@ember/object';
 
 export default function computedStyleFor(type) {
   return computed('state.{styles,open,width,position}', 'index', function() {

@@ -1,13 +1,10 @@
-import Ember from 'ember';
-
-const {
-  isNone,
-  computed: { alias }
-} = Ember;
+import { isNone } from '@ember/utils';
+import { alias } from '@ember/object/computed';
+import Mixin from '@ember/object/mixin';
 
 let meta;
 
-export default Ember.Mixin.create({
+export default Mixin.create({
   minSwipeDistance: alias('state.minSwipeDistance'),
   maxSwipeTime: alias('state.maxSwipeTime'),
 
@@ -16,9 +13,7 @@ export default Ember.Mixin.create({
   touchStart(e) {
     this._super(...arguments);
 
-    // jscs:disable
-    let touch = e.originalEvent.touches[0];
-    // jscs:enable
+    let [touch] = e.originalEvent.touches;
 
     meta = {
       target: e.target,
@@ -33,9 +28,7 @@ export default Ember.Mixin.create({
   touchMove(e) {
     this._super(...arguments);
 
-    // jscs:disable
-    let touch = e.originalEvent.touches[0];
-    // jscs:enable
+    let [touch] = e.originalEvent.touches;
 
     meta.differences = {
       x: touch.pageX - meta.start.x,
@@ -60,9 +53,12 @@ export default Ember.Mixin.create({
     let maxSwipeTime = this.get('maxSwipeTime');
     let elapsedTime =  new Date().getTime() - meta.start.time;
 
-    if (meta.isHorizontal && !meta.isInvalid &&
-        Math.abs(meta.differences.x) >= minSwipeDistance &&
-        elapsedTime <= maxSwipeTime) {
+    if (
+      meta.isHorizontal
+      && !meta.isInvalid
+      && Math.abs(meta.differences.x) >= minSwipeDistance
+      && elapsedTime <= maxSwipeTime
+    ) {
       this.onSwipe((meta.differences.x > 0) ? 'right' : 'left', meta.target);
     }
   }
