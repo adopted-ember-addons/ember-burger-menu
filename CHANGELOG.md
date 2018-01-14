@@ -1,5 +1,11 @@
 # Changelog
 
+## v3.0.2
+
+### Pull Requests
+
+- [#102](https://github.com/offirgolan/ember-burger-menu/pull/102) Update ember-cli-dependency-checker
+
 ## v3.0.1
 
 ### Pull Requests
