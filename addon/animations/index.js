@@ -1,11 +1,6 @@
-import Ember from 'ember';
+import { assert } from '@ember/debug';
+import { typeOf, isEmpty } from '@ember/utils';
 import requireModule from 'ember-require-module';
-
-const {
-  assert,
-  typeOf,
-  isEmpty
-} = Ember;
 
 const ANIMATION_PATH = 'ember-burger-menu/animations';
 const ANIMATION_ITEM_PATH = `${ANIMATION_PATH}/menu-item`;

@@ -1,13 +1,11 @@
-import Ember from 'ember';
+import { assert } from '@ember/debug';
+import { assign as emberAssign, merge } from '@ember/polyfills';
 import cssStringify from 'ember-burger-menu/utils/css-stringify';
+import EObject from '@ember/object';
 
-const {
-  assert
-} = Ember;
+const assign = emberAssign || merge;
 
-const assign = Ember.assign || Ember.merge;
-
-const Animation = Ember.Object.extend({
+const Animation = EObject.extend({
   animation: null,
   itemAnimation: null,
 

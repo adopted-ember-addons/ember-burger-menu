@@ -1,13 +1,9 @@
-import Ember from 'ember';
+import { run } from '@ember/runloop';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 import Animation from 'ember-burger-menu/animations/base';
 import triggerSwipeEvent from '../../helpers/trigger-swipe-event';
 import { click, keyEvent } from 'ember-native-dom-helpers';
-
-const {
-  run
-} = Ember;
 
 const template = hbs`
   {{#burger-menu

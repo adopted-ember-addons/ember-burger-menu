@@ -1,3 +1,5 @@
+import $ from 'jquery';
+
 export default function triggerSwipeEvent($el, direction, distance = 150) {
   let swipeRight = direction === 'right';
   let startPos = swipeRight ? 0 : distance;
