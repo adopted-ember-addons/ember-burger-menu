@@ -33,7 +33,7 @@
     "ember-cli-dependency-checker": "^2.1.0",
     "ember-cli-es5-shim": "0.3.0",
     "ember-cli-github-pages": "0.1.2",
-    "ember-cli-htmlbars-inline-precompile": "^0.3.6",
+    "ember-cli-htmlbars-inline-precompile": "^1.0.2",
     "ember-cli-inject-live-reload": "^1.4.1",
     "ember-cli-jshint": "^2.0.1",
     "ember-cli-qunit": "^3.1.0",
@@ -63,10 +63,10 @@
     "sidebar"
   ],
   "dependencies": {
-    "ember-cli-babel": "^5.2.4",
+    "ember-cli-babel": "^6.6.0",
     "ember-cli-htmlbars": "^1.1.1",
     "ember-lifeline": "^2.0.0",
-    "ember-require-module": "^0.1.1",
+    "ember-require-module": "^0.2.0",
     "ember-wormhole": "^0.5.0"
   },
   "ember-addon": {
