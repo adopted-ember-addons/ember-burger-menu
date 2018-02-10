@@ -19,6 +19,9 @@ export default Component.extend({
   itemTagName: 'div',
   dismissOnItemClick: false,
 
+  onOpen() {},
+  onClose() {},
+
   style: computedStyleFor('menu').readOnly(),
 
   renderInPlace: computed('state.animation', function() {
@@ -30,6 +33,6 @@ export default Component.extend({
   }).readOnly(),
 
   onOpenChange: observer('state.open', function() {
-    this.sendAction(this.get('state.open') ? 'onOpen' : 'onClose');
+    this[this.get('state.open') ? 'onOpen' : 'onClose']();
   })
 });

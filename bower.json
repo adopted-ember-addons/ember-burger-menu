@@ -1,8 +1,6 @@
 {
   "name": "ember-burger-menu",
   "dependencies": {
-    "font-awesome": "~4.5.0",
-    "bootstrap": "~3.3.5",
-    "es5-shim": "^4.5.8"
+    "bootstrap": "~3.3.5"
   }
 }

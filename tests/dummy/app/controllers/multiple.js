@@ -1,7 +1,8 @@
 import Controller from '@ember/controller';
+import { computed } from '@ember/object';
 
 export default Controller.extend({
-  menus: [{
+  menus: computed(() => [{
     open: false,
     color: 'green',
     position: 'left',
@@ -21,5 +22,5 @@ export default Controller.extend({
     color: 'red',
     position: 'right',
     animation: 'slide'
-  }]
+  }])
 });
