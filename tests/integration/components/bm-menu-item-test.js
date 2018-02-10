@@ -1,13 +1,9 @@
-import Ember from 'ember';
+import { run } from '@ember/runloop';
+import { A as emberArray } from '@ember/array';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 import State from 'ember-burger-menu/-private/state';
 import { click } from 'ember-native-dom-helpers';
-
-const {
-  run,
-  A: emberArray
-} = Ember;
 
 const template = hbs`
   {{#bm-menu-item state=state menuItems=menuItems dismissOnClick=dismissOnClick}}

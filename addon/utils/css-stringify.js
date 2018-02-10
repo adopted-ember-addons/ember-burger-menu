@@ -1,9 +1,5 @@
-import Ember from 'ember';
-
-const {
-  isEmpty,
-  String: { htmlSafe, dasherize }
-} = Ember;
+import { isEmpty } from '@ember/utils';
+import { dasherize, htmlSafe } from '@ember/string';
 
 const PREFIXES = ['webkit'];
 const PREFIXED_PROPS = [

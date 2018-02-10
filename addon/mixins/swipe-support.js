@@ -1,13 +1,10 @@
-import Ember from 'ember';
-
-const {
-  isNone,
-  computed: { alias }
-} = Ember;
+import Mixin from '@ember/object/mixin';
+import { isNone } from '@ember/utils';
+import { alias } from '@ember/object/computed';
 
 let meta;
 
-export default Ember.Mixin.create({
+export default Mixin.create({
   minSwipeDistance: alias('state.minSwipeDistance'),
   maxSwipeTime: alias('state.maxSwipeTime'),
 

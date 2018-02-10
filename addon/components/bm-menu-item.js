@@ -1,15 +1,12 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import $ from 'jquery';
+import { run } from '@ember/runloop';
+import { computed } from '@ember/object';
 import layout from '../templates/components/bm-menu-item';
 import computedStyleFor from 'ember-burger-menu/computed/style-for';
 import isFastboot from 'ember-burger-menu/utils/is-fastboot';
 
-const {
-  $,
-  run,
-  computed
-} = Ember;
-
-export default Ember.Component.extend({
+export default Component.extend({
   layout,
   classNames: ['bm-menu-item'],
   attributeBindings: ['style'],

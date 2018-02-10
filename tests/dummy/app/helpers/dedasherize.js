@@ -1,7 +1,7 @@
-import Ember from 'ember';
+import { helper } from '@ember/component/helper';
 
 export function dedasherize([ str = '' ]/*, hash*/) {
   return str.replace('-', ' ');
 }
 
-export default Ember.Helper.helper(dedasherize);
+export default helper(dedasherize);

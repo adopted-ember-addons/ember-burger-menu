@@ -1,12 +1,8 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import { observer, computed } from '@ember/object';
+import { A as emberArray } from '@ember/array';
 import layout from '../templates/components/bm-menu';
 import computedStyleFor from 'ember-burger-menu/computed/style-for';
-
-const {
-  computed,
-  observer,
-  A: emberArray
-} = Ember;
 
 export const OUTLET_MENU_ANIMATIONS = [
   'push',
@@ -14,7 +10,7 @@ export const OUTLET_MENU_ANIMATIONS = [
   'squeeze'
 ];
 
-export default Ember.Component.extend({
+export default Component.extend({
   layout,
   state: null,
 

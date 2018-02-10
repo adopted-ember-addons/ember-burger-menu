@@ -1,4 +1,9 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import $ from 'jquery';
+import { on } from '@ember/object/evented';
+import { run } from '@ember/runloop';
+import { computed, observer } from '@ember/object';
+import { alias } from '@ember/object/computed';
 import layout from '../templates/components/burger-menu';
 import computedStyleFor from 'ember-burger-menu/computed/style-for';
 import SwipeSupportMixin from 'ember-burger-menu/mixins/swipe-support';
@@ -6,16 +11,7 @@ import State from 'ember-burger-menu/-private/state';
 import DomMixin from 'ember-lifeline/mixins/dom';
 import isFastboot from 'ember-burger-menu/utils/is-fastboot';
 
-const {
-  $,
-  on,
-  run,
-  observer,
-  computed,
-  computed: { alias }
-} = Ember;
-
-export default Ember.Component.extend(DomMixin, SwipeSupportMixin, {
+export default Component.extend(DomMixin, SwipeSupportMixin, {
   layout,
   classNames: ['ember-burger-menu'],
   classNameBindings: ['open:is-open', 'translucentOverlay', 'animationClass', 'itemAnimationClass', 'position'],
