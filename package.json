@@ -68,7 +68,7 @@
     "ember-cli-htmlbars": "^1.1.1",
     "ember-lifeline": "^2.0.0",
     "ember-require-module": "^0.2.0",
-    "ember-wormhole": "^0.5.4"
+    "ember-wormhole": "0.5.3"
   },
   "ember-addon": {
     "configPath": "tests/dummy/config",
