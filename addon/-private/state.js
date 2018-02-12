@@ -1,7 +1,7 @@
-import EObject, { computed } from '@ember/object';
+import EmberObject, { computed } from '@ember/object';
 import getAnimation from 'ember-burger-menu/animations';
 
-export default EObject.extend({
+export default EmberObject.extend({
   open: false,
   locked: false,
   width: 300,

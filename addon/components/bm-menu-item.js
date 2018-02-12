@@ -1,7 +1,7 @@
+import Component from '@ember/component';
 import $ from 'jquery';
 import { run } from '@ember/runloop';
 import { computed } from '@ember/object';
-import Component from '@ember/component';
 import layout from '../templates/components/bm-menu-item';
 import computedStyleFor from 'ember-burger-menu/computed/style-for';
 import isFastboot from 'ember-burger-menu/utils/is-fastboot';

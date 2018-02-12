@@ -1,5 +1,5 @@
 import { assert } from '@ember/debug';
-import { typeOf, isEmpty } from '@ember/utils';
+import { isEmpty, typeOf } from '@ember/utils';
 import requireModule from 'ember-require-module';
 
 const ANIMATION_PATH = 'ember-burger-menu/animations';

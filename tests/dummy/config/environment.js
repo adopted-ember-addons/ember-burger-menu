@@ -29,7 +29,7 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
-    ENV.APP.RAISE_ON_DEPRECATION = true;
+    ENV.EmberENV.RAISE_ON_DEPRECATION = true;
   }
 
   if (environment === 'test') {
@@ -41,14 +41,13 @@ module.exports = function(environment) {
     ENV.APP.LOG_VIEW_LOOKUPS = false;
 
     // Deprecations should be treated as errors
-    ENV.APP.RAISE_ON_DEPRECATION = !process.env.ALLOW_DEPRECATIONS;
+    ENV.EmberENV.RAISE_ON_DEPRECATION = !process.env['ALLOW_DEPRECATIONS'];
 
     ENV.APP.rootElement = '#ember-testing';
     ENV.APP.autoboot = false;
   }
 
   if (environment === 'production') {
-    // here you can enable a production-specific feature
     ENV.locationType = 'hash';
     ENV.rootURL = '/ember-burger-menu/';
   }

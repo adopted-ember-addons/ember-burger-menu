@@ -1,4 +1,5 @@
 import Controller from '@ember/controller';
+import { computed } from '@ember/object';
 
 export default Controller.extend({
   queryParams: [
@@ -22,7 +23,7 @@ export default Controller.extend({
   position: 'left',
   locked: false,
 
-  animations: [
+  animations: computed(() => [
     'slide',
     'reveal',
     'push',
@@ -35,12 +36,12 @@ export default Controller.extend({
     'scale-rotate',
     'slide-reverse',
     'squeeze'
-  ],
+  ]),
 
-  itemAnimations: [
+  itemAnimations: computed(() => [
     'push',
     'stack'
-  ],
+  ]),
 
   actions: {
     setMenu() {

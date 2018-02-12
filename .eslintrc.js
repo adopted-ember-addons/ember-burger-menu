@@ -9,19 +9,13 @@ module.exports = {
   ],
   extends: [
     'eslint:recommended',
-    'plugin:ember/recommended',
-    'plugin:ember-suave/recommended'
+    'plugin:ember/recommended'
   ],
   env: {
     browser: true
   },
   rules: {
-    /* TODO: The code should be refactored so these exceptions are not required */
-    'camelcase': 'off',
-    'ember/closure-actions': 'off',
-    'ember/no-on-calls-in-components': 'off',
-    'ember/avoid-leaking-state-in-ember-objects': 'off',
-    'new-cap': 'off'
+    'ember/no-on-calls-in-components': 'off'
   },
   overrides: [
     // node files

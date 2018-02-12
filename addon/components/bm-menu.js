@@ -1,6 +1,6 @@
-import { computed, observer } from '@ember/object';
-import { A as emberArray } from '@ember/array';
 import Component from '@ember/component';
+import { observer, computed } from '@ember/object';
+import { A as emberArray } from '@ember/array';
 import layout from '../templates/components/bm-menu';
 import computedStyleFor from 'ember-burger-menu/computed/style-for';
 
@@ -19,6 +19,9 @@ export default Component.extend({
   itemTagName: 'div',
   dismissOnItemClick: false,
 
+  onOpen() {},
+  onClose() {},
+
   style: computedStyleFor('menu').readOnly(),
 
   renderInPlace: computed('state.animation', function() {
@@ -30,6 +33,6 @@ export default Component.extend({
   }).readOnly(),
 
   onOpenChange: observer('state.open', function() {
-    this.sendAction(this.get('state.open') ? 'onOpen' : 'onClose');
+    this[this.get('state.open') ? 'onOpen' : 'onClose']();
   })
 });

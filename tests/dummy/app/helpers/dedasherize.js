@@ -1,6 +1,6 @@
-import helper from '@ember/component/helper';
+import { helper } from '@ember/component/helper';
 
-export function dedasherize([str = '']/* , hash*/) {
+export function dedasherize([ str = '' ]/*, hash*/) {
   return str.replace('-', ' ');
 }
 
