@@ -1,5 +1,13 @@
 # Changelog
 
+## v3.1.0
+
+### Pull Requests
+
+- [#100](https://github.com/offirgolan/ember-burger-menu/pull/100) Upgrade to Ember 2.18 *by [@mixonic](https://github.com/mixonic)*
+- [#104](https://github.com/offirgolan/ember-burger-menu/pull/104) Update all the things
+
+
 ## v3.0.2
 
 ### Pull Requests
