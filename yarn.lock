@@ -3128,6 +3128,12 @@ ember-inflector@^2.0.0:
   dependencies:
     ember-cli-babel "^6.0.0"
 
+ember-jquery-legacy@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/ember-jquery-legacy/-/ember-jquery-legacy-1.0.0.tgz#2a2a29109385dfabe4c626a3ac8d1dd3c6a4b9a3"
+  dependencies:
+    ember-cli-babel "^6.6.0"
+
 ember-legacy-class-shim@^1.0.3:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/ember-legacy-class-shim/-/ember-legacy-class-shim-1.0.5.tgz#c40b66e12d56655a98f1bffe7f02dd7df0202daf"

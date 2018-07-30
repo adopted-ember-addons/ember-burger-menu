@@ -2,7 +2,7 @@ import { run } from '@ember/runloop';
 import { A as emberArray } from '@ember/array';
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render, find, click } from '@ember/test-helpers';
+import { render, click } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 import State from 'ember-burger-menu/-private/state';
 
@@ -34,11 +34,11 @@ module('Integration | Component | bm menu item', function(hooks) {
     let state = this.get('state');
 
     run(() => state.set('open', 'true'));
-    click('.bm-menu-item');
+    await click('.bm-menu-item');
     assert.ok(this.get('state.open'), 'Menu should still be open');
 
     this.set('dismissOnClick', true);
-    click('.bm-menu-item');
+    await click('.bm-menu-item');
     assert.notOk(this.get('state.open'), 'Menu should be closed');
   });
 
@@ -50,11 +50,11 @@ module('Integration | Component | bm menu item', function(hooks) {
     run(() => state.set('open', true));
     run(() => state.set('locked', true));
 
-    click('.bm-menu-item');
+    await click('.bm-menu-item');
     assert.ok(this.get('state.open'), 'Menu should still be open');
 
     this.set('dismissOnClick', true);
-    click('.bm-menu-item');
+    await click('.bm-menu-item');
     assert.ok(this.get('state.open'), 'Menu should still be open');
   });
 });

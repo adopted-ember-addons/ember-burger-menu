@@ -73,6 +73,7 @@
     "ember-cli-htmlbars": "^2.0.4",
     "ember-lifeline": "^3.0.5",
     "ember-require-module": "^0.3.0",
+    "ember-jquery-legacy": "^1.0.0",
     "ember-wormhole": "0.5.4"
   },
   "ember-addon": {

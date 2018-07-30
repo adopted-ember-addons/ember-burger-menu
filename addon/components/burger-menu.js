@@ -10,6 +10,7 @@ import State from 'ember-burger-menu/-private/state';
 import DomMixin from 'ember-lifeline/mixins/dom';
 import isFastboot from 'ember-burger-menu/utils/is-fastboot';
 import closest from 'ember-burger-menu/utils/element-closest';
+import { normalizeEvent } from 'ember-jquery-legacy';
 
 export default Component.extend(DomMixin, SwipeSupportMixin, {
   layout,
@@ -92,15 +93,17 @@ export default Component.extend(DomMixin, SwipeSupportMixin, {
   },
 
   onClick(e) {
+    let nativeEvent = normalizeEvent(e);
     let elementId = this.get('elementId');
     // Close the menu if clicked outside of it
-    if (!closest(e.target, `#${elementId} .bm-menu`)) {
+    if (!closest(nativeEvent.target, `#${elementId} .bm-menu`)) {
       this.get('state.actions').close();
     }
   },
 
   onKeyup(e) {
-    if (e.keyCode === 27) {
+    let nativeEvent = normalizeEvent(e);
+    if (nativeEvent.keyCode === 27) {
       this.get('state.actions').close();
     }
   },
