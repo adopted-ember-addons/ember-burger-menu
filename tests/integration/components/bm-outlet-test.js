@@ -1,4 +1,6 @@
-import { moduleForComponent, test } from 'ember-qunit';
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'ember-qunit';
+import { render, find } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 import State from 'ember-burger-menu/-private/state';
 
@@ -8,17 +10,17 @@ const template = hbs`
   {{/bm-outlet}}
 `;
 
-moduleForComponent('bm-outlet', 'Integration | Component | bm outlet', {
-  integration: true,
+module('Integration | Component | bm outlet', function(hooks) {
+  setupRenderingTest(hooks);
 
-  beforeEach() {
+  hooks.beforeEach(function() {
     this.setProperties({
       state: State.create()
     });
-  }
-});
+  });
 
-test('it renders', function(assert) {
-  this.render(template);
-  assert.equal(this.$().text().trim(), 'Content');
+  test('it renders', async function(assert) {
+    await render(template);
+    assert.dom('*').hasText('Content');
+  });
 });

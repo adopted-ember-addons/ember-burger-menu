@@ -10,20 +10,20 @@ const STYLES = [
   'menuItem'
 ];
 
-module('Unit | Menu Item Animations');
+module('Unit | Menu Item Animations', function() {
+  test('all menu item animations', function(assert) {
+    ANIMATIONS.forEach((a) => {
+      let styles = getAnimationStylesFor(`menu-item/${a}`);
 
-test('all menu item animations', function(assert) {
-  ANIMATIONS.forEach((a) => {
-    let styles = getAnimationStylesFor(`menu-item/${a}`);
+      STYLES.forEach((s) => {
+        let fn = styles[s];
+        assert.ok(!fn || fn && typeof fn === 'function', `${a}.${s} is a fn`);
 
-    STYLES.forEach((s) => {
-      let fn = styles[s];
-      assert.ok(!fn || fn && typeof fn === 'function', `${a}.${s} is a fn`);
-
-      if (fn) {
-        let style = fn(false, 300, false);
-        assert.ok(style && typeof style === 'object', `${a}.${s} returned a style object`);
-      }
+        if (fn) {
+          let style = fn(false, 300, false);
+          assert.ok(style && typeof style === 'object', `${a}.${s} returned a style object`);
+        }
+      });
     });
   });
 });

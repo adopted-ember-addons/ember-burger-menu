@@ -1,9 +1,10 @@
 import { run } from '@ember/runloop';
 import { A as emberArray } from '@ember/array';
-import { moduleForComponent, test } from 'ember-qunit';
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'ember-qunit';
+import { render, find, click } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 import State from 'ember-burger-menu/-private/state';
-import { click } from 'ember-native-dom-helpers';
 
 const template = hbs`
   {{#bm-menu-item state=state menuItems=menuItems dismissOnClick=dismissOnClick}}
@@ -11,49 +12,49 @@ const template = hbs`
   {{/bm-menu-item}}
 `;
 
-moduleForComponent('bm-menu-item', 'Integration | Component | bm menu item', {
-  integration: true,
+module('Integration | Component | bm menu item', function(hooks) {
+  setupRenderingTest(hooks);
 
-  beforeEach() {
+  hooks.beforeEach(function() {
     this.setProperties({
       menuItems: emberArray([]),
       state: State.create(),
       dismissOnClick: false
     });
-  }
-});
+  });
 
-test('it renders', function(assert) {
-  this.render(template);
-  assert.equal(this.$().text().trim(), 'Content');
-});
+  test('it renders', async function(assert) {
+    await render(template);
+    assert.dom('*').hasText('Content');
+  });
 
-test('dismissOnClick closes the menu', function(assert) {
-  this.render(template);
+  test('dismissOnClick closes the menu', async function(assert) {
+    await render(template);
 
-  let state = this.get('state');
+    let state = this.get('state');
 
-  run(() => state.set('open', 'true'));
-  click('.bm-menu-item');
-  assert.ok(this.get('state.open'), 'Menu should still be open');
+    run(() => state.set('open', 'true'));
+    click('.bm-menu-item');
+    assert.ok(this.get('state.open'), 'Menu should still be open');
 
-  this.set('dismissOnClick', true);
-  click('.bm-menu-item');
-  assert.notOk(this.get('state.open'), 'Menu should be closed');
-});
+    this.set('dismissOnClick', true);
+    click('.bm-menu-item');
+    assert.notOk(this.get('state.open'), 'Menu should be closed');
+  });
 
-test('dismissOnClick doesnt close a locked menu', function(assert) {
-  this.render(template);
+  test('dismissOnClick doesnt close a locked menu', async function(assert) {
+    await render(template);
 
-  let state = this.get('state');
+    let state = this.get('state');
 
-  run(() => state.set('open', true));
-  run(() => state.set('locked', true));
+    run(() => state.set('open', true));
+    run(() => state.set('locked', true));
 
-  click('.bm-menu-item');
-  assert.ok(this.get('state.open'), 'Menu should still be open');
+    click('.bm-menu-item');
+    assert.ok(this.get('state.open'), 'Menu should still be open');
 
-  this.set('dismissOnClick', true);
-  click('.bm-menu-item');
-  assert.ok(this.get('state.open'), 'Menu should still be open');
+    this.set('dismissOnClick', true);
+    click('.bm-menu-item');
+    assert.ok(this.get('state.open'), 'Menu should still be open');
+  });
 });
