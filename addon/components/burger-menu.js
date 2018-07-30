@@ -1,5 +1,4 @@
 import Component from '@ember/component';
-import $ from 'jquery';
 import { on } from '@ember/object/evented';
 import { run } from '@ember/runloop';
 import { computed, observer } from '@ember/object';
@@ -10,11 +9,18 @@ import SwipeSupportMixin from 'ember-burger-menu/mixins/swipe-support';
 import State from 'ember-burger-menu/-private/state';
 import DomMixin from 'ember-lifeline/mixins/dom';
 import isFastboot from 'ember-burger-menu/utils/is-fastboot';
+import closest from 'ember-burger-menu/utils/element-closest';
 
 export default Component.extend(DomMixin, SwipeSupportMixin, {
   layout,
   classNames: ['ember-burger-menu'],
-  classNameBindings: ['open:is-open', 'translucentOverlay', 'animationClass', 'itemAnimationClass', 'position'],
+  classNameBindings: [
+    'open:is-open',
+    'translucentOverlay',
+    'animationClass',
+    'itemAnimationClass',
+    'position'
+  ],
   attributeBindings: ['style'],
 
   translucentOverlay: true,
@@ -49,17 +55,26 @@ export default Component.extend(DomMixin, SwipeSupportMixin, {
     run.cancel(this._setupEventsTimer);
   },
 
-  setupEvents: on('didReceiveAttrs', observer('open', 'locked', function() {
-    if (isFastboot()) {
-      return;
-    }
+  setupEvents: on(
+    'didReceiveAttrs',
+    observer('open', 'locked', function() {
+      if (isFastboot()) {
+        return;
+      }
 
-    let methodName = (this.get('open') && !this.get('locked')) ? '_setupEvents' : '_teardownEvents';
-    this._setupEventsTimer = run.scheduleOnce('afterRender', this, methodName);
-  })),
+      let methodName =
+        this.get('open') && !this.get('locked')
+          ? '_setupEvents'
+          : '_teardownEvents';
+      this._setupEventsTimer = run.scheduleOnce(
+        'afterRender',
+        this,
+        methodName
+      );
+    })
+  ),
 
   _setupEvents() {
-
     if (this.get('dismissOnClick')) {
       this.addEventListener(document.body, `click`, this.onClick);
       this.addEventListener(document.body, `touchstart`, this.onClick);
@@ -71,7 +86,6 @@ export default Component.extend(DomMixin, SwipeSupportMixin, {
   },
 
   _teardownEvents() {
-
     this.removeEventListener(document.body, `click`, this.onClick);
     this.removeEventListener(document.body, `touchstart`, this.onClick);
     this.removeEventListener(window, `keyup`, this.onKeyup);
@@ -80,7 +94,7 @@ export default Component.extend(DomMixin, SwipeSupportMixin, {
   onClick(e) {
     let elementId = this.get('elementId');
     // Close the menu if clicked outside of it
-    if ($(e.target).closest(`#${elementId} .bm-menu`).length === 0) {
+    if (!closest(e.target, `#${elementId} .bm-menu`)) {
       this.get('state.actions').close();
     }
   },
@@ -95,7 +109,7 @@ export default Component.extend(DomMixin, SwipeSupportMixin, {
     let position = this.get('position');
     let open = this.get('open');
     let gesturesEnabled = this.get('gesturesEnabled');
-    let isMenuSwipe = $(target).closest('.bm-menu').length > 0;
+    let isMenuSwipe = closest(target, '.bm-menu');
 
     if (!gesturesEnabled) {
       return;
