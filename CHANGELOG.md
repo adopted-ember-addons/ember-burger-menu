@@ -1,5 +1,11 @@
 # Changelog
 
+## v3.2.0
+
+### Pull Requests
+
+- [#109](https://github.com/offirgolan/ember-burger-menu/pull/109) Remove usage of jquery in components *by [@josemarluedke](https://github.com/josemarluedke)*
+
 ## v3.1.0
 
 ### Pull Requests
