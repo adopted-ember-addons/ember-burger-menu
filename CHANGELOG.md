@@ -1,5 +1,11 @@
 # Changelog
 
+## v3.3.0
+
+### Pull Requests
+
+- [#110](https://github.com/offirgolan/ember-burger-menu/pull/110) Upgrade to latest Ember CLI and update dependencies  *by [@josemarluedke](https://github.com/josemarluedke)*
+
 ## v3.2.0
 
 ### Pull Requests
