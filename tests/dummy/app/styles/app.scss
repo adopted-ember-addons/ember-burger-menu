@@ -78,7 +78,6 @@ a {
   a {
     font-size: 16px;
     margin: 0 10px;
-    line-height: 1.8px;
     padding: 10px;
     color: $text-color;
     font-weight: 400;
@@ -149,6 +148,14 @@ a {
       position: absolute;
       top: 0;
       padding: 10px;
+      color: #000;
+      font-size: 1rem;
+      opacity: 0.2;
+      font-weight: 100;
+
+      &:hover {
+        opacity: 0.5;
+      }
 
       &.left {
         right: 0;
@@ -363,6 +370,7 @@ main {
       padding-top: 30px;
 
       h4 {
+        margin-top: 10px;
         margin-bottom: 20px;
         font-size: 16px;
         font-weight: 400;
@@ -383,6 +391,8 @@ main {
         padding-left: 25px;
 
         .option {
+          line-height: 2.2;
+
           label {
             font-size: 15px;
             width: 160px;
