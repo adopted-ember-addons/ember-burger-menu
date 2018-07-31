@@ -1,18 +1,25 @@
 @import 'ember-burger-menu';
+@import 'ember-bootstrap/bootstrap';
 
 $accent-color: #e24b31;
 $text-color: #e2e2e2;
 
-$green : #388E3C;
-$blue : #1976D2;
-$yellow : #FFA000;
+$green: #388e3c;
+$blue: #1976d2;
+$yellow: #ffa000;
 
 $animation-duration: $bm-transition-duration - 0.1s;
 
 @mixin link-color($color) {
   color: $color;
 
-  &:hover, &:focus, &:active, &:active:focus, &.active, &.active:hover, &.active:focus {
+  &:hover,
+  &:focus,
+  &:active,
+  &:active:focus,
+  &.active,
+  &.active:hover,
+  &.active:focus {
     color: $color;
   }
 }
@@ -31,7 +38,12 @@ body > .ember-view {
   color: $text-color;
 }
 
-h1, h2, h3, h4, h5, label {
+h1,
+h2,
+h3,
+h4,
+h5,
+label {
   font-weight: 300;
 }
 
@@ -51,7 +63,7 @@ a {
 }
 
 ::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 
 .pointer {
@@ -66,13 +78,13 @@ a {
   a {
     font-size: 16px;
     margin: 0 10px;
-    line-height: 1.8px;
     padding: 10px;
     color: $text-color;
     font-weight: 400;
 
-    &:hover, &.active {
-      border-bottom: 1px solid $accent-color
+    &:hover,
+    &.active {
+      border-bottom: 1px solid $accent-color;
     }
   }
 }
@@ -136,6 +148,14 @@ a {
       position: absolute;
       top: 0;
       padding: 10px;
+      color: #000;
+      font-size: 1rem;
+      opacity: 0.2;
+      font-weight: 100;
+
+      &:hover {
+        opacity: 0.5;
+      }
 
       &.left {
         right: 0;
@@ -149,8 +169,8 @@ a {
     h2 {
       margin: 0;
       padding: 1em;
-      color: rgba(0,0,0,0.4);
-      text-shadow: 0 0 1px rgba(0,0,0,0.1);
+      color: rgba(0, 0, 0, 0.4);
+      text-shadow: 0 0 1px rgba(0, 0, 0, 0.1);
       font-size: 2em;
       text-align: center;
       text-transform: uppercase;
@@ -172,10 +192,10 @@ a {
           display: block;
           padding: 1em 1em 1em 1.2em;
           outline: none;
-          border-bottom: 1px solid rgba(0,0,0,0.2);
+          border-bottom: 1px solid rgba(0, 0, 0, 0.2);
           color: $text-color;
           text-transform: uppercase;
-          text-shadow: 0 0 1px rgba(255,255,255,0.1);
+          text-shadow: 0 0 1px rgba(255, 255, 255, 0.1);
           letter-spacing: 1px;
           -webkit-transition: background $animation-duration;
           transition: background $animation-duration;
@@ -195,9 +215,8 @@ a {
           }
         }
 
-
         &:first-child a {
-          border-top: 1px solid rgba(0,0,0,0.2);
+          border-top: 1px solid rgba(0, 0, 0, 0.2);
         }
       }
     }
@@ -211,7 +230,13 @@ a {
   font-weight: 300;
   background: transparent;
 
-  &:hover, &:focus, &:active, &:active:focus, &.active, &.active:hover, &.active:focus {
+  &:hover,
+  &:focus,
+  &:active,
+  &:active:focus,
+  &.active,
+  &.active:hover,
+  &.active:focus {
     z-index: 0;
     outline: 0;
     box-shadow: none;
@@ -237,8 +262,13 @@ a {
   -webkit-transition: opacity $animation-duration;
   color: white;
 
-  &:hover, &:focus, &:active, &:active:focus, &.active, &.active:hover, &.active:focus {
-
+  &:hover,
+  &:focus,
+  &:active,
+  &:active:focus,
+  &.active,
+  &.active:hover,
+  &.active:focus {
   }
 
   &.green {
@@ -277,7 +307,9 @@ a {
     right: 0;
   }
 
-  &:hover, &:focus, &:active {
+  &:hover,
+  &:focus,
+  &:active {
     color: #ccc;
   }
 }
@@ -338,6 +370,7 @@ main {
       padding-top: 30px;
 
       h4 {
+        margin-top: 10px;
         margin-bottom: 20px;
         font-size: 16px;
         font-weight: 400;
@@ -358,6 +391,8 @@ main {
         padding-left: 25px;
 
         .option {
+          line-height: 2.2;
+
           label {
             font-size: 15px;
             width: 160px;

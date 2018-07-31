@@ -1,6 +1,7 @@
 import Mixin from '@ember/object/mixin';
 import { isNone } from '@ember/utils';
 import { alias } from '@ember/object/computed';
+import { normalizeEvent } from 'ember-jquery-legacy';
 
 let meta;
 
@@ -11,10 +12,11 @@ export default Mixin.create({
   onSwipe(/* direction, target */) {},
 
   touchStart(e) {
+    let nativeEvent = normalizeEvent(e);
     this._super(...arguments);
 
     // jscs:disable
-    let touch = e.originalEvent.touches[0];
+    let touch = nativeEvent.touches[0];
     // jscs:enable
 
     meta = {
@@ -28,10 +30,11 @@ export default Mixin.create({
   },
 
   touchMove(e) {
+    let nativeEvent = normalizeEvent(e);
     this._super(...arguments);
 
     // jscs:disable
-    let touch = e.originalEvent.touches[0];
+    let touch = nativeEvent.touches[0];
     // jscs:enable
 
     meta.differences = {
@@ -41,11 +44,12 @@ export default Mixin.create({
 
     // Compute swipe direction
     if (isNone(meta.isHorizontal)) {
-      meta.isHorizontal = (Math.abs(meta.differences.x) > Math.abs(meta.differences.y));
+      meta.isHorizontal =
+        Math.abs(meta.differences.x) > Math.abs(meta.differences.y);
     }
 
     // A valid swipe event uses only one finger
-    if (e.originalEvent.touches.length > 1) {
+    if (nativeEvent.touches.length > 1) {
       meta.isInvalid = true;
     }
   },
@@ -55,12 +59,15 @@ export default Mixin.create({
 
     let minSwipeDistance = this.get('minSwipeDistance');
     let maxSwipeTime = this.get('maxSwipeTime');
-    let elapsedTime =  new Date().getTime() - meta.start.time;
+    let elapsedTime = new Date().getTime() - meta.start.time;
 
-    if (meta.isHorizontal && !meta.isInvalid &&
-        Math.abs(meta.differences.x) >= minSwipeDistance &&
-        elapsedTime <= maxSwipeTime) {
-      this.onSwipe((meta.differences.x > 0) ? 'right' : 'left', meta.target);
+    if (
+      meta.isHorizontal &&
+      !meta.isInvalid &&
+      Math.abs(meta.differences.x) >= minSwipeDistance &&
+      elapsedTime <= maxSwipeTime
+    ) {
+      this.onSwipe(meta.differences.x > 0 ? 'right' : 'left', meta.target);
     }
   }
 });
