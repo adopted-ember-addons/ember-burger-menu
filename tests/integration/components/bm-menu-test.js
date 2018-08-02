@@ -1,7 +1,7 @@
 import { run } from '@ember/runloop';
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render } from '@ember/test-helpers';
+import { render, findAll } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 import State from 'ember-burger-menu/-private/state';
 
@@ -21,7 +21,8 @@ module('Integration | Component | bm menu', function(hooks) {
 
   hooks.beforeEach(function() {
     this.actions = {};
-    this.send = (actionName, ...args) => this.actions[actionName].apply(this, args);
+    this.send = (actionName, ...args) =>
+      this.actions[actionName].apply(this, args);
   });
 
   hooks.beforeEach(function() {
@@ -33,16 +34,20 @@ module('Integration | Component | bm menu', function(hooks) {
 
   test('it renders', async function(assert) {
     await render(template);
-    assert.ok(this.$('.bm-menu li:contains(One)').length, 'Menu item One exists');
-    assert.ok(this.$('.bm-menu li:contains(Two)').length, 'Menu item Two exists');
+    assert
+      .dom(findAll('.bm-menu li')[0])
+      .hasText('One', 'Menu item One exists');
+    assert
+      .dom(findAll('.bm-menu li')[1])
+      .hasText('Two', 'Menu item Two exists');
   });
 
   test('menu actions trigger', async function(assert) {
     let onOpen = false;
     let onClose = false;
 
-    this.actions.onOpen = () => onOpen = true;
-    this.actions.onClose = () => onClose = true;
+    this.actions.onOpen = () => (onOpen = true);
+    this.actions.onClose = () => (onClose = true);
 
     await render(hbs`
       {{#bm-menu
