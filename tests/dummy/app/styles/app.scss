@@ -1,5 +1,15 @@
 @import 'ember-burger-menu';
-@import 'ember-bootstrap/bootstrap';
+
+@import 'ember-bootstrap/functions';
+@import 'ember-bootstrap/variables';
+@import 'ember-bootstrap/mixins';
+@import 'ember-bootstrap/utilities';
+@import 'ember-bootstrap/root';
+@import 'ember-bootstrap/reboot';
+@import 'ember-bootstrap/type';
+@import 'ember-bootstrap/buttons';
+@import 'ember-bootstrap/button-group';
+@import 'ember-bootstrap/bootstrap-grid';
 
 $accent-color: #e24b31;
 $text-color: #e2e2e2;
