@@ -1,10 +1,18 @@
 # Changelog
 
+## v3.3.1
+
+### Pull Requests
+
+- [#111](https://github.com/offirgolan/ember-burger-menu/pull/111) Completely remove usage of jQuery *by [@josemarluedke](https://github.com/josemarluedke)*
+- [#112](https://github.com/offirgolan/ember-burger-menu/pull/112) Remove unused ember-data dependency *by [@josemarluedke](https://github.com/josemarluedke)*
+- [#113](https://github.com/offirgolan/ember-burger-menu/pull/113) Only include used bootstrap styles *by [@josemarluedke](https://github.com/josemarluedke)*
+
 ## v3.3.0
 
 ### Pull Requests
 
-- [#110](https://github.com/offirgolan/ember-burger-menu/pull/110) Upgrade to latest Ember CLI and update dependencies  *by [@josemarluedke](https://github.com/josemarluedke)*
+- [#110](https://github.com/offirgolan/ember-burger-menu/pull/110) Upgrade to latest Ember CLI and update dependencies *by [@josemarluedke](https://github.com/josemarluedke)*
 
 ## v3.2.0
 
