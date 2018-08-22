@@ -9,7 +9,7 @@ import SwipeSupportMixin from 'ember-burger-menu/mixins/swipe-support';
 import State from 'ember-burger-menu/-private/state';
 import DomMixin from 'ember-lifeline/mixins/dom';
 import isFastboot from 'ember-burger-menu/utils/is-fastboot';
-import closest from 'ember-burger-menu/utils/element-closest';
+import closest from 'closest'
 import { normalizeEvent } from 'ember-jquery-legacy';
 
 export default Component.extend(DomMixin, SwipeSupportMixin, {
@@ -96,7 +96,7 @@ export default Component.extend(DomMixin, SwipeSupportMixin, {
     let nativeEvent = normalizeEvent(e);
     let elementId = this.get('elementId');
     // Close the menu if clicked outside of it
-    if (!closest(nativeEvent.target, `#${elementId} .bm-menu`)) {
+    if (!closest(nativeEvent.target, `#${elementId} .bm-menu`, true)) {
       this.get('state.actions').close();
     }
   },
@@ -112,7 +112,7 @@ export default Component.extend(DomMixin, SwipeSupportMixin, {
     let position = this.get('position');
     let open = this.get('open');
     let gesturesEnabled = this.get('gesturesEnabled');
-    let isMenuSwipe = closest(target, '.bm-menu');
+    let isMenuSwipe = closest(target, '.bm-menu', true);
 
     if (!gesturesEnabled) {
       return;
