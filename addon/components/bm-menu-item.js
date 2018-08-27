@@ -4,7 +4,7 @@ import { computed } from '@ember/object';
 import layout from '../templates/components/bm-menu-item';
 import computedStyleFor from 'ember-burger-menu/computed/style-for';
 import isFastboot from 'ember-burger-menu/utils/is-fastboot';
-import closest from 'ember-burger-menu/utils/element-closest';
+import closest from 'closest'
 
 export default Component.extend({
   layout,
@@ -26,7 +26,7 @@ export default Component.extend({
     const item = this.element;
 
     if (item) {
-      const menu = closest(item, '.bm-menu');
+      const menu = closest(item, '.bm-menu', true);
       if (menu) {
         position = [].slice
           .call(menu.querySelectorAll('.bm-menu-item'))
