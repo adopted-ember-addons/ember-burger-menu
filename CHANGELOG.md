@@ -1,5 +1,11 @@
 # Changelog
 
+## v3.3.2
+
+### Pull Requests
+
+- [#116](https://github.com/offirgolan/ember-burger-menu/pull/116) fix(element-closest): IE11 fix to use implementation via npm package `element-closest` *by [@alexdiliberto](https://github.com/alexdiliberto)*
+
 ## v3.3.1
 
 ### Pull Requests
