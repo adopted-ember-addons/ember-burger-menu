@@ -80,5 +80,8 @@
   "ember-addon": {
     "configPath": "tests/dummy/config",
     "demoURL": "http://offirgolan.github.io/ember-burger-menu"
+  },
+  "resolutions": {
+    "matches-selector": "^1.0.0"
   }
 }
