@@ -68,14 +68,14 @@
     "test": "tests"
   },
   "dependencies": {
-    "closest": "^0.0.1",
     "ember-auto-import": "^1.2.13",
     "ember-cli-babel": "^6.16.0",
     "ember-cli-htmlbars": "^2.0.4",
     "ember-jquery-legacy": "^1.0.0",
     "ember-lifeline": "^3.0.5",
     "ember-require-module": "^0.3.0",
-    "ember-wormhole": "0.5.3"
+    "ember-wormhole": "0.5.3",
+    "matches-selector": "^1.2.0"
   },
   "ember-addon": {
     "configPath": "tests/dummy/config",
