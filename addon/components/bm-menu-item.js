@@ -4,7 +4,7 @@ import { computed } from '@ember/object';
 import layout from '../templates/components/bm-menu-item';
 import computedStyleFor from 'ember-burger-menu/computed/style-for';
 import isFastboot from 'ember-burger-menu/utils/is-fastboot';
-import closest from 'closest'
+import closest from 'ember-burger-menu/utils/closest';
 
 export default Component.extend({
   layout,

@@ -9,7 +9,7 @@ import SwipeSupportMixin from 'ember-burger-menu/mixins/swipe-support';
 import State from 'ember-burger-menu/-private/state';
 import DomMixin from 'ember-lifeline/mixins/dom';
 import isFastboot from 'ember-burger-menu/utils/is-fastboot';
-import closest from 'closest'
+import closest from 'ember-burger-menu/utils/closest';
 import { normalizeEvent } from 'ember-jquery-legacy';
 
 export default Component.extend(DomMixin, SwipeSupportMixin, {
