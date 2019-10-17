@@ -68,8 +68,8 @@
     "test": "tests"
   },
   "dependencies": {
-    "ember-auto-import": "^1.2.13",
-    "ember-cli-babel": "^6.16.0",
+    "ember-auto-import": "^1.5.3",
+    "ember-cli-babel": "^7.0.0",
     "ember-cli-htmlbars": "^2.0.4",
     "ember-jquery-legacy": "^1.0.0",
     "ember-lifeline": "^3.0.5",
