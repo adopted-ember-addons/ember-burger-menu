@@ -1,7 +1,7 @@
-{{#ember-wormhole to=(concat containerId '-outlet-menu') renderInPlace=renderInPlace}}
+{{#ember-wormhole to=(concat containerId "-outlet-menu") renderInPlace=renderInPlace}}
   <div class="bm-menu" style={{style}}>
     {{yield (hash
-        item=(component 'bm-menu-item'
+        item=(component "bm-menu-item"
           tagName=itemTagName
           menuItems=menuItems
           dismissOnClick=dismissOnItemClick
