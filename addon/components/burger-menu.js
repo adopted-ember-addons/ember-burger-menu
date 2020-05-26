@@ -63,15 +63,17 @@ export default Component.extend(DomMixin, SwipeSupportMixin, {
         return;
       }
 
-      let methodName =
-        this.get('open') && !this.get('locked')
-          ? '_setupEvents'
-          : '_teardownEvents';
-      this._setupEventsTimer = run.scheduleOnce(
-        'afterRender',
-        this,
-        methodName
-      );
+      run.later(() => {
+        let methodName =
+          this.get('open') && !this.get('locked')
+            ? '_setupEvents'
+            : '_teardownEvents';
+        this._setupEventsTimer = run.scheduleOnce(
+          'afterRender',
+          this,
+          methodName
+        );
+      }, 0);
     })
   ),
 
