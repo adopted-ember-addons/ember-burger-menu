@@ -2,6 +2,21 @@
   "name": "ember-burger-menu",
   "version": "3.3.4",
   "description": "An off-canvas sidebar component with a collection of animations and styles using CSS transitions",
+  "keywords": [
+    "ember-addon",
+    "burger-menu",
+    "sidebar"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:offirgolan/ember-burger-menu.git"
+  },
+  "license": "MIT",
+  "author": "Offir Golan <offirgolan@gmail.com>",
+  "directories": {
+    "doc": "doc",
+    "test": "tests"
+  },
   "scripts": {
     "build": "ember build",
     "lint:js": "eslint .",
@@ -9,8 +24,15 @@
     "test": "ember test",
     "test:all": "ember try:each"
   },
-  "engines": {
-    "node": "6.* || 8.* || >= 10.*"
+  "dependencies": {
+    "ember-auto-import": "^1.2.13",
+    "ember-cli-babel": "^7.26.6",
+    "ember-cli-htmlbars": "^2.0.4",
+    "ember-jquery-legacy": "^1.0.0",
+    "ember-lifeline": "^3.1.1",
+    "ember-require-module": "^0.3.0",
+    "ember-wormhole": "0.5.3",
+    "matches-selector": "^1.2.0"
   },
   "devDependencies": {
     "bootstrap": "^4.0.0",
@@ -51,30 +73,8 @@
     "qunit-dom": "^0.7.1",
     "sass": "^1.14.3"
   },
-  "keywords": [
-    "ember-addon",
-    "burger-menu",
-    "sidebar"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:offirgolan/ember-burger-menu.git"
-  },
-  "license": "MIT",
-  "author": "Offir Golan <offirgolan@gmail.com>",
-  "directories": {
-    "doc": "doc",
-    "test": "tests"
-  },
-  "dependencies": {
-    "ember-auto-import": "^1.2.13",
-    "ember-cli-babel": "^7.26.6",
-    "ember-cli-htmlbars": "^2.0.4",
-    "ember-jquery-legacy": "^1.0.0",
-    "ember-lifeline": "^3.1.1",
-    "ember-require-module": "^0.3.0",
-    "ember-wormhole": "0.5.3",
-    "matches-selector": "^1.2.0"
+  "engines": {
+    "node": "6.* || 8.* || >= 10.*"
   },
   "ember-addon": {
     "configPath": "tests/dummy/config",
