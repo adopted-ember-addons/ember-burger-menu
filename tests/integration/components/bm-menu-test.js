@@ -1,7 +1,6 @@
-import { run } from '@ember/runloop';
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render, findAll } from '@ember/test-helpers';
+import { render, findAll, settled } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 import State from 'ember-burger-menu/-private/state';
 
@@ -18,12 +17,6 @@ const template = hbs`
 
 module('Integration | Component | bm menu', function (hooks) {
   setupRenderingTest(hooks);
-
-  hooks.beforeEach(function () {
-    this.actions = {};
-    this.send = (actionName, ...args) =>
-      this.actions[actionName].apply(this, args);
-  });
 
   hooks.beforeEach(function () {
     this.setProperties({
@@ -46,13 +39,13 @@ module('Integration | Component | bm menu', function (hooks) {
     let onOpen = false;
     let onClose = false;
 
-    this.actions.onOpen = () => (onOpen = true);
-    this.actions.onClose = () => (onClose = true);
+    this.onOpen = () => (onOpen = true);
+    this.onClose = () => (onClose = true);
 
     await render(hbs`
       {{#bm-menu
-        onOpen=(action 'onOpen')
-        onClose=(action 'onClose')
+        onOpen=this.onOpen
+        onClose=this.onClose
         state=this.state
         as |burger|
       }}
@@ -61,10 +54,16 @@ module('Integration | Component | bm menu', function (hooks) {
 
     let state = this.state;
 
-    run(() => state.set('open', true));
+    state.set('open', true);
+
+    await settled();
+
     assert.ok(onOpen, 'onOpen action was triggered');
 
-    run(() => state.set('open', false));
+    state.set('open', false);
+
+    await settled();
+
     assert.ok(onClose, 'onClose action was triggered');
   });
 });
