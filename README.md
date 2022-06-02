@@ -13,6 +13,13 @@ An off-canvas sidebar component with a collection of animations and styles using
 - Swipe gesture support with changeable thresholds
 - Easily create your own animations
 
+Compatibility
+------------------------------------------------------------------------------
+
+* Ember.js v3.4 or above
+* Ember CLI v2.13 or above
+* Node.js v8 or above
+
 ## Installation
 
 ```
@@ -197,6 +204,7 @@ This addon utilizes contextual components to be able to correctly control and an
 
   **Default: 150**
 
+
 - #### `maxSwipeTime`
 
   The maximum amount of time (in ms) it must take the user to swipe to be registered as valid .
@@ -363,3 +371,6 @@ export default Ember.Component.extend({
   ...
 {{/burger-menu}}
 ```
+
+# Contributing
+See the [Contributing](CONTRIBUTING.md) guide for details.

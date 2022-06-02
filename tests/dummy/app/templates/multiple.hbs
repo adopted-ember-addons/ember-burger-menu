@@ -1,15 +1,15 @@
 <main class="text-center multiple">
-  {{partial 'header'}}
+  {{dummy-header}}
 
 
   <div class="content multiple">
     {{#each menus as |menu|}}
-      <a class="hamburger {{if menu.open 'burger-hidden'}} {{menu.color}}" {{action (toggle 'open' menu)}}>
+      <a class="hamburger {{if menu.open "burger-hidden"}} {{menu.color}}" {{action (toggle "open" menu)}} role="button">
         <i class="fa fa-bars" aria-hidden="true"></i>
       </a>
     {{/each}}
 
-    <img src="images/Gene_Belcher.png" width="150" ondragstart="return false;"/>
+    <img src="images/Gene_Belcher.png" width="150" ondragstart="return false;" alt="Gene Blecher">
     <p><i>"This is me now!"</i></p>
   </div>
 </main>
@@ -27,10 +27,10 @@
     width=250
     as |burger|}}
     {{#burger.menu itemTagName="li" dismissOnItemClick=true as |menu|}}
-      <a {{action burger.state.actions.close}} class="close {{burger.state.position}} fa fa-times"></a>
+      <a {{action burger.state.actions.close}} class="close {{burger.state.position}} fa fa-times" role="button"></a>
       <h2>{{titleize m.color}} Menu</h2>
 
-      {{partial 'menu'}}
+      {{dummy-menu menu=menu}}
     {{/burger.menu}}
   {{/burger-menu}}
 {{/each}}
