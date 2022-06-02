@@ -2,6 +2,21 @@
   "name": "ember-burger-menu",
   "version": "3.3.4",
   "description": "An off-canvas sidebar component with a collection of animations and styles using CSS transitions",
+  "keywords": [
+    "ember-addon",
+    "burger-menu",
+    "sidebar"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:adopted-ember-addons/ember-burger-menu.git"
+  },
+  "license": "MIT",
+  "author": "Offir Golan <offirgolan@gmail.com>",
+  "directories": {
+    "doc": "doc",
+    "test": "tests"
+  },
   "scripts": {
     "build": "ember build",
     "lint:hbs": "ember-template-lint .",
@@ -10,31 +25,32 @@
     "test": "ember test",
     "test:all": "ember try:each"
   },
-  "engines": {
-    "node": "8.* || >= 10.*"
+  "dependencies": {
+    "ember-auto-import": "^2.4.2",
+    "ember-cli-babel": "^7.13.0",
+    "ember-cli-htmlbars": "^4.0.8",
+    "ember-lifeline": "^4.1.5",
+    "ember-wormhole": "^0.6.0"
   },
   "devDependencies": {
     "@ember/optional-features": "^1.1.0",
     "babel-eslint": "^10.0.3",
     "bootstrap": "^4.4.1",
     "broccoli-asset-rev": "^3.0.0",
-    "ember-bootstrap": "^3.1.0",
+    "ember-bootstrap": "^4.9.0",
     "ember-cli": "~3.14.0",
     "ember-cli-app-version": "^3.2.0",
-    "ember-cli-autoprefixer": "0.8.1",
-    "ember-cli-changelog": "^0.3.4",
+    "ember-cli-autoprefixer": "^2.0.0",
     "ember-cli-dependency-checker": "^3.2.0",
     "ember-cli-github-pages": "0.2.2",
     "ember-cli-inject-live-reload": "^2.0.2",
-    "ember-cli-release": "1.0.0-beta.2",
-    "ember-cli-sass": "^10.0.1",
+    "ember-cli-sass": "^11.0.1",
     "ember-cli-sri": "^2.1.1",
     "ember-cli-string-helpers": "^4.0.5",
     "ember-cli-template-lint": "^1.0.0-beta.3",
-    "ember-cli-test-loader": "^2.2.0",
     "ember-cli-uglify": "^3.0.0",
     "ember-cli-yuidoc": "0.9.1",
-    "ember-composable-helpers": "3.0.2",
+    "ember-composable-helpers": "^5.0.0",
     "ember-disable-prototype-extensions": "^1.1.3",
     "ember-export-application-global": "^2.0.1",
     "ember-font-awesome": "^4.0.0-rc.4",
@@ -44,42 +60,21 @@
     "ember-resolver": "^6.0.0",
     "ember-source": "~3.14.2",
     "ember-source-channel-url": "^2.0.1",
-    "ember-truth-helpers": "2.1.0",
+    "ember-truth-helpers": "^3.0.0",
     "ember-try": "^1.3.0",
     "eslint": "^6.7.2",
     "eslint-plugin-ember": "^7.7.1",
     "eslint-plugin-node": "^10.0.0",
     "loader.js": "^4.7.0",
     "qunit-dom": "^0.9.2",
-    "sass": "^1.23.7"
+    "sass": "^1.52.1",
+    "webpack": "^5.73.0"
   },
-  "keywords": [
-    "ember-addon",
-    "burger-menu",
-    "sidebar"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:offirgolan/ember-burger-menu.git"
-  },
-  "license": "MIT",
-  "author": "Offir Golan <offirgolan@gmail.com>",
-  "directories": {
-    "doc": "doc",
-    "test": "tests"
-  },
-  "dependencies": {
-    "ember-auto-import": "^1.5.3",
-    "ember-cli-babel": "^7.13.0",
-    "ember-cli-htmlbars": "^4.0.8",
-    "ember-jquery-legacy": "^1.0.0",
-    "ember-lifeline": "^4.1.5",
-    "ember-require-module": "^0.3.0",
-    "ember-wormhole": "0.5.5",
-    "matches-selector": "^1.2.0"
+  "engines": {
+    "node": "8.* || >= 10.*"
   },
   "ember-addon": {
     "configPath": "tests/dummy/config",
-    "demoURL": "http://offirgolan.github.io/ember-burger-menu"
+    "demoURL": "https://adopted-ember-addons.github.io/ember-burger-menu/"
   }
 }

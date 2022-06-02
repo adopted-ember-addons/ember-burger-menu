@@ -29,16 +29,21 @@ jobs:
   fail_fast: true
   allow_failures:
     - env: EMBER_TRY_SCENARIO=ember-canary
-    - env: EMBER_TRY_SCENARIO=ember-beta
 
   include:
     # runs linting and tests with current locked deps
 
     - stage: "Tests"
       name: "Tests"
+      install:
+        - yarn install --non-interactive
       script:
         - yarn lint:hbs
         - yarn lint:js
+        - yarn test
+
+    - name: "Floating Dependencies"
+      script:
         - yarn test
 
     # we recommend new addons test the current and previous LTS
@@ -56,7 +61,7 @@ before_install:
   - export PATH=$HOME/.yarn/bin:$PATH
 
 install:
-  - yarn install --non-interactive
+  - yarn install --no-lockfile --non-interactive
 
 script:
   - node_modules/.bin/ember try:one $EMBER_TRY_SCENARIO
