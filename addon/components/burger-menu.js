@@ -11,7 +11,7 @@ import isFastboot from 'ember-burger-menu/utils/is-fastboot';
 import {
   addEventListener,
   removeEventListener,
-  runDisposables
+  runDisposables,
 } from 'ember-lifeline';
 
 export default Component.extend(SwipeSupportMixin, {
@@ -22,7 +22,7 @@ export default Component.extend(SwipeSupportMixin, {
     'translucentOverlay',
     'animationClass',
     'itemAnimationClass',
-    'position'
+    'position',
   ],
   attributeBindings: ['style'],
 
@@ -31,7 +31,9 @@ export default Component.extend(SwipeSupportMixin, {
   dismissOnEsc: true,
   gesturesEnabled: true,
 
-  state: computed(() => State.create()).readOnly(),
+  state: computed(function () {
+    return State.create();
+  }).readOnly(),
 
   open: alias('state.open'),
   locked: alias('state.locked'),
@@ -67,24 +69,18 @@ export default Component.extend(SwipeSupportMixin, {
       }
 
       let methodName =
-        this.get('open') && !this.get('locked')
-          ? '_setupEvents'
-          : '_teardownEvents';
-      this._setupEventsTimer = scheduleOnce(
-        'afterRender',
-        this,
-        methodName
-      );
+        this.open && !this.locked ? '_setupEvents' : '_teardownEvents';
+      this._setupEventsTimer = scheduleOnce('afterRender', this, methodName);
     })
   ),
 
   _setupEvents() {
-    if (this.get('dismissOnClick')) {
+    if (this.dismissOnClick) {
       addEventListener(this, document.body, 'click', this.onClick);
       addEventListener(this, document.body, 'touchstart', this.onClick);
     }
 
-    if (this.get('dismissOnEsc')) {
+    if (this.dismissOnEsc) {
       addEventListener(this, window, 'keyup', this.onKeyup);
     }
   },
@@ -96,7 +92,7 @@ export default Component.extend(SwipeSupportMixin, {
   },
 
   onClick(e) {
-    let elementId = this.get('elementId');
+    let elementId = this.elementId;
     // Close the menu if clicked outside of it
     if (e.target.closest(`#${elementId} .bm-menu`)) {
       this.get('state.actions').close();
@@ -110,9 +106,9 @@ export default Component.extend(SwipeSupportMixin, {
   },
 
   onSwipe(direction, target) {
-    let position = this.get('position');
-    let open = this.get('open');
-    let gesturesEnabled = this.get('gesturesEnabled');
+    let position = this.position;
+    let open = this.open;
+    let gesturesEnabled = this.gesturesEnabled;
     let isMenuSwipe = target.closest('.bm-menu');
 
     if (!gesturesEnabled) {
@@ -124,5 +120,5 @@ export default Component.extend(SwipeSupportMixin, {
     } else if (!open && position !== direction) {
       this.get('state.actions').open();
     }
-  }
+  },
 });

@@ -16,7 +16,7 @@ export default Component.extend({
   dismissOnClick: false,
   style: computedStyleFor('menuItem').readOnly(),
 
-  index: computed('menuItems.[]', function() {
+  index: computed('element', 'menuItems.[]', function () {
     if (isFastboot()) {
       return -1;
     }
@@ -38,29 +38,19 @@ export default Component.extend({
 
   didInsertElement() {
     this._super(...arguments);
-    scheduleOnce(
-      'afterRender',
-      this.get('menuItems'),
-      'addObject',
-      this.get('elementId')
-    );
+    scheduleOnce('afterRender', this.menuItems, 'addObject', this.elementId);
   },
 
   willDestroyElement() {
     this._super(...arguments);
-    scheduleOnce(
-      'afterRender',
-      this.get('menuItems'),
-      'removeObject',
-      this.get('elementId')
-    );
+    scheduleOnce('afterRender', this.menuItems, 'removeObject', this.elementId);
   },
 
   click() {
     this._super(...arguments);
 
-    if (this.get('dismissOnClick')) {
+    if (this.dismissOnClick) {
       this.get('state.actions').close();
     }
-  }
+  },
 });

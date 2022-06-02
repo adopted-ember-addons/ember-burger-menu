@@ -13,23 +13,15 @@ const ANIMATIONS = [
   'scale-up',
   'scale-down',
   'scale-rotate',
-  'slide-reverse'
+  'slide-reverse',
 ];
 
-const ITEM_ANIMATIONS = [
-  'push',
-  'stack'
-];
+const ITEM_ANIMATIONS = ['push', 'stack'];
 
-const STYLES = [
-  'container',
-  'outlet',
-  'menu',
-  'menuItem'
-];
+const STYLES = ['container', 'outlet', 'menu', 'menuItem'];
 
-module('Unit | Animations', function() {
-  test('all animations', function(assert) {
+module('Unit | Animations', function () {
+  test('all animations', function (assert) {
     ANIMATIONS.forEach((a) => {
       let animation = getAnimation(a).create();
 
@@ -38,12 +30,15 @@ module('Unit | Animations', function() {
         assert.ok(fn && typeof fn === 'function', `${a}.${s} is a fn`);
 
         let style = fn(false, 300, false);
-        assert.ok(style && typeof style === 'object', `${a}.${s} returned a style object`);
+        assert.ok(
+          style && typeof style === 'object',
+          `${a}.${s} returned a style object`
+        );
       });
     });
   });
 
-  test('item animation are mixed in', function(assert) {
+  test('item animation are mixed in', function (assert) {
     let animation = getAnimation(ANIMATIONS[0]).create();
 
     assert.deepEqual(animation.menuItem(), {});

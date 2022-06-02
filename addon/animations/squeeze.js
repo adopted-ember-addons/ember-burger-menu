@@ -5,8 +5,8 @@ export default Animation.extend({
 
   outlet(open, width, right) {
     return {
-      marginLeft: (open && !right) ? `${width}px` : 0,
-      marginRight: (open && right) ? `${width}px` : 0
+      marginLeft: open && !right ? `${width}px` : 0,
+      marginRight: open && right ? `${width}px` : 0,
     };
-  }
+  },
 });

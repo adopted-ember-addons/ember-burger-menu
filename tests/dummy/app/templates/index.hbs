@@ -1,14 +1,14 @@
-{{#burger-menu
-  translucentOverlay=this.translucentOverlay
-  dismissOnClick=this.dismissOnClick
-  dismissOnEsc=this.dismissOnEsc
-  gesturesEnabled=this.gesturesEnabled
-  animation=this.animation
-  itemAnimation=this.itemAnimation
-  position=this.position
-  locked=this.locked as |burger|
-}}
-  {{#burger.menu itemTagName='li' dismissOnItemClick=true as |menu|}}
+<BurgerMenu
+  @translucentOverlay={{this.translucentOverlay}}
+  @dismissOnClick={{this.dismissOnClick}}
+  @dismissOnEsc={{this.dismissOnEsc}}
+  @gesturesEnabled={{this.gesturesEnabled}}
+  @animation={{this.animation}}
+  @itemAnimation={{this.itemAnimation}}
+  @position={{this.position}}
+  @locked={{this.locked}} as |burger|
+>
+  <burger.menu @itemTagName='li' @dismissOnItemClick={{true}} as |menu|>
     <a
       class='close {{burger.state.position}}'
       role='button'
@@ -23,9 +23,9 @@
     </h2>
 
     <DummyMenu @menu={{menu}} />
-  {{/burger.menu}}
+  </burger.menu>
 
-  {{#burger.outlet}}
+  <burger.outlet>
     <a
       class='hamburger {{burger.state.position}} {{
         if burger.state.open 'burger-hidden'
@@ -50,6 +50,7 @@
                   class='btn btn-default btn-outline {{
                     if (eq animation burger.state.animation) 'active'
                   }}'
+                  type='button'
                   {{on 'click' (fn this.setMenu 'animation' animation)}}
                 >
                   {{titleize (dedasherize animation)}}
@@ -61,8 +62,9 @@
               </h4>
               <button
                 class='btn btn-default btn-outline {{
-                  if (not burger.state.itemAnimation) 'active'
+                  unless burger.state.itemAnimation 'active'
                 }}'
+                type='button'
                 {{on 'click' (fn this.setMenu 'itemAnimation' null)}}
               >
                 None
@@ -72,6 +74,7 @@
                   class='btn btn-default btn-outline {{
                     if (eq animation burger.state.itemAnimation) 'active'
                   }}'
+                  type='button'
                   {{on 'click' (fn this.setMenu 'itemAnimation' animation)}}
                 >
                   {{titleize (dedasherize animation)}}
@@ -95,7 +98,7 @@
                       class='btn btn-default btn-outline {{
                         if (eq position burger.state.position) 'active'
                       }}'
-                      {{action 'setMenu' 'position' position}}
+                      {{on 'click' (fn this.setMenu 'position' position)}}
                     >
                       {{titleize position}}
                     </button>
@@ -194,7 +197,7 @@
         <DummyInspiration />
       </div>
     </main>
-  {{/burger.outlet}}
+  </burger.outlet>
 
   <img
     src='images/tomster.png'
@@ -203,4 +206,4 @@
     ondragstart='return false;'
     alt='Tomster'
   />
-{{/burger-menu}}
+</BurgerMenu>

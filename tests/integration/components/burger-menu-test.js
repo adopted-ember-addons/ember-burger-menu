@@ -6,7 +6,7 @@ import {
   click,
   find,
   findAll,
-  triggerKeyEvent
+  triggerKeyEvent,
 } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 import Animation from 'ember-burger-menu/animations/base';
@@ -14,17 +14,17 @@ import triggerSwipeEvent from '../../helpers/trigger-swipe-event';
 
 const template = hbs`
   {{#burger-menu
-    translucentOverlay=translucentOverlay
-    dismissOnClick=dismissOnClick
-    dismissOnEsc=dismissOnEsc
-    gesturesEnabled=gesturesEnabled
-    open=open
-    locked=locked
-    width=width
-    position=position
-    itemAnimation=itemAnimation
-    animation=animation
-    customAnimation=customAnimation
+    translucentOverlay=this.translucentOverlay
+    dismissOnClick=this.dismissOnClick
+    dismissOnEsc=this.dismissOnEsc
+    gesturesEnabled=this.gesturesEnabled
+    open=this.open
+    locked=this.locked
+    width=this.width
+    position=this.position
+    itemAnimation=this.itemAnimation
+    animation=this.animation
+    customAnimation=this.customAnimation
     as |burger|
   }}
     {{#burger.menu itemTagName="li" as |menu|}}
@@ -43,21 +43,21 @@ const CustomAnimation = Animation.extend({
 
   container() {
     return {
-      color: 'rgb(0, 128, 0)'
+      color: 'rgb(0, 128, 0)',
     };
   },
 
   outlet(open, width) {
     return {
-      transform: open ? `translate3d(-${width}px, 0, 0)` : ''
+      transform: open ? `translate3d(-${width}px, 0, 0)` : '',
     };
   },
 
   menu() {
     return {
-      color: 'rgb(255, 0, 0)'
+      color: 'rgb(255, 0, 0)',
     };
-  }
+  },
 });
 
 const CustomItemAnimation = Animation.extend({
@@ -65,15 +65,15 @@ const CustomItemAnimation = Animation.extend({
 
   menuItem(open, width, right, index) {
     return {
-      color: open ? `rgb(${index}, 0, 0)` : 'rgb(255, 255, 255)'
+      color: open ? `rgb(${index}, 0, 0)` : 'rgb(255, 255, 255)',
     };
-  }
+  },
 });
 
-module('Integration | Component | burger menu', function(hooks) {
+module('Integration | Component | burger menu', function (hooks) {
   setupRenderingTest(hooks);
 
-  hooks.beforeEach(function() {
+  hooks.beforeEach(function () {
     this.setProperties({
       open: false,
       locked: false,
@@ -85,18 +85,18 @@ module('Integration | Component | burger menu', function(hooks) {
       translucentOverlay: true,
       dismissOnClick: true,
       dismissOnEsc: true,
-      gesturesEnabled: true
+      gesturesEnabled: true,
     });
   });
 
-  test('it renders', async function(assert) {
+  test('it renders', async function (assert) {
     await render(template);
 
     assert.dom('.bm-menu li').hasText('One', 'Menu has rendered');
     assert.dom('.bm-content').hasText('Content', 'Outlet content rendered');
   });
 
-  test('animation and itemAnimation set correct classes', async function(assert) {
+  test('animation and itemAnimation set correct classes', async function (assert) {
     await render(template);
 
     run(() => this.set('animation', 'push'));
@@ -117,11 +117,11 @@ module('Integration | Component | burger menu', function(hooks) {
       .hasClass('bm-item--stack', 'Menu has correct item animation class');
   });
 
-  test('menu options work', async function(assert) {
+  test('menu options work', async function (assert) {
     await render(template);
 
     // Open
-    assert.equal(this.get('open'), false, 'Open is initialy false');
+    assert.false(this.open, 'Open is initialy false');
     assert.dom('.ember-burger-menu').hasNoClass('is-open', 'Menu is closed');
 
     run(() => this.set('open', true));
@@ -148,9 +148,9 @@ module('Integration | Component | burger menu', function(hooks) {
       .hasClass('bm--push', 'Animation was changed to push');
   });
 
-  test('menu state actions work', async function(assert) {
+  test('menu state actions work', async function (assert) {
     await render(hbs`
-      {{#burger-menu open=open dismissOnClick=false as |burger|}}
+      {{#burger-menu open=this.open dismissOnClick=false as |burger|}}
         {{#burger.menu itemTagName="li" as |menu|}}
           <ul>
             {{#menu.item}}One{{/menu.item}}
@@ -159,29 +159,29 @@ module('Integration | Component | burger menu', function(hooks) {
         {{/burger.menu}}
 
         {{#burger.outlet}}
-          <a id="open" {{action burger.state.actions.open}}></a>
-          <a id="close" {{action burger.state.actions.close}}></a>
-          <a id="toggle" {{action burger.state.actions.toggle}}></a>
+          <a id="open" {{on "click" burger.state.actions.open}}></a>
+          <a id="close" {{on "click" burger.state.actions.close}}></a>
+          <a id="toggle" {{on "click" burger.state.actions.toggle}}></a>
         {{/burger.outlet}}
       {{/burger-menu}}
     `);
 
     // Open
-    assert.equal(this.get('open'), false, 'Open is initialy false');
+    assert.false(this.open, 'Open is initialy false');
     assert.dom('.ember-burger-menu').hasNoClass('is-open', 'Menu is closed');
 
     await click('#open');
     assert.dom('.ember-burger-menu').hasClass('is-open', 'Menu is open');
 
     // Close
-    assert.equal(this.get('open'), true, 'Open is initialy true');
+    assert.true(this.open, 'Open is initialy true');
     assert.dom('.ember-burger-menu').hasClass('is-open', 'Menu is open');
 
     await click('#close');
     assert.dom('.ember-burger-menu').hasNoClass('is-open', 'Menu is closed');
 
     // Toggle
-    assert.equal(this.get('open'), false, 'Open is initialy false');
+    assert.false(this.open, 'Open is initialy false');
     assert.dom('.ember-burger-menu').hasNoClass('is-open', 'Menu is closed');
 
     await click('#toggle');
@@ -191,17 +191,17 @@ module('Integration | Component | burger menu', function(hooks) {
     assert.dom('.ember-burger-menu').hasNoClass('is-open', 'Menu is closed');
   });
 
-  test('menu opens and closes', async function(assert) {
+  test('menu opens and closes', async function (assert) {
     await render(template);
 
-    assert.equal(this.get('open'), false, 'Open is initialy false');
+    assert.false(this.open, 'Open is initialy false');
     assert.dom('.ember-burger-menu').hasNoClass('is-open', 'Menu is not open');
 
     this.set('open', true);
     assert.dom('.ember-burger-menu').hasClass('is-open', 'Menu is open');
   });
 
-  test('clicking outside of menu closes it -- dismissOnClick = true', async function(assert) {
+  test('clicking outside of menu closes it -- dismissOnClick = true', async function (assert) {
     this.set('open', true);
 
     await render(template);
@@ -219,7 +219,7 @@ module('Integration | Component | burger menu', function(hooks) {
       .hasNoClass('is-open', 'Clicking in the content closes the menu');
   });
 
-  test('clicking outside of menu doesnt close it -- dismissOnClick = false', async function(assert) {
+  test('clicking outside of menu doesnt close it -- dismissOnClick = false', async function (assert) {
     this.set('open', true);
     this.set('dismissOnClick', false);
 
@@ -238,7 +238,7 @@ module('Integration | Component | burger menu', function(hooks) {
       .hasClass('is-open', 'Clicking in the content doesnt close the menu');
   });
 
-  test('clicking outside of locked menu doesnt close it', async function(assert) {
+  test('clicking outside of locked menu doesnt close it', async function (assert) {
     this.set('open', true);
     this.set('locked', true);
 
@@ -257,7 +257,7 @@ module('Integration | Component | burger menu', function(hooks) {
       .hasClass('is-open', 'Clicking in the content doesnt close the menu');
   });
 
-  test('pressing ESC closes the menu -- dismissOnEsc = true', async function(assert) {
+  test('pressing ESC closes the menu -- dismissOnEsc = true', async function (assert) {
     this.set('open', true);
 
     await render(template);
@@ -268,7 +268,7 @@ module('Integration | Component | burger menu', function(hooks) {
     assert.dom('.ember-burger-menu').hasNoClass('is-open', 'Menu is closed');
   });
 
-  test('pressing ESC doesnt close the menu -- dismissOnEsc = false', async function(assert) {
+  test('pressing ESC doesnt close the menu -- dismissOnEsc = false', async function (assert) {
     this.set('open', true);
     this.set('dismissOnEsc', false);
 
@@ -280,7 +280,7 @@ module('Integration | Component | burger menu', function(hooks) {
     assert.dom('.ember-burger-menu').hasClass('is-open', 'Menu is open');
   });
 
-  test('pressing ESC doesnt close a locked menu', async function(assert) {
+  test('pressing ESC doesnt close a locked menu', async function (assert) {
     this.set('open', true);
     this.set('locked', true);
 
@@ -292,7 +292,7 @@ module('Integration | Component | burger menu', function(hooks) {
     assert.dom('.ember-burger-menu').hasClass('is-open', 'Menu is open');
   });
 
-  test('swipe events toggles the menu', async function(assert) {
+  test('swipe events toggles the menu', async function (assert) {
     await render(template);
 
     assert.dom('.ember-burger-menu').hasNoClass('is-open', 'Menu is not open');
@@ -319,7 +319,7 @@ module('Integration | Component | burger menu', function(hooks) {
     assert.dom('.ember-burger-menu').hasNoClass('is-open', 'Menu is not open');
   });
 
-  test('swipe events dont toggle the menu -- gesturesEnabled = false', async function(assert) {
+  test('swipe events dont toggle the menu -- gesturesEnabled = false', async function (assert) {
     this.set('gesturesEnabled', false);
     await render(template);
 
@@ -330,7 +330,7 @@ module('Integration | Component | burger menu', function(hooks) {
     assert.dom('.ember-burger-menu').hasNoClass('is-open', 'Menu is not open');
   });
 
-  test('swipe events dont toggle a locked menu', async function(assert) {
+  test('swipe events dont toggle a locked menu', async function (assert) {
     this.set('open', true);
     this.set('locked', true);
     await render(template);
@@ -342,7 +342,7 @@ module('Integration | Component | burger menu', function(hooks) {
     assert.dom('.ember-burger-menu').hasClass('is-open', 'Menu is open');
   });
 
-  test('custom animation', async function(assert) {
+  test('custom animation', async function (assert) {
     this.set('customAnimation', CustomAnimation);
 
     await render(template);
@@ -378,7 +378,7 @@ module('Integration | Component | burger menu', function(hooks) {
     );
   });
 
-  test('custom item animation', async function(assert) {
+  test('custom item animation', async function (assert) {
     this.set('customAnimation', CustomItemAnimation);
 
     await render(template);

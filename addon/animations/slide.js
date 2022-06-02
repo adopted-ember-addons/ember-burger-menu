@@ -1,5 +1,5 @@
 import Animation from 'ember-burger-menu/animations/base';
 
 export default Animation.extend({
-  animation: 'slide'
+  animation: 'slide',
 });

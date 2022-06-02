@@ -12,19 +12,23 @@ const PREFIXED_PROPS = [
   'transform-style',
   'transform-origin',
   'perspective',
-  'perspective-origin'
+  'perspective-origin',
 ];
 
 export default function cssStringify(hash = {}) {
-  return htmlSafe(Object.keys(hash).reduce((css, key) => {
-    let value = hash[key];
+  return htmlSafe(
+    Object.keys(hash)
+      .reduce((css, key) => {
+        let value = hash[key];
 
-    if (!isEmpty(value)) {
-      css = css.concat(buildProp(key, value));
-    }
+        if (!isEmpty(value)) {
+          css = css.concat(buildProp(key, value));
+        }
 
-    return css;
-  }, []).join('; '));
+        return css;
+      }, [])
+      .join('; ')
+  );
 }
 
 function buildProp(key, value) {

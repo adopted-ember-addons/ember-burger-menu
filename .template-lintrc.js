@@ -4,6 +4,8 @@ module.exports = {
   extends: 'recommended',
 
   rules: {
-    'no-inline-styles': { allowDynamicStyles: true }
-  }
+    'link-href-attributes': false,
+    'no-inline-styles': { allowDynamicStyles: true },
+    'no-yield-only': false,
+  },
 };

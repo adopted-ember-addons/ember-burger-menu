@@ -1,7 +1,4 @@
-{{#ember-wormhole
-  to=(concat @containerId '-outlet-menu')
-  renderInPlace=this.renderInPlace
-}}
+<EmberWormhole @to="{{@containerId}}-outlet-menu" @renderInPlace={{this.renderInPlace}}>
   <div class='bm-menu' style={{this.style}}>
     {{yield
       (hash
@@ -15,4 +12,4 @@
       )
     }}
   </div>
-{{/ember-wormhole}}
+</EmberWormhole>

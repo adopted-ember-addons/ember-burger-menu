@@ -27,18 +27,8 @@
 </main>
 
 {{#each this.menus as |m|}}
-  {{#burger-menu
-    translucentOverlay=false
-    dismissOnClick=false
-    dismissOnEsc=true
-    gesturesEnabled=true
-    classNames=(array 'multiple' m.color)
-    position=m.position
-    animation=m.animation
-    open=m.open
-    width=250 as |burger|
-  }}
-    {{#burger.menu itemTagName='li' dismissOnItemClick=true as |menu|}}
+  <BurgerMenu @translucentOverlay={{false}} @dismissOnClick={{false}} @dismissOnEsc={{true}} @gesturesEnabled={{true}} @classNames={{array 'multiple' m.color}} @position={{m.position}} @animation={{m.animation}} @open={{m.open}} @width={{250}} as |burger|>
+    <burger.menu @itemTagName="li" @dismissOnItemClick={{true}} as |menu|>
       <a
         class='close {{burger.state.position}}'
         role='button'
@@ -51,6 +41,6 @@
       </h2>
 
       <DummyMenu @menu={{menu}} />
-    {{/burger.menu}}
-  {{/burger-menu}}
+    </burger.menu>
+  </BurgerMenu>
 {{/each}}

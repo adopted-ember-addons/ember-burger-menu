@@ -22,8 +22,8 @@ export default Mixin.create({
       start: {
         x: touch.pageX,
         y: touch.pageY,
-        time: new Date().getTime()
-      }
+        time: new Date().getTime(),
+      },
     };
   },
 
@@ -36,7 +36,7 @@ export default Mixin.create({
 
     meta.differences = {
       x: touch.pageX - meta.start.x,
-      y: touch.pageY - meta.start.y
+      y: touch.pageY - meta.start.y,
     };
 
     // Compute swipe direction
@@ -54,8 +54,8 @@ export default Mixin.create({
   touchEnd() {
     this._super(...arguments);
 
-    let minSwipeDistance = this.get('minSwipeDistance');
-    let maxSwipeTime = this.get('maxSwipeTime');
+    let minSwipeDistance = this.minSwipeDistance;
+    let maxSwipeTime = this.maxSwipeTime;
     let elapsedTime = new Date().getTime() - meta.start.time;
 
     if (
@@ -66,5 +66,5 @@ export default Mixin.create({
     ) {
       this.onSwipe(meta.differences.x > 0 ? 'right' : 'left', meta.target);
     }
-  }
+  },
 });

@@ -1,5 +1,5 @@
 import Controller from '@ember/controller';
-import { action } from '@ember/object';
+import { action, set } from '@ember/object';
 
 export default class IndexController extends Controller {
   queryParams = [
@@ -45,7 +45,7 @@ export default class IndexController extends Controller {
   }
 
   @action
-  setMenu() {
-    this.set(...arguments);
+  setMenu(key, value) {
+    set(this, key, value);
   }
 }

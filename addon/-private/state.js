@@ -14,19 +14,24 @@ export default EmberObject.extend({
   itemAnimation: null,
   customAnimation: null,
 
-  styles: computed('animation', 'itemAnimation', 'customAnimation', function() {
-    let animation = this.get('animation');
-    let itemAnimation = this.get('itemAnimation');
-    let customAnimation = this.get('customAnimation');
+  styles: computed(
+    'animation',
+    'itemAnimation',
+    'customAnimation',
+    function () {
+      let animation = this.animation;
+      let itemAnimation = this.itemAnimation;
+      let customAnimation = this.customAnimation;
 
-    return getAnimation(customAnimation || animation, itemAnimation).create();
-  }).readOnly(),
+      return getAnimation(customAnimation || animation, itemAnimation).create();
+    }
+  ).readOnly(),
 
-  actions: computed(function() {
+  actions: computed('locked', function () {
     return {
-      open: () => !this.get('locked') && this.set('open', true),
-      close: () => !this.get('locked') && this.set('open', false),
-      toggle: () => !this.get('locked') && this.toggleProperty('open')
+      open: () => !this.locked && this.set('open', true),
+      close: () => !this.locked && this.set('open', false),
+      toggle: () => !this.locked && this.toggleProperty('open'),
     };
-  }).readOnly()
+  }).readOnly(),
 });

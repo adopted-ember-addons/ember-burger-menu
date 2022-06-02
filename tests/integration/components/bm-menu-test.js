@@ -7,8 +7,8 @@ import State from 'ember-burger-menu/-private/state';
 
 const template = hbs`
   {{#bm-menu
-    itemTagName=itemTagName
-    state=state
+    itemTagName=this.itemTagName
+    state=this.state
     as |menu|
   }}
     {{#menu.item}}One{{/menu.item}}
@@ -16,23 +16,23 @@ const template = hbs`
   {{/bm-menu}}
 `;
 
-module('Integration | Component | bm menu', function(hooks) {
+module('Integration | Component | bm menu', function (hooks) {
   setupRenderingTest(hooks);
 
-  hooks.beforeEach(function() {
+  hooks.beforeEach(function () {
     this.actions = {};
     this.send = (actionName, ...args) =>
       this.actions[actionName].apply(this, args);
   });
 
-  hooks.beforeEach(function() {
+  hooks.beforeEach(function () {
     this.setProperties({
       state: State.create(),
-      itemTagName: 'li'
+      itemTagName: 'li',
     });
   });
 
-  test('it renders', async function(assert) {
+  test('it renders', async function (assert) {
     await render(template);
     assert
       .dom(findAll('.bm-menu li')[0])
@@ -42,7 +42,7 @@ module('Integration | Component | bm menu', function(hooks) {
       .hasText('Two', 'Menu item Two exists');
   });
 
-  test('menu actions trigger', async function(assert) {
+  test('menu actions trigger', async function (assert) {
     let onOpen = false;
     let onClose = false;
 
@@ -53,13 +53,13 @@ module('Integration | Component | bm menu', function(hooks) {
       {{#bm-menu
         onOpen=(action 'onOpen')
         onClose=(action 'onClose')
-        state=state
+        state=this.state
         as |burger|
       }}
       {{/bm-menu}}
     `);
 
-    let state = this.get('state');
+    let state = this.state;
 
     run(() => state.set('open', true));
     assert.ok(onOpen, 'onOpen action was triggered');

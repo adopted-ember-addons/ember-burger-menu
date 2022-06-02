@@ -1,58 +1,53 @@
 <ul>
   {{#let @menu as |menu|}}
-    {{#menu.item}}
+    <menu.item>
       <a
         href='https://github.com/offirgolan/ember-burger-menu'
-        target='_blank'
-        rel='noopener'
+        target='_blank' rel="noopener noreferrer"
       >
         <FaIcon @icon='github' @prefix="fab" aria-hidden='true' />
         GitHub
       </a>
-    {{/menu.item}}
+    </menu.item>
 
-    {{#menu.item}}
+    <menu.item>
       <a
         href='https://github.com/offirgolan/ember-burger-menu/issues'
-        target='_blank'
-        rel='noopener'
+        target='_blank' rel="noopener noreferrer"
       >
         <FaIcon @icon='bug' aria-hidden='true' />
         Issues
       </a>
-    {{/menu.item}}
+    </menu.item>
 
-    {{#menu.item}}
+    <menu.item>
       <a
         href='https://github.com/offirgolan/ember-burger-menu/pulls'
-        target='_blank'
-        rel='noopener'
+        target='_blank' rel="noopener noreferrer"
       >
         <FaIcon @icon='exchange' @rotation={{90}} aria-hidden='true' />
         Pull Requests
       </a>
-    {{/menu.item}}
+    </menu.item>
 
-    {{#menu.item}}
+    <menu.item>
       <a
         href='https://github.com/offirgolan/ember-burger-menu/blob/master/README.md'
-        target='_blank'
-        rel='noopener'
+        target='_blank' rel="noopener noreferrer"
       >
         <FaIcon @icon='file-text' aria-hidden='true' />
         Documentation
       </a>
-    {{/menu.item}}
+    </menu.item>
 
-    {{#menu.item}}
+    <menu.item>
       <a
         href='https://github.com/offirgolan/ember-burger-menu/graphs'
-        target='_blank'
-        rel='noopener'
+        target='_blank' rel="noopener noreferrer"
       >
         <FaIcon @icon='bar-chart' aria-hidden='true' />
         Analytics
       </a>
-    {{/menu.item}}
+    </menu.item>
   {{/let}}
 </ul>

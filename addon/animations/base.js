@@ -27,7 +27,10 @@ const Animation = EmberObject.extend({
     let result;
 
     assert('Width must be a number.', typeof width === 'number');
-    assert('Position must be either \'left\' or \'right\'.', position === 'left' || position === 'right');
+    assert(
+      "Position must be either 'left' or 'right'.",
+      position === 'left' || position === 'right'
+    );
 
     if (type === 'menuItem' && index === -1) {
       /*
@@ -44,11 +47,11 @@ const Animation = EmberObject.extend({
     }
 
     return cssStringify(result);
-  }
+  },
 });
 
 Animation.reopenClass({
-  __isAnimation__: true
+  __isAnimation__: true,
 });
 
 export default Animation;
