@@ -104,7 +104,7 @@ This addon utilizes contextual components to be able to correctly control and an
 ```hbs
 {{#burger-menu as |burger|}}
   {{#burger.menu itemTagName="li" as |menu|}}
-    <button {{action burger.state.actions.close}}>Close</button>
+    <button {{action burger.state.closeMenu}}>Close</button>
 
     <ul>
       {{#menu.item}}
@@ -128,7 +128,7 @@ This addon utilizes contextual components to be able to correctly control and an
   {{/burger.menu}}
 
   {{#burger.outlet}}
-    <button {{action burger.state.actions.toggle}}>Menu</button>
+    <button {{action burger.state.toggleMenu}}>Menu</button>
     {{outlet}}
   {{/burger.outlet}}
 {{/burger-menu}}
@@ -279,19 +279,19 @@ The state object also exposes some actions:
 - #### `open`
 
   ```hbs
-  <button {{action burger.state.actions.open}}>Open</button>
+  <button {{action burger.state.openMenu}}>Open</button>
   ```
 
 - #### `close`
 
   ```hbs
-  <button {{action burger.state.actions.close}}>Close</button>
+  <button {{action burger.state.closeMenu}}>Close</button>
   ```
 
 - #### `toggle`
 
   ```hbs
-  <button {{action burger.state.actions.toggle}}>Toggle</button>
+  <button {{action burger.state.toggleMenu}}>Toggle</button>
   ```
 
 # Custom Animations

@@ -12,7 +12,7 @@
     <a
       class='close {{burger.state.position}}'
       role='button'
-      {{on 'click' burger.state.actions.close}}
+      {{on 'click' burger.state.closeMenu}}
     >
       <FaIcon @icon='times' />
     </a>
@@ -31,7 +31,7 @@
         if burger.state.open 'burger-hidden'
       }}'
       role='button'
-      {{on 'click' burger.state.actions.toggle}}
+      {{on 'click' burger.state.toggleMenu}}
     >
       <FaIcon @icon='bars' aria-hidden='true' />
     </a>

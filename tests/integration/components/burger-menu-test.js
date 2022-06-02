@@ -159,9 +159,9 @@ module('Integration | Component | burger menu', function (hooks) {
         {{/burger.menu}}
 
         {{#burger.outlet}}
-          <a id="open" {{on "click" burger.state.actions.open}}></a>
-          <a id="close" {{on "click" burger.state.actions.close}}></a>
-          <a id="toggle" {{on "click" burger.state.actions.toggle}}></a>
+          <a id="open" {{on "click" burger.state.openMenu}}></a>
+          <a id="close" {{on "click" burger.state.closeMenu}}></a>
+          <a id="toggle" {{on "click" burger.state.toggleMenu}}></a>
         {{/burger.outlet}}
       {{/burger-menu}}
     `);

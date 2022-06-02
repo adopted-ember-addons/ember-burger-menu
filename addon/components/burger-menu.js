@@ -95,13 +95,13 @@ export default Component.extend(SwipeSupportMixin, {
     let elementId = this.elementId;
     // Close the menu if clicked outside of it
     if (e.target.closest(`#${elementId} .bm-menu`)) {
-      this.get('state.actions').close();
+      this.get('state').closeMenu();
     }
   },
 
   onKeyup(e) {
     if (e.keyCode === 27) {
-      this.get('state.actions').close();
+      this.get('state').closeMenu();
     }
   },
 
@@ -116,9 +116,9 @@ export default Component.extend(SwipeSupportMixin, {
     }
 
     if (open && isMenuSwipe && position === direction) {
-      this.get('state.actions').close();
+      this.get('state').closeMenu();
     } else if (!open && position !== direction) {
-      this.get('state.actions').open();
+      this.get('state').openMenu();
     }
   },
 });

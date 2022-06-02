@@ -50,7 +50,7 @@ export default Component.extend({
     this._super(...arguments);
 
     if (this.dismissOnClick) {
-      this.get('state.actions').close();
+      this.get('state').closeMenu();
     }
   },
 });
