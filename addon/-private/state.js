@@ -1,19 +1,20 @@
+/* eslint-disable ember/no-computed-properties-in-native-classes */
 import EmberObject, { action, computed } from '@ember/object';
-import { readOnly } from '@ember/object/computed';
 import getAnimation from 'ember-burger-menu/animations';
+import { tracked } from '@glimmer/tracking';
 
 export default class State extends EmberObject {
-  open = false;
-  locked = false;
-  width = 300;
-  position = 'left';
-  animation = 'slide';
+  @tracked open = false;
+  @tracked locked = false;
+  @tracked width = 300;
+  @tracked position = 'left';
+  @tracked animation = 'slide';
 
-  minSwipeDistance = 150;
-  maxSwipeTime = 300;
+  @tracked minSwipeDistance = 150;
+  @tracked maxSwipeTime = 300;
 
-  itemAnimation = null;
-  customAnimation = null;
+  @tracked itemAnimation = null;
+  @tracked customAnimation = null;
 
   @computed('animation', 'itemAnimation', 'customAnimation')
   get styles() {
@@ -25,17 +26,26 @@ export default class State extends EmberObject {
   }
 
   @action
-  openMenu() {
-    return !this.locked && this.set('open', true);
+  openMenu(e) {
+    e?.stopPropagation?.();
+    if (!this.locked) {
+      this.open = true;
+    }
   }
 
   @action
-  closeMenu() {
-    return !this.locked && this.set('open', false);
+  closeMenu(e) {
+    e?.stopPropagation?.();
+    if (!this.locked) {
+      this.open = false;
+    }
   }
 
   @action
-  toggleMenu() {
-    return !this.locked && this.toggleProperty('open');
+  toggleMenu(e) {
+    e?.stopPropagation?.();
+    if (!this.locked) {
+      this.open = !this.open;
+    }
   }
 }

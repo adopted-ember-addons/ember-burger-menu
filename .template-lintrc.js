@@ -5,7 +5,7 @@ module.exports = {
 
   rules: {
     'link-href-attributes': false,
-    'no-inline-styles': { allowDynamicStyles: true },
+    'no-inline-styles': false,
     'no-yield-only': false,
   },
 };
