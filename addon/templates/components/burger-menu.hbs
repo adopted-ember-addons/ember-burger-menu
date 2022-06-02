@@ -1,6 +1,7 @@
-{{yield (hash
-    outlet=(component "bm-outlet" containerId=elementId state=state)
-    menu=(component "bm-menu" containerId=elementId state=state)
-    state=state
+{{yield
+  (hash
+    outlet=(component 'bm-outlet' containerId=this.elementId state=this.state)
+    menu=(component 'bm-menu' containerId=this.elementId state=this.state)
+    state=this.state
   )
 }}

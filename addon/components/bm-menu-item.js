@@ -1,10 +1,9 @@
 import Component from '@ember/component';
-import { run } from '@ember/runloop';
+import { scheduleOnce } from '@ember/runloop';
 import { computed } from '@ember/object';
 import layout from '../templates/components/bm-menu-item';
 import computedStyleFor from 'ember-burger-menu/computed/style-for';
 import isFastboot from 'ember-burger-menu/utils/is-fastboot';
-import closest from 'ember-burger-menu/utils/closest';
 
 export default Component.extend({
   layout,
@@ -26,7 +25,7 @@ export default Component.extend({
     const item = this.element;
 
     if (item) {
-      const menu = closest(item, '.bm-menu', true);
+      const menu = item.closest('.bm-menu');
       if (menu) {
         position = [].slice
           .call(menu.querySelectorAll('.bm-menu-item'))
@@ -39,7 +38,7 @@ export default Component.extend({
 
   didInsertElement() {
     this._super(...arguments);
-    run.scheduleOnce(
+    scheduleOnce(
       'afterRender',
       this.get('menuItems'),
       'addObject',
@@ -49,7 +48,7 @@ export default Component.extend({
 
   willDestroyElement() {
     this._super(...arguments);
-    run.scheduleOnce(
+    scheduleOnce(
       'afterRender',
       this.get('menuItems'),
       'removeObject',

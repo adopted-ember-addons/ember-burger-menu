@@ -16,9 +16,9 @@ An off-canvas sidebar component with a collection of animations and styles using
 Compatibility
 ------------------------------------------------------------------------------
 
-* Ember.js v3.4 or above
-* Ember CLI v2.13 or above
-* Node.js v8 or above
+* Ember.js v3.20 or above
+* Ember CLI v3.20 or above
+* Node.js v12 or above
 
 ## Installation
 
@@ -108,15 +108,21 @@ This addon utilizes contextual components to be able to correctly control and an
 
     <ul>
       {{#menu.item}}
-        {{link-to 'Features' 'features'}}
+        <LinkTo @route="features">
+          Features
+        </LinkTo>
       {{/menu.item}}
 
       {{#menu.item}}
-        {{link-to 'About' 'about'}}
+        <LinkTo @route="about">
+          About
+        </LinkTo>
       {{/menu.item}}
 
       {{#menu.item}}
-        {{link-to 'Contact Us' 'contact'}}
+        <LinkTo @route="contact">
+          Contact Us
+        </LinkTo>
       {{/menu.item}}
     </ul>
   {{/burger.menu}}

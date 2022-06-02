@@ -1,7 +1,6 @@
 import Mixin from '@ember/object/mixin';
 import { isNone } from '@ember/utils';
 import { alias } from '@ember/object/computed';
-import { normalizeEvent } from 'ember-jquery-legacy';
 
 let meta;
 
@@ -12,11 +11,10 @@ export default Mixin.create({
   onSwipe(/* direction, target */) {},
 
   touchStart(e) {
-    let nativeEvent = normalizeEvent(e);
     this._super(...arguments);
 
     // jscs:disable
-    let touch = nativeEvent.touches[0];
+    let touch = e.touches[0];
     // jscs:enable
 
     meta = {
@@ -30,11 +28,10 @@ export default Mixin.create({
   },
 
   touchMove(e) {
-    let nativeEvent = normalizeEvent(e);
     this._super(...arguments);
 
     // jscs:disable
-    let touch = nativeEvent.touches[0];
+    let touch = e.touches[0];
     // jscs:enable
 
     meta.differences = {
@@ -49,7 +46,7 @@ export default Mixin.create({
     }
 
     // A valid swipe event uses only one finger
-    if (nativeEvent.touches.length > 1) {
+    if (e.touches.length > 1) {
       meta.isInvalid = true;
     }
   },

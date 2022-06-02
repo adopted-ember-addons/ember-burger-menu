@@ -1,15 +1,25 @@
-<div class="header">
-  <img src="images/ember-logo.png" ondragstart="return false;" alt="Ember logo">
-  <h1>Burger Menu</h1>
+<div class='header'>
+  <img
+    src='images/ember-logo.png'
+    ondragstart='return false;'
+    alt='Ember logo'
+  />
+  <h1>
+    Burger Menu
+  </h1>
 
-  <div class="description">
+  <div class='description'>
     <p>
       An off-canvas sidebar component with a collection of animations and styles using CSS transitions.
     </p>
   </div>
 
-  <div class="nav">
-    {{#link-to "index"}}Home{{/link-to}}
-    {{#link-to "multiple"}}Multiple{{/link-to}}
+  <div class='nav'>
+    <LinkTo @route='index'>
+      Home
+    </LinkTo>
+    <LinkTo @route='multiple'>
+      Multiple
+    </LinkTo>
   </div>
 </div>
