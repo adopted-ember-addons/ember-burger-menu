@@ -94,7 +94,7 @@ export default Component.extend(SwipeSupportMixin, {
   onClick(e) {
     let elementId = this.elementId;
     // Close the menu if clicked outside of it
-    if (e.target.closest(`#${elementId} .bm-menu`)) {
+    if (!e.target.closest(`#${elementId} .bm-menu`)) {
       this.get('state').closeMenu();
     }
   },

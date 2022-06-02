@@ -1,4 +1,3 @@
-import { run } from '@ember/runloop';
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import {
@@ -7,6 +6,7 @@ import {
   find,
   findAll,
   triggerKeyEvent,
+  settled,
 } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 import Animation from 'ember-burger-menu/animations/base';
@@ -99,19 +99,25 @@ module('Integration | Component | burger menu', function (hooks) {
   test('animation and itemAnimation set correct classes', async function (assert) {
     await render(template);
 
-    run(() => this.set('animation', 'push'));
+    this.set('animation', 'push');
+
+    await settled();
+
     assert
       .dom('.ember-burger-menu')
       .hasClass('bm--push', 'Container has correct animation class');
 
     assert
       .dom('.ember-burger-menu')
-      .hasNoClass(
+      .doesNotHaveClass(
         'bm-item--stack',
         'Menu initially has no item animation class'
       );
 
-    run(() => this.set('itemAnimation', 'stack'));
+    this.set('itemAnimation', 'stack');
+
+    await settled();
+
     assert
       .dom('.ember-burger-menu')
       .hasClass('bm-item--stack', 'Menu has correct item animation class');
@@ -121,10 +127,15 @@ module('Integration | Component | burger menu', function (hooks) {
     await render(template);
 
     // Open
-    assert.false(this.open, 'Open is initialy false');
-    assert.dom('.ember-burger-menu').hasNoClass('is-open', 'Menu is closed');
+    assert.false(this.open, 'Open is initially false');
+    assert
+      .dom('.ember-burger-menu')
+      .doesNotHaveClass('is-open', 'Menu is closed');
 
-    run(() => this.set('open', true));
+    this.set('open', true);
+
+    await settled();
+
     assert.dom('.ember-burger-menu').hasClass('is-open', 'Menu is open');
 
     // Position
@@ -132,7 +143,10 @@ module('Integration | Component | burger menu', function (hooks) {
       .dom('.ember-burger-menu')
       .hasClass('left', 'Initial position is left');
 
-    run(() => this.set('position', 'right'));
+    this.set('position', 'right');
+
+    await settled();
+
     assert
       .dom('.ember-burger-menu')
       .hasClass('right', 'Position was changed to right');
@@ -142,7 +156,10 @@ module('Integration | Component | burger menu', function (hooks) {
       .dom('.ember-burger-menu')
       .hasClass('bm--slide', 'Initial animation is slide');
 
-    run(() => this.set('animation', 'push'));
+    this.set('animation', 'push');
+
+    await settled();
+
     assert
       .dom('.ember-burger-menu')
       .hasClass('bm--push', 'Animation was changed to push');
@@ -167,35 +184,41 @@ module('Integration | Component | burger menu', function (hooks) {
     `);
 
     // Open
-    assert.false(this.open, 'Open is initialy false');
-    assert.dom('.ember-burger-menu').hasNoClass('is-open', 'Menu is closed');
+    assert
+      .dom('.ember-burger-menu')
+      .doesNotHaveClass('is-open', 'Menu is closed');
 
     await click('#open');
     assert.dom('.ember-burger-menu').hasClass('is-open', 'Menu is open');
 
     // Close
-    assert.true(this.open, 'Open is initialy true');
-    assert.dom('.ember-burger-menu').hasClass('is-open', 'Menu is open');
 
     await click('#close');
-    assert.dom('.ember-burger-menu').hasNoClass('is-open', 'Menu is closed');
+    assert
+      .dom('.ember-burger-menu')
+      .doesNotHaveClass('is-open', 'Menu is closed');
 
     // Toggle
-    assert.false(this.open, 'Open is initialy false');
-    assert.dom('.ember-burger-menu').hasNoClass('is-open', 'Menu is closed');
+    assert
+      .dom('.ember-burger-menu')
+      .doesNotHaveClass('is-open', 'Menu is closed');
 
     await click('#toggle');
     assert.dom('.ember-burger-menu').hasClass('is-open', 'Menu is open');
 
     await click('#toggle');
-    assert.dom('.ember-burger-menu').hasNoClass('is-open', 'Menu is closed');
+    assert
+      .dom('.ember-burger-menu')
+      .doesNotHaveClass('is-open', 'Menu is closed');
   });
 
   test('menu opens and closes', async function (assert) {
     await render(template);
 
-    assert.false(this.open, 'Open is initialy false');
-    assert.dom('.ember-burger-menu').hasNoClass('is-open', 'Menu is not open');
+    assert.false(this.open, 'Open is initially false');
+    assert
+      .dom('.ember-burger-menu')
+      .doesNotHaveClass('is-open', 'Menu is not open');
 
     this.set('open', true);
     assert.dom('.ember-burger-menu').hasClass('is-open', 'Menu is open');
@@ -216,7 +239,7 @@ module('Integration | Component | burger menu', function (hooks) {
     await click('.bm-content');
     assert
       .dom('.ember-burger-menu')
-      .hasNoClass('is-open', 'Clicking in the content closes the menu');
+      .doesNotHaveClass('is-open', 'Clicking in the content closes the menu');
   });
 
   test('clicking outside of menu doesnt close it -- dismissOnClick = false', async function (assert) {
@@ -265,7 +288,9 @@ module('Integration | Component | burger menu', function (hooks) {
     assert.dom('.ember-burger-menu').hasClass('is-open', 'Menu is open');
 
     await triggerKeyEvent('.bm-outlet', 'keyup', 27);
-    assert.dom('.ember-burger-menu').hasNoClass('is-open', 'Menu is closed');
+    assert
+      .dom('.ember-burger-menu')
+      .doesNotHaveClass('is-open', 'Menu is closed');
   });
 
   test('pressing ESC doesnt close the menu -- dismissOnEsc = false', async function (assert) {
@@ -295,7 +320,9 @@ module('Integration | Component | burger menu', function (hooks) {
   test('swipe events toggles the menu', async function (assert) {
     await render(template);
 
-    assert.dom('.ember-burger-menu').hasNoClass('is-open', 'Menu is not open');
+    assert
+      .dom('.ember-burger-menu')
+      .doesNotHaveClass('is-open', 'Menu is not open');
 
     await triggerSwipeEvent(find('.ember-burger-menu'), 'right');
 
@@ -303,12 +330,14 @@ module('Integration | Component | burger menu', function (hooks) {
 
     await triggerSwipeEvent(find('.bm-menu'), 'left');
 
-    assert.dom('.ember-burger-menu').hasNoClass('is-open', 'Menu is not open');
+    assert
+      .dom('.ember-burger-menu')
+      .doesNotHaveClass('is-open', 'Menu is not open');
 
     // Test right sided menu
-    run(() => {
-      this.set('position', 'right');
-    });
+    this.set('position', 'right');
+
+    await settled();
 
     await triggerSwipeEvent(find('.ember-burger-menu'), 'left');
 
@@ -316,18 +345,24 @@ module('Integration | Component | burger menu', function (hooks) {
 
     await triggerSwipeEvent(find('.bm-menu'), 'right');
 
-    assert.dom('.ember-burger-menu').hasNoClass('is-open', 'Menu is not open');
+    assert
+      .dom('.ember-burger-menu')
+      .doesNotHaveClass('is-open', 'Menu is not open');
   });
 
   test('swipe events dont toggle the menu -- gesturesEnabled = false', async function (assert) {
     this.set('gesturesEnabled', false);
     await render(template);
 
-    assert.dom('.ember-burger-menu').hasNoClass('is-open', 'Menu is not open');
+    assert
+      .dom('.ember-burger-menu')
+      .doesNotHaveClass('is-open', 'Menu is not open');
 
     await triggerSwipeEvent(find('.ember-burger-menu'), 'right');
 
-    assert.dom('.ember-burger-menu').hasNoClass('is-open', 'Menu is not open');
+    assert
+      .dom('.ember-burger-menu')
+      .doesNotHaveClass('is-open', 'Menu is not open');
   });
 
   test('swipe events dont toggle a locked menu', async function (assert) {
@@ -369,7 +404,9 @@ module('Integration | Component | burger menu', function (hooks) {
       'Custom menu styles applied'
     );
 
-    run(() => this.set('open', true));
+    this.set('open', true);
+
+    await settled();
 
     assert.notEqual(
       find('.bm-outlet').style.transform,
@@ -395,7 +432,9 @@ module('Integration | Component | burger menu', function (hooks) {
       'Menu item has no style'
     );
 
-    run(() => this.set('open', true));
+    this.set('open', true);
+
+    await settled();
 
     assert.equal(
       find('.bm-menu-item').style.color,
