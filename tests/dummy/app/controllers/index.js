@@ -1,8 +1,8 @@
 import Controller from '@ember/controller';
-import { computed } from '@ember/object';
+import { action, set } from '@ember/object';
 
-export default Controller.extend({
-  queryParams: [
+export default class IndexController extends Controller {
+  queryParams = [
     'animation',
     'itemAnimation',
     'position',
@@ -10,42 +10,42 @@ export default Controller.extend({
     'translucentOverlay',
     'dismissOnClick',
     'dismissOnEsc',
-    'gesturesEnabled'
-  ],
+    'gesturesEnabled',
+  ];
 
-  translucentOverlay: true,
-  dismissOnClick: true,
-  dismissOnEsc: true,
-  gesturesEnabled: true,
+  translucentOverlay = true;
+  dismissOnClick = true;
+  dismissOnEsc = true;
+  gesturesEnabled = true;
 
-  animation: 'slide',
-  itemAnimation: null,
-  position: 'left',
-  locked: false,
+  animation = 'slide';
+  itemAnimation = null;
+  position = 'left';
+  locked = false;
 
-  animations: computed(() => [
-    'slide',
-    'reveal',
-    'push',
-    'fall-down',
-    'open-door',
-    'push-rotate',
-    'rotate-out',
-    'scale-up',
-    'scale-down',
-    'scale-rotate',
-    'slide-reverse',
-    'squeeze'
-  ]),
+  constructor() {
+    super(...arguments);
 
-  itemAnimations: computed(() => [
-    'push',
-    'stack'
-  ]),
+    this.animations = [
+      'slide',
+      'reveal',
+      'push',
+      'fall-down',
+      'open-door',
+      'push-rotate',
+      'rotate-out',
+      'scale-up',
+      'scale-down',
+      'scale-rotate',
+      'slide-reverse',
+      'squeeze',
+    ];
 
-  actions: {
-    setMenu() {
-      this.set(...arguments);
-    }
+    this.itemAnimations = ['push', 'stack'];
   }
-});
+
+  @action
+  setMenu(key, value) {
+    set(this, key, value);
+  }
+}

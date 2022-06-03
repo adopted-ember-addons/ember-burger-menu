@@ -1,9 +1,8 @@
 import { assert } from '@ember/debug';
 import { isEmpty, typeOf } from '@ember/utils';
-import requireModule from 'ember-require-module';
-
-const ANIMATION_PATH = 'ember-burger-menu/animations';
-const ANIMATION_ITEM_PATH = `${ANIMATION_PATH}/menu-item`;
+import { camelize } from '@ember/string';
+import * as animations from './animations';
+import * as itemAnimations from './item-animations';
 
 export default function getAnimation(animation, itemAnimation) {
   let AnimationClass;
@@ -11,14 +10,17 @@ export default function getAnimation(animation, itemAnimation) {
   if (typeOf(animation) === 'class' && animation.__isAnimation__) {
     AnimationClass = animation;
   } else {
-    AnimationClass = requireModule(`${ANIMATION_PATH}/${animation}`);
+    AnimationClass = animations[camelize(animation)];
     assert(`The animation '${animation}' could not be found.`, AnimationClass);
   }
 
   if (!isEmpty(itemAnimation)) {
-    let MenuItemMixin = requireModule(`${ANIMATION_ITEM_PATH}/${itemAnimation}`);
+    let MenuItemMixin = itemAnimations[camelize(itemAnimation)];
 
-    assert(`The item animation '${itemAnimation}' could not be found.`, MenuItemMixin);
+    assert(
+      `The item animation '${itemAnimation}' could not be found.`,
+      MenuItemMixin
+    );
 
     return AnimationClass.extend(MenuItemMixin);
   }

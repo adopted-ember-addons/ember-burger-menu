@@ -1,11 +1,11 @@
 /*jshint node:true*/
 
 module.exports = {
-  normalizeEntityName: function() {},
+  normalizeEntityName: function () {},
 
-  afterInstall: function() {
+  afterInstall: function () {
     return this.addPackagesToProject([
-      { name: 'ember-cli-sass', target: 'latest' }
+      { name: 'ember-cli-sass', target: 'latest' },
     ]);
-  }
+  },
 };

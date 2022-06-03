@@ -1,14 +1,13 @@
-import { run } from '@ember/runloop';
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render, findAll } from '@ember/test-helpers';
+import { render, findAll, settled } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 import State from 'ember-burger-menu/-private/state';
 
 const template = hbs`
   {{#bm-menu
-    itemTagName=itemTagName
-    state=state
+    itemTagName=this.itemTagName
+    state=this.state
     as |menu|
   }}
     {{#menu.item}}One{{/menu.item}}
@@ -16,23 +15,17 @@ const template = hbs`
   {{/bm-menu}}
 `;
 
-module('Integration | Component | bm menu', function(hooks) {
+module('Integration | Component | bm menu', function (hooks) {
   setupRenderingTest(hooks);
 
-  hooks.beforeEach(function() {
-    this.actions = {};
-    this.send = (actionName, ...args) =>
-      this.actions[actionName].apply(this, args);
-  });
-
-  hooks.beforeEach(function() {
+  hooks.beforeEach(function () {
     this.setProperties({
       state: State.create(),
-      itemTagName: 'li'
+      itemTagName: 'li',
     });
   });
 
-  test('it renders', async function(assert) {
+  test('it renders', async function (assert) {
     await render(template);
     assert
       .dom(findAll('.bm-menu li')[0])
@@ -42,29 +35,35 @@ module('Integration | Component | bm menu', function(hooks) {
       .hasText('Two', 'Menu item Two exists');
   });
 
-  test('menu actions trigger', async function(assert) {
+  test('menu actions trigger', async function (assert) {
     let onOpen = false;
     let onClose = false;
 
-    this.actions.onOpen = () => (onOpen = true);
-    this.actions.onClose = () => (onClose = true);
+    this.onOpen = () => (onOpen = true);
+    this.onClose = () => (onClose = true);
 
     await render(hbs`
       {{#bm-menu
-        onOpen=(action 'onOpen')
-        onClose=(action 'onClose')
-        state=state
+        onOpen=this.onOpen
+        onClose=this.onClose
+        state=this.state
         as |burger|
       }}
       {{/bm-menu}}
     `);
 
-    let state = this.get('state');
+    let state = this.state;
 
-    run(() => state.set('open', true));
+    state.set('open', true);
+
+    await settled();
+
     assert.ok(onOpen, 'onOpen action was triggered');
 
-    run(() => state.set('open', false));
+    state.set('open', false);
+
+    await settled();
+
     assert.ok(onClose, 'onClose action was triggered');
   });
 });

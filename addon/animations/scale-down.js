@@ -5,7 +5,7 @@ export default Animation.extend({
 
   outlet(open, width) {
     return {
-      transform: open ? `translate3d(0, 0, -${width}px)` : ''
+      transform: open ? `translate3d(0, 0, -${width}px)` : '',
     };
-  }
+  },
 });

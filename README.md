@@ -1,4 +1,4 @@
-# Ember Burger Menu
+# ember-burger-menu
 
 [![Ember Version](https://embadge.io/v1/badge.svg?start=2.3.0)](https://embadge.io/v1/badge.svg?start=2.3.0)
 [![Build Status](https://travis-ci.org/offirgolan/ember-burger-menu.svg?branch=master)](https://travis-ci.org/offirgolan/ember-burger-menu)
@@ -13,12 +13,11 @@ An off-canvas sidebar component with a collection of animations and styles using
 - Swipe gesture support with changeable thresholds
 - Easily create your own animations
 
-Compatibility
-------------------------------------------------------------------------------
+## Compatibility
 
-* Ember.js v3.4 or above
-* Ember CLI v2.13 or above
-* Node.js v8 or above
+* Ember.js v3.24 or above
+* Ember CLI v3.24 or above
+* Node.js v12 or above
 
 ## Installation
 
@@ -104,25 +103,31 @@ This addon utilizes contextual components to be able to correctly control and an
 ```hbs
 {{#burger-menu as |burger|}}
   {{#burger.menu itemTagName="li" as |menu|}}
-    <button {{action burger.state.actions.close}}>Close</button>
+    <button {{on "click" burger.state.closeMenu}}>Close</button>
 
     <ul>
       {{#menu.item}}
-        {{link-to 'Features' 'features'}}
+        <LinkTo @route="features">
+          Features
+        </LinkTo>
       {{/menu.item}}
 
       {{#menu.item}}
-        {{link-to 'About' 'about'}}
+        <LinkTo @route="about">
+          About
+        </LinkTo>
       {{/menu.item}}
 
       {{#menu.item}}
-        {{link-to 'Contact Us' 'contact'}}
+        <LinkTo @route="contact">
+          Contact Us
+        </LinkTo>
       {{/menu.item}}
     </ul>
   {{/burger.menu}}
 
   {{#burger.outlet}}
-    <button {{action burger.state.actions.toggle}}>Menu</button>
+    <button {{on "click" burger.state.toggleMenu}}>Menu</button>
     {{outlet}}
   {{/burger.outlet}}
 {{/burger-menu}}
@@ -273,19 +278,19 @@ The state object also exposes some actions:
 - #### `open`
 
   ```hbs
-  <button {{action burger.state.actions.open}}>Open</button>
+  <button {{on "click" burger.state.openMenu}}>Open</button>
   ```
 
 - #### `close`
 
   ```hbs
-  <button {{action burger.state.actions.close}}>Close</button>
+  <button {{on "click" burger.state.closeMenu}}>Close</button>
   ```
 
 - #### `toggle`
 
   ```hbs
-  <button {{action burger.state.actions.toggle}}>Toggle</button>
+  <button {{on "click" burger.state.toggleMenu}}>Toggle</button>
   ```
 
 # Custom Animations

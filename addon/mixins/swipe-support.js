@@ -1,7 +1,6 @@
 import Mixin from '@ember/object/mixin';
 import { isNone } from '@ember/utils';
 import { alias } from '@ember/object/computed';
-import { normalizeEvent } from 'ember-jquery-legacy';
 
 let meta;
 
@@ -12,11 +11,10 @@ export default Mixin.create({
   onSwipe(/* direction, target */) {},
 
   touchStart(e) {
-    let nativeEvent = normalizeEvent(e);
     this._super(...arguments);
 
     // jscs:disable
-    let touch = nativeEvent.touches[0];
+    let touch = e.touches[0];
     // jscs:enable
 
     meta = {
@@ -24,22 +22,21 @@ export default Mixin.create({
       start: {
         x: touch.pageX,
         y: touch.pageY,
-        time: new Date().getTime()
-      }
+        time: new Date().getTime(),
+      },
     };
   },
 
   touchMove(e) {
-    let nativeEvent = normalizeEvent(e);
     this._super(...arguments);
 
     // jscs:disable
-    let touch = nativeEvent.touches[0];
+    let touch = e.touches[0];
     // jscs:enable
 
     meta.differences = {
       x: touch.pageX - meta.start.x,
-      y: touch.pageY - meta.start.y
+      y: touch.pageY - meta.start.y,
     };
 
     // Compute swipe direction
@@ -49,7 +46,7 @@ export default Mixin.create({
     }
 
     // A valid swipe event uses only one finger
-    if (nativeEvent.touches.length > 1) {
+    if (e.touches.length > 1) {
       meta.isInvalid = true;
     }
   },
@@ -57,8 +54,8 @@ export default Mixin.create({
   touchEnd() {
     this._super(...arguments);
 
-    let minSwipeDistance = this.get('minSwipeDistance');
-    let maxSwipeTime = this.get('maxSwipeTime');
+    let minSwipeDistance = this.minSwipeDistance;
+    let maxSwipeTime = this.maxSwipeTime;
     let elapsedTime = new Date().getTime() - meta.start.time;
 
     if (
@@ -69,5 +66,5 @@ export default Mixin.create({
     ) {
       this.onSwipe(meta.differences.x > 0 ? 'right' : 'left', meta.target);
     }
-  }
+  },
 });

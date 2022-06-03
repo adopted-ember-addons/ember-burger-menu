@@ -7,5 +7,5 @@ export default Component.extend({
   classNames: ['bm-outlet'],
   attributeBindings: ['style'],
   state: null,
-  style: computedStyleFor('outlet').readOnly()
+  style: computedStyleFor('outlet').readOnly(),
 });

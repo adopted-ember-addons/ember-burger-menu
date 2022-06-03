@@ -1,36 +1,56 @@
-<main class="text-center multiple">
-  {{dummy-header}}
+<main class='text-center multiple'>
+  <DummyHeader />
 
-
-  <div class="content multiple">
-    {{#each menus as |menu|}}
-      <a class="hamburger {{if menu.open "burger-hidden"}} {{menu.color}}" {{action (toggle "open" menu)}} role="button">
-        <i class="fa fa-bars" aria-hidden="true"></i>
-      </a>
-    {{/each}}
-
-    <img src="images/Gene_Belcher.png" width="150" ondragstart="return false;" alt="Gene Blecher">
-    <p><i>"This is me now!"</i></p>
+  <div class='content multiple'>
+    <div style='position:absolute; z-index: 1000'>
+      <img
+        src='images/Gene_Belcher.png'
+        width='150'
+        ondragstart='return false;'
+        alt='Gene Blecher in burger suit'
+      />
+      <p>
+        <i>
+          "This is me now!"
+        </i>
+      </p>
+    </div>
   </div>
 </main>
 
-{{#each menus as |m|}}
-  {{#burger-menu
-    translucentOverlay=false
-    dismissOnClick=false
-    dismissOnEsc=true
-    gesturesEnabled=true
-    classNames=(array "multiple" m.color)
-    position=m.position
-    animation=m.animation
-    open=m.open
-    width=250
-    as |burger|}}
-    {{#burger.menu itemTagName="li" dismissOnItemClick=true as |menu|}}
-      <a {{action burger.state.actions.close}} class="close {{burger.state.position}} fa fa-times" role="button"></a>
-      <h2>{{titleize m.color}} Menu</h2>
+{{#each this.menus as |m|}}
+  <BurgerMenu
+    @translucentOverlay={{false}}
+    @dismissOnClick={{false}}
+    @dismissOnEsc={{true}}
+    @gesturesEnabled={{true}}
+    @classNames={{array 'multiple' m.color}}
+    @position={{m.position}}
+    @animation={{m.animation}}
+    @open={{m.open}}
+    @width={{250}} as |burger|
+  >
+    <burger.menu @itemTagName='li' @dismissOnItemClick={{true}} as |menu|>
+      <a
+        class='close {{burger.state.position}}'
+        role='button'
+        {{on 'click' burger.state.closeMenu}}
+      >
+        <FaIcon @icon='times' />
+      </a>
+      <h2>
+        {{titleize m.color}} Menu
+      </h2>
 
-      {{dummy-menu menu=menu}}
-    {{/burger.menu}}
-  {{/burger-menu}}
+      <DummyMenu @menu={{menu}} />
+    </burger.menu>
+
+    <a
+      class='hamburger {{if burger.state.open 'burger-hidden'}} {{m.color}}'
+      role='button'
+      {{on 'click' burger.state.toggleMenu}}
+    >
+      <FaIcon @icon='bars' aria-hidden='true' />
+    </a>
+  </BurgerMenu>
 {{/each}}

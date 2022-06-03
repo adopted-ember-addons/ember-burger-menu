@@ -7,6 +7,6 @@ export default Route.extend({
     position: { replace: true },
     translucentOverlay: { replace: true },
     dismissOnClick: { replace: true },
-    dismissOnEsc: { replace: true }
-  }
+    dismissOnEsc: { replace: true },
+  },
 });

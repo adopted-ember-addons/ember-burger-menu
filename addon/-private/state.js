@@ -1,32 +1,51 @@
-import EmberObject, { computed } from '@ember/object';
+/* eslint-disable ember/no-computed-properties-in-native-classes */
+import EmberObject, { action, computed } from '@ember/object';
 import getAnimation from 'ember-burger-menu/animations';
+import { tracked } from '@glimmer/tracking';
 
-export default EmberObject.extend({
-  open: false,
-  locked: false,
-  width: 300,
-  position: 'left',
-  animation: 'slide',
+export default class State extends EmberObject {
+  @tracked open = false;
+  @tracked locked = false;
+  @tracked width = 300;
+  @tracked position = 'left';
+  @tracked animation = 'slide';
 
-  minSwipeDistance: 150,
-  maxSwipeTime: 300,
+  @tracked minSwipeDistance = 150;
+  @tracked maxSwipeTime = 300;
 
-  itemAnimation: null,
-  customAnimation: null,
+  @tracked itemAnimation = null;
+  @tracked customAnimation = null;
 
-  styles: computed('animation', 'itemAnimation', 'customAnimation', function() {
-    let animation = this.get('animation');
-    let itemAnimation = this.get('itemAnimation');
-    let customAnimation = this.get('customAnimation');
+  @computed('animation', 'itemAnimation', 'customAnimation')
+  get styles() {
+    let animation = this.animation;
+    let itemAnimation = this.itemAnimation;
+    let customAnimation = this.customAnimation;
 
     return getAnimation(customAnimation || animation, itemAnimation).create();
-  }).readOnly(),
+  }
 
-  actions: computed(function() {
-    return {
-      open: () => !this.get('locked') && this.set('open', true),
-      close: () => !this.get('locked') && this.set('open', false),
-      toggle: () => !this.get('locked') && this.toggleProperty('open')
-    };
-  }).readOnly()
-});
+  @action
+  openMenu(e) {
+    e?.stopPropagation?.();
+    if (!this.locked) {
+      this.open = true;
+    }
+  }
+
+  @action
+  closeMenu(e) {
+    e?.stopPropagation?.();
+    if (!this.locked) {
+      this.open = false;
+    }
+  }
+
+  @action
+  toggleMenu(e) {
+    e?.stopPropagation?.();
+    if (!this.locked) {
+      this.open = !this.open;
+    }
+  }
+}

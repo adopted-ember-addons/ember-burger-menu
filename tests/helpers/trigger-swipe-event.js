@@ -11,9 +11,9 @@ export default async function triggerSwipeEvent(el, direction, distance = 150) {
         pageX: startPos,
         pageY: 0,
         screenX: startPos,
-        screenY: 0
-      }
-    ]
+        screenY: 0,
+      },
+    ],
   });
 
   await triggerEvent(el, 'touchmove', {
@@ -22,9 +22,9 @@ export default async function triggerSwipeEvent(el, direction, distance = 150) {
         pageX: endPos,
         pageY: 0,
         screenX: endPos,
-        screenY: 0
-      }
-    ]
+        screenY: 0,
+      },
+    ],
   });
 
   await triggerEvent(el, 'touchend');

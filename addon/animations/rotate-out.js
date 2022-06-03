@@ -5,7 +5,11 @@ export default Animation.extend({
 
   outlet(open, width, right) {
     return {
-      transform: open ? right ? `translate3d(-${width}px, 0, 0)` : `translate3d(${width}px, 0, 0)` : ''
+      transform: open
+        ? right
+          ? `translate3d(-${width}px, 0, 0)`
+          : `translate3d(${width}px, 0, 0)`
+        : '',
     };
-  }
+  },
 });

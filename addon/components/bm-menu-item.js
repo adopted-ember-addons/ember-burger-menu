@@ -1,10 +1,9 @@
 import Component from '@ember/component';
-import { run } from '@ember/runloop';
+import { scheduleOnce } from '@ember/runloop';
 import { computed } from '@ember/object';
 import layout from '../templates/components/bm-menu-item';
 import computedStyleFor from 'ember-burger-menu/computed/style-for';
 import isFastboot from 'ember-burger-menu/utils/is-fastboot';
-import closest from 'ember-burger-menu/utils/closest';
 
 export default Component.extend({
   layout,
@@ -17,7 +16,7 @@ export default Component.extend({
   dismissOnClick: false,
   style: computedStyleFor('menuItem').readOnly(),
 
-  index: computed('menuItems.[]', function() {
+  index: computed('element', 'menuItems.[]', function () {
     if (isFastboot()) {
       return -1;
     }
@@ -26,7 +25,7 @@ export default Component.extend({
     const item = this.element;
 
     if (item) {
-      const menu = closest(item, '.bm-menu', true);
+      const menu = item.closest('.bm-menu');
       if (menu) {
         position = [].slice
           .call(menu.querySelectorAll('.bm-menu-item'))
@@ -39,29 +38,19 @@ export default Component.extend({
 
   didInsertElement() {
     this._super(...arguments);
-    run.scheduleOnce(
-      'afterRender',
-      this.get('menuItems'),
-      'addObject',
-      this.get('elementId')
-    );
+    scheduleOnce('afterRender', this.menuItems, 'addObject', this.elementId);
   },
 
   willDestroyElement() {
     this._super(...arguments);
-    run.scheduleOnce(
-      'afterRender',
-      this.get('menuItems'),
-      'removeObject',
-      this.get('elementId')
-    );
+    scheduleOnce('afterRender', this.menuItems, 'removeObject', this.elementId);
   },
 
   click() {
     this._super(...arguments);
 
-    if (this.get('dismissOnClick')) {
-      this.get('state.actions').close();
+    if (this.dismissOnClick) {
+      this.get('state').closeMenu();
     }
-  }
+  },
 });
