@@ -1,5 +1,16 @@
 # Changelog
 
+
+## v4.0.0 (2022-06-03)
+
+#### :boom: Breaking Change
+* [#152](https://github.com/adopted-ember-addons/ember-burger-menu/pull/152) ember-auto-import 2, node >= 12, update all the things ([@rwwagner90](https://github.com/rwwagner90))
+* [#124](https://github.com/adopted-ember-addons/ember-burger-menu/pull/124) Update ember and various things ([@ttill](https://github.com/ttill))
+
+#### Committers: 2
+- Robert Wagner ([@rwwagner90](https://github.com/rwwagner90))
+- Till Theato ([@ttill](https://github.com/ttill))
+
 ## v3.3.3
 
 ### Pull Requests
