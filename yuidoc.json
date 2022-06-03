@@ -1,7 +1,7 @@
 {
   "name": "ember-burger-menu",
   "description": "",
-  "url": "http://github.com/offirgolan/ember-burger-menu",
+  "url": "http://github.com/adopted-ember-addons/ember-burger-menu",
   "options": {
     "enabledEnvironments": [],
     "paths": [

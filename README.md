@@ -1,7 +1,6 @@
 # ember-burger-menu
 
-[![Ember Version](https://embadge.io/v1/badge.svg?start=2.3.0)](https://embadge.io/v1/badge.svg?start=2.3.0)
-[![Build Status](https://travis-ci.org/offirgolan/ember-burger-menu.svg?branch=master)](https://travis-ci.org/offirgolan/ember-burger-menu)
+[![CI](https://github.com/adopted-ember-addons/ember-burger-menu/actions/workflows/ci.yml/badge.svg)](https://github.com/adopted-ember-addons/ember-burger-menu/actions/workflows/ci.yml)
 [![npm version](https://badge.fury.io/js/ember-burger-menu.svg)](http://badge.fury.io/js/ember-burger-menu)
 
 An off-canvas sidebar component with a collection of animations and styles using CSS transitions
@@ -67,12 +66,12 @@ Using sass, you can import only the styles you need for the animations you use.
 
 ## Helpful Links
 
-- ### [Live Demo](http://offirgolan.github.io/ember-burger-menu)
+- ### [Live Demo](http://adopted-ember-addons.github.io/ember-burger-menu)
 
 - ### [Changelog](CHANGELOG.md)
 
 ## Looking for help?
-If it is a bug [please open an issue on GitHub](http://github.com/offirgolan/ember-burger-menu/issues).
+If it is a bug [please open an issue on GitHub](http://github.com/adopted-ember-addons/ember-burger-menu/issues).
 
 ## Animations
 
