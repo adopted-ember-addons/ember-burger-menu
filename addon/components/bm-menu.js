@@ -1,5 +1,5 @@
 import Component from '@ember/component';
-import { observer, computed } from '@ember/object';
+import { computed } from '@ember/object';
 import { A as emberArray } from '@ember/array';
 import layout from '../templates/components/bm-menu';
 import computedStyleFor from 'ember-burger-menu/computed/style-for';
@@ -28,7 +28,11 @@ export default Component.extend({
     return emberArray([]);
   }).readOnly(),
 
-  onOpenChange: observer('state.open', function () {
-    this[this.get('state.open') ? 'onOpen' : 'onClose']();
-  }),
+  init() {
+    this._super(...arguments);
+
+    this.onOpenChange = () => {
+      this[this.get('state.open') ? 'onOpen' : 'onClose']();
+    };
+  },
 });

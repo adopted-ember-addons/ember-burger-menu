@@ -1,5 +1,13 @@
-<EmberWormhole @to="{{@containerId}}-outlet-menu" @renderInPlace={{this.renderInPlace}}>
-  <div class='bm-menu' style={{this.style}}>
+<EmberWormhole
+  @to='{{@containerId}}-outlet-menu'
+  @renderInPlace={{this.renderInPlace}}
+>
+  <div
+    class='bm-menu'
+    style={{this.style}}
+    {{did-insert this.onOpenChange this.state.open}}
+    {{did-update this.onOpenChange this.state.open}}
+  >
     {{yield
       (hash
         item=(component
