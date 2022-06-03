@@ -1,5 +1,4 @@
 import EmberObject from '@ember/object';
-import { assign } from '@ember/polyfills';
 import { assert } from '@ember/debug';
 import cssStringify from 'ember-burger-menu/utils/css-stringify';
 
@@ -43,7 +42,7 @@ const Animation = EmberObject.extend({
     }
 
     if (type === 'menu') {
-      assign(result, { width: `${width}px` });
+      Object.assign(result, { width: `${width}px` });
     }
 
     return cssStringify(result);
