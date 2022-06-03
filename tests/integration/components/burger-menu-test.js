@@ -388,17 +388,17 @@ module('Integration | Component | burger menu', function (hooks) {
         'bm--custom-animation',
         'Custom container has correct CSS class'
       );
-    assert.equal(
+    assert.strictEqual(
       find('.ember-burger-menu').style.color,
       'rgb(0, 128, 0)',
       'Custom container styles applied'
     );
-    assert.equal(
+    assert.strictEqual(
       find('.bm-outlet').style.transform,
       '',
       'Custom outlet styles applied'
     );
-    assert.equal(
+    assert.strictEqual(
       find('.bm-menu').style.color,
       'rgb(255, 0, 0)',
       'Custom menu styles applied'
@@ -426,7 +426,7 @@ module('Integration | Component | burger menu', function (hooks) {
         'bm-item--custom-animation',
         'Custom menu has correct CSS class'
       );
-    assert.equal(
+    assert.strictEqual(
       find('.bm-menu-item').style.color,
       'rgb(255, 255, 255)',
       'Menu item has no style'
@@ -436,7 +436,7 @@ module('Integration | Component | burger menu', function (hooks) {
 
     await settled();
 
-    assert.equal(
+    assert.strictEqual(
       find('.bm-menu-item').style.color,
       'rgb(0, 0, 0)',
       'Custom menu styles applied'
@@ -444,7 +444,7 @@ module('Integration | Component | burger menu', function (hooks) {
 
     let allItems = findAll('.bm-menu-item');
 
-    assert.equal(
+    assert.strictEqual(
       allItems[allItems.length - 1].style.color,
       'rgb(1, 0, 0)',
       'Custom menu styles applied'

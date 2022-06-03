@@ -7,5 +7,6 @@ module.exports = {
     'link-href-attributes': false,
     'no-inline-styles': false,
     'no-yield-only': false,
+    'require-presentational-children': false,
   },
 };
