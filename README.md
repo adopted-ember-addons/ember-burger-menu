@@ -1,4 +1,4 @@
-# Ember Burger Menu
+# ember-burger-menu
 
 [![Ember Version](https://embadge.io/v1/badge.svg?start=2.3.0)](https://embadge.io/v1/badge.svg?start=2.3.0)
 [![Build Status](https://travis-ci.org/offirgolan/ember-burger-menu.svg?branch=master)](https://travis-ci.org/offirgolan/ember-burger-menu)
@@ -13,11 +13,10 @@ An off-canvas sidebar component with a collection of animations and styles using
 - Swipe gesture support with changeable thresholds
 - Easily create your own animations
 
-Compatibility
-------------------------------------------------------------------------------
+## Compatibility
 
-* Ember.js v3.20 or above
-* Ember CLI v3.20 or above
+* Ember.js v3.24 or above
+* Ember CLI v3.24 or above
 * Node.js v12 or above
 
 ## Installation
