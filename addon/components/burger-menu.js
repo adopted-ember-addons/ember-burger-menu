@@ -39,33 +39,33 @@ export default Component.extend(SwipeSupportMixin, {
   style: computedStyleFor('container').readOnly(),
 
   animationClass: computed('state.styles.animation', function () {
-    let animation = this.get('state.styles.animation');
+    const animation = this.get('state.styles.animation');
     return animation ? `bm--${animation}` : '';
   }).readOnly(),
 
   itemAnimationClass: computed('state.styles.itemAnimation', function () {
-    let itemAnimation = this.get('state.styles.itemAnimation');
+    const itemAnimation = this.get('state.styles.itemAnimation');
     return itemAnimation ? `bm-item--${itemAnimation}` : '';
   }).readOnly(),
 
   init() {
     this._super(...arguments);
 
-    this.onClick = (e) => {
+    this.onClick = (event) => {
       if (this.dismissOnClick) {
-        let elementId = this.elementId;
+        const { elementId } = this;
         // Close the menu if clicked outside of it
-        if (!e.target.closest(`#${elementId} .bm-menu`)) {
+        if (!event.target.closest(`#${elementId} .bm-menu`)) {
           this.get('state').closeMenu();
         }
       }
     };
 
-    this.onKeyup = (e) => {
-      if (this.dismissOnEsc) {
-        if (e.keyCode === 27) {
-          this.get('state').closeMenu();
-        }
+    this.onKeyup = (event) => {
+      const escapeKeyPressed = event.keyCode === 27;
+
+      if (this.dismissOnEsc && escapeKeyPressed) {
+        this.get('state').closeMenu();
       }
     };
 
@@ -99,10 +99,8 @@ export default Component.extend(SwipeSupportMixin, {
   },
 
   onSwipe(direction, target) {
-    let position = this.position;
-    let open = this.open;
-    let gesturesEnabled = this.gesturesEnabled;
-    let isMenuSwipe = target.closest('.bm-menu');
+    const { position, open, gesturesEnabled } = this;
+    const isMenuSwipe = target.closest('.bm-menu');
 
     if (!gesturesEnabled) {
       return;

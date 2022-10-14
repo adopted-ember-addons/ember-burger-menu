@@ -19,7 +19,7 @@ export default function cssStringify(hash = {}) {
   return htmlSafe(
     Object.keys(hash)
       .reduce((css, key) => {
-        let value = hash[key];
+        const value = hash[key];
 
         if (!isEmpty(value)) {
           css = css.concat(buildProp(key, value));
@@ -33,11 +33,11 @@ export default function cssStringify(hash = {}) {
 
 function buildProp(key, value) {
   key = dasherize(key);
-  let css = [`${key}: ${value}`];
+  const css = [`${key}: ${value}`];
 
   if (PREFIXED_PROPS.indexOf(key) > -1) {
-    PREFIXES.forEach((p) => {
-      css.push(`-${p}-${key}: ${value}`);
+    PREFIXES.forEach((prefix) => {
+      css.push(`-${prefix}-${key}: ${value}`);
     });
   }
 
