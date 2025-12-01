@@ -5,6 +5,13 @@
 
 An off-canvas sidebar component with a collection of animations and styles using CSS transitions
 
+---
+
+## **Deprecated:**
+community support has shifted to [`ember-mobile-menu`](https://nickschot.github.io/ember-mobile-menu), we'd suggest taking a look there
+
+---
+
 ## Features
 
 - Easy to use & setup off-canvas menu
