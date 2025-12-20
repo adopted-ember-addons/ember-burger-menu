@@ -10,33 +10,29 @@ export default Mixin.create({
 
   onSwipe(/* direction, target */) {},
 
-  touchStart(e) {
+  touchStart(event) {
     this._super(...arguments);
 
-    // jscs:disable
-    let touch = e.touches[0];
-    // jscs:enable
+    const { pageX, pageY } = event.touches[0];
 
     meta = {
-      target: e.target,
+      target: event.target,
       start: {
-        x: touch.pageX,
-        y: touch.pageY,
+        x: pageX,
+        y: pageY,
         time: new Date().getTime(),
       },
     };
   },
 
-  touchMove(e) {
+  touchMove({ touches = [] }) {
     this._super(...arguments);
 
-    // jscs:disable
-    let touch = e.touches[0];
-    // jscs:enable
+    const { pageX, pageY } = touches[0];
 
     meta.differences = {
-      x: touch.pageX - meta.start.x,
-      y: touch.pageY - meta.start.y,
+      x: pageX - meta.start.x,
+      y: pageY - meta.start.y,
     };
 
     // Compute swipe direction
@@ -46,17 +42,15 @@ export default Mixin.create({
     }
 
     // A valid swipe event uses only one finger
-    if (e.touches.length > 1) {
+    if (touches.length > 1) {
       meta.isInvalid = true;
     }
   },
 
   touchEnd() {
     this._super(...arguments);
-
-    let minSwipeDistance = this.minSwipeDistance;
-    let maxSwipeTime = this.maxSwipeTime;
-    let elapsedTime = new Date().getTime() - meta.start.time;
+    const { minSwipeDistance, maxSwipeTime } = this;
+    const elapsedTime = new Date().getTime() - meta.start.time;
 
     if (
       meta.isHorizontal &&

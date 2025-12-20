@@ -18,32 +18,30 @@ export default class State extends EmberObject {
 
   @computed('animation', 'itemAnimation', 'customAnimation')
   get styles() {
-    let animation = this.animation;
-    let itemAnimation = this.itemAnimation;
-    let customAnimation = this.customAnimation;
+    const { animation, itemAnimation, customAnimation } = this;
 
     return getAnimation(customAnimation || animation, itemAnimation).create();
   }
 
   @action
-  openMenu(e) {
-    e?.stopPropagation?.();
+  openMenu(event) {
+    event?.stopPropagation?.();
     if (!this.locked) {
       this.open = true;
     }
   }
 
   @action
-  closeMenu(e) {
-    e?.stopPropagation?.();
+  closeMenu(event) {
+    event?.stopPropagation?.();
     if (!this.locked) {
       this.open = false;
     }
   }
 
   @action
-  toggleMenu(e) {
-    e?.stopPropagation?.();
+  toggleMenu(event) {
+    event?.stopPropagation?.();
     if (!this.locked) {
       this.open = !this.open;
     }
